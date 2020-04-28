@@ -1,8 +1,17 @@
 package animal;
 
+/** 
+ * 
+ * @author Lachlan Reynolds, Conor Ansell.
+ * This class implements a Sheep, which is a 
+ * with specific attributes.
+ *
+ */
+
 public class Sheep extends Animal {
+	
 	public Sheep() {
-		favouriteFood = "Hay";
+		super("Hay", 40); //favourite food
 	}
 
 }

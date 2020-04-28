@@ -2,6 +2,7 @@ package Farms;
 import java.util.ArrayList;
 import animal.Animal;
 import Farmers.Farmer;
+import crops.Crop;
 
 /**
  * 
@@ -48,6 +49,12 @@ public class Farm {
 		if (freeSpace == 0) {
 			System.out.println("You do not have enough space to plant that");
 			}
+	}
+	
+	public void harvestCrop(Crop crop) {
+		listOfCrops.remove(crop);
+		
+		money -= crop.sellingPrice;
 	}
 	
 	/**

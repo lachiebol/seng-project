@@ -1,7 +1,7 @@
 package animal;
-/**
- * 
- */
+
+import food.Food;
+
 
 /**
  * @author Lachlan Reynolds, Conor Ansell
@@ -12,25 +12,35 @@ package animal;
 public class Animal {
 	
 	public int health = 100;
-	public int happiness = 100;
-	public int purchasePrice = 200;
-	public int bonusEarnings = 50;
+	public int happiness = 100;	
+	public int bonusEarnings = 5;
 	public double tendToBoost = 1;
 	
 	public String favouriteFood;
+	public int purchasePrice;
+	
+	/**
+	 * Initialises the Animal object
+	 * 
+	 */
+	
+	public Animal(String newFavouriteFood, int newPurchasePrice) {
+		favouriteFood = newFavouriteFood;
+		purchasePrice = newPurchasePrice;
+	}
 	
 	/**
 	* Feeds animal if food is favourite, or else prints message
 	* 
-	* @param foodItem food that will be fed to Animal
+	* @param Food foodItem, food that will be fed to Animal
 	*
 	*/	
-	public void feed(String foodItem) {
-		if (health + 20 <= 100)
-			if(foodItem == favouriteFood) {
-				health += 20;
+	public void feed(Food foodItem) {
+		if (health + (foodItem.healthBoost * 1.5) <= 100)
+			if(foodItem.name == favouriteFood) {
+				health += foodItem.healthBoost * 1.5;
 			}else {
-				System.out.println("This animal does not eat " + foodItem);
+				health += foodItem.healthBoost;
 			}
 		else {
 			System.out.println("This animal does not need to eat");
@@ -38,30 +48,27 @@ public class Animal {
 	}
 	
 	/**
+	* Calculates and sets bonusEarnings
+	* 
+	*/	
+	public void setBonusEarnings() {		
+		bonusEarnings += (int) (((health + happiness) * tendToBoost) * 0.0167);		
+	}
+	
+	/**
 	* Tends to animal, increasing their happiness
 	*
-	*/
+	*/	
 	public void tendTo() {
 		if (happiness + 20 <= 100)
-		happiness += 20;
+			happiness += 20;
 		else {
 			happiness = 100;
 		}
 		
 		tendToBoost = 1.5;
-	}
-	
-	
-	/**
-	* Calculates and sets bonusEarnings
-	* 
-	*/	
-	public void setBonusEarnings() {		
-		bonusEarnings = (int) (((health + happiness) * tendToBoost) * 0.167);		
-	}
-	
-	public static void main(String args[]) {
-
 		
+		setBonusEarnings();
 	}
+	
 }
