@@ -16,7 +16,7 @@ public class Animal {
 	public int bonusEarnings = 5;
 	public double tendToBoost = 1;
 
-	public String favouriteFood;
+	public Food favouriteFood;
 	public int purchasePrice;
 
 	/**
@@ -24,7 +24,7 @@ public class Animal {
 	 *
 	 */
 
-	public Animal(String newFavouriteFood, int newPurchasePrice) {
+	public Animal(Food newFavouriteFood, int newPurchasePrice) {
 		favouriteFood = newFavouriteFood;
 		purchasePrice = newPurchasePrice;
 	}
