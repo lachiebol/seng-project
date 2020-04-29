@@ -2,7 +2,7 @@ package Farms;
 import Farmers.Farmer;
 
 /**
- * 
+ *
  * @author Lachlan Reynolds, Conor Ansell.
  * This class implements a crop farm which has certain boosts to farming crops.
  */

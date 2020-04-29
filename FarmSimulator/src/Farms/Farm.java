@@ -5,18 +5,18 @@ import Farmers.Farmer;
 import crops.Crop;
 
 /**
- * 
+ *
  */
 
 /**
  * @author Lachlan Reynolds, Conor Ansell
- * 
+ *
  * This class implements a farm that is able to do actions.
  *
  */
 
 public class Farm {
-	
+
 	public String name;
 	public Farmer farmer;
 	public ArrayList<Crop> listOfCrops = new ArrayList<Crop>();
@@ -24,11 +24,13 @@ public class Farm {
 	public int money = 500;
 	public static int freeSpace = 5;
 	public String type;
-	
+	public int actionsRemaining = 2;
+	public int dayCounter = 0;
+
 	/**
 	 * Initiates a Farm Object.
 	 */
-	
+
 	public Farm(String newName, Farmer newFarmer, String newType) {
 		name = newName;
 		farmer = newFarmer;
@@ -44,19 +46,23 @@ public class Farm {
 			money -= crop.purchasePrice;
 		}
 		if (money < crop.purchasePrice) {
-			System.out.println("You do not have enough money to buy that");				
+			System.out.println("You do not have enough money to buy that");
 			}
 		if (freeSpace == 0) {
 			System.out.println("You do not have enough space to plant that");
 			}
 	}
-	
+
 	public void harvestCrop(Crop crop) {
+		if (actionsRemaining > 0) {
 		listOfCrops.remove(crop);
-		
 		money -= crop.sellingPrice;
+		}
+		else {
+			System.out.println("You have no actions remaining today");
+		}
 	}
-	
+
 	/**
 	 * Buys an animal for the farm
 	 * @param animal
@@ -67,13 +73,13 @@ public class Farm {
 			money -= animal.purchasePrice;
 		}
 		else {
-			System.out.println("You do not have enough money to buy that");				
+			System.out.println("You do not have enough money to buy that");
 			}
 	}
-	
+
 	/**
 	 * Tidies the farm so that more animals and crops can utilize the space.
-	 */	
+	 */
 	public void tendToLand() {
 		if(freeSpace < 5) {
 			freeSpace = 5;
@@ -82,6 +88,13 @@ public class Farm {
 			System.out.println("The farm is already completely tidy");
 		}
 	}
-	
-	
+
+	/**
+	*Advances to the next day and resets actionsRemaining to 2
+	*/
+	public void nextDay() {
+		dayCounter += 1;
+		actionsRemaining = 2;
+	}
+
 }
