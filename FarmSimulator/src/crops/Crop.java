@@ -1,6 +1,6 @@
 package crops;
 import Items.CropItem;
-import Farms.Farm
+import Farms.Farm;
 
 public class Crop {
 	public String name;
@@ -26,7 +26,7 @@ public class Crop {
 	 * @param item
 	 */
 
-	public void useItem(CropItem item) {
+	public void useItem(CropItem item, Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
 			 daysToHarvest -= item.timeBoost;
 			 playerFarm.actionsRemaining -= 1;

@@ -10,7 +10,7 @@ public class CropFarm extends Farm{
 	/**
 	 * Initialises a CropFarm Object
 	 */
-	CropFarm(String chosenName, Farmer chosenFarmer) {
+	public CropFarm(String chosenName, Farmer chosenFarmer) {
 		super(chosenName, chosenFarmer, "Crop Farm");
 	}
 }

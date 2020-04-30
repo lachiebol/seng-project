@@ -1,7 +1,7 @@
 package animal;
 
 import food.Food;
-
+import Farms.Farm;
 
 /**
  * @author Lachlan Reynolds, Conor Ansell
@@ -35,10 +35,10 @@ public class Animal {
 	* @param Food foodItem, food that will be fed to Animal
 	*
 	*/
-	public void feed(Food foodItem) {
+	public void feed(Food foodItem, Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
 			if (health + (foodItem.healthBoost * 1.5) <= 100) {
-				if(foodItem.name == favouriteFood) {
+				if(foodItem == favouriteFood) {
 					health += foodItem.healthBoost * 1.5;
 				} else {
 					health += foodItem.healthBoost;
@@ -66,7 +66,7 @@ public class Animal {
 	* Plays with animal, increasing their happiness
 	*
 	*/
-	public void playWith() {
+	public void playWith(Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
 			if (happiness + 20 <= 100) {
 				happiness += 20;
@@ -75,20 +75,23 @@ public class Animal {
 				happiness = 100;
 			}
 
-			playerFarm.actionsRemaining -= 1
+			playerFarm.actionsRemaining -= 1;
 
 			tendToBoost = 1.5;
 
 			setBonusEarnings();
 			}
 		else {
-			System.out.println("You have no actions remaining today")
+			System.out.println("You have no actions remaining today");
 		}
 
 
 	/**
 	*Tends to animal, giving the player money.
 	*/
+		
 
 
+
+}
 }

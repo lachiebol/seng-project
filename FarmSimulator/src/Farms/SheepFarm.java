@@ -11,7 +11,7 @@ public class SheepFarm extends Farm{
 	/**
 	 * Initialises a SheepFarm Object
 	 */
-	SheepFarm(String chosenName, Farmer chosenFarmer) {
+	public SheepFarm(String chosenName, Farmer chosenFarmer) {
 		super(chosenName, chosenFarmer, "Sheep Farm");
 	}
 }
