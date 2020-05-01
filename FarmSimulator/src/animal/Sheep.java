@@ -12,7 +12,7 @@ import food.Hay;
 public class Sheep extends Animal {
 	
 	public Sheep() {
-		super(new Hay(), 40); //favourite food
+		super(new Hay(), 40, "Sheep"); //favourite food
 	}
 
 }

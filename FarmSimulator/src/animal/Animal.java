@@ -10,12 +10,15 @@ import Farms.Farm;
  *
  */
 public class Animal {
+	
+	
 
 	public int health = 100;
 	public int happiness = 100;
 	public int bonusEarnings = 5;
 	public double tendToBoost = 1;
-
+	
+	public String name;
 	public Food favouriteFood;
 	public int purchasePrice;
 
@@ -24,9 +27,11 @@ public class Animal {
 	 *
 	 */
 
-	public Animal(Food newFavouriteFood, int newPurchasePrice) {
+	public Animal(Food newFavouriteFood, int newPurchasePrice, String newName) {
 		favouriteFood = newFavouriteFood;
 		purchasePrice = newPurchasePrice;
+		name = newName;
+		
 	}
 
 	/**
@@ -86,12 +91,11 @@ public class Animal {
 		}
 
 
-	/**
-	*Tends to animal, giving the player money.
-	*/
+
 		
 
 
 
 }
 }
+

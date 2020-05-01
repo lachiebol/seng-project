@@ -11,7 +11,7 @@ import food.Seeds;
 
 public class Chicken extends Animal {
 	public Chicken() {
-		super(new Seeds(), 30); //favourite food;
+		super(new Seeds(), 30, "Chicken"); //favourite food;
 	}
 	
 	
