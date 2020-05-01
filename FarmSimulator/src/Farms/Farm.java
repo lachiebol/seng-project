@@ -36,6 +36,27 @@ public class Farm {
 		farmer = newFarmer;
 		type = newType;
 	}
+	
+	/**
+	*Prints a list of owned animals
+	*/
+		
+	public void printAnimals() {
+		for (int i = 0; i < listOfAnimals.size(); i++) {
+			Animal currentAnimal = listOfAnimals.get(i);
+			System.out.println((i + 1) + ". " + currentAnimal.name + ", <3: " + currentAnimal.health + ", :): " + currentAnimal.happiness);
+			
+		}
+	}
+	
+	public void printCrops() {
+		for (int i = 0; i < listOfCrops.size(); i++) {
+			Crop currentCrop = listOfCrops.get(i);
+			System.out.println((i + 1) + ". " + currentCrop.name + ", Days to Harvest: " + currentCrop.daysToHarvest);
+		}
+	}
+	
+	
 	/**
 	 * Buys a crop to be planted in the farm.
 	 * @param crop
