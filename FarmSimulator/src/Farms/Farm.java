@@ -42,6 +42,12 @@ public class Farm {
 	*/
 		
 	public void printAnimals() {
+		System.out.println("These are your animals:");
+		
+		if(listOfAnimals.size() == 0) {
+			System.out.println("You currently have no animals, visit the general store to buy some \n");
+		}
+		
 		for (int i = 0; i < listOfAnimals.size(); i++) {
 			Animal currentAnimal = listOfAnimals.get(i);
 			System.out.println((i + 1) + ". " + currentAnimal.name + ", <3: " + currentAnimal.health + ", :): " + currentAnimal.happiness);
@@ -50,9 +56,15 @@ public class Farm {
 	}
 	
 	public void printCrops() {
+		System.out.println("These are your crops:");
+		
+		if(listOfCrops.size() == 0) {
+			System.out.println("You currently have no crops, visit the general store to buy some \n");
+		}
+		
 		for (int i = 0; i < listOfCrops.size(); i++) {
 			Crop currentCrop = listOfCrops.get(i);
-			System.out.println((i + 1) + ". " + currentCrop.name + ", Days to Harvest: " + currentCrop.daysToHarvest);
+			System.out.println("\t" +(i + 1) + ". " + currentCrop.name + ", Days to Harvest: " + currentCrop.daysToHarvest);
 		}
 	}
 	
