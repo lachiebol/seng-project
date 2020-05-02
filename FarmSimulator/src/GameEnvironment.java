@@ -10,9 +10,96 @@ import java.util.InputMismatchException;
 import java.lang.IndexOutOfBoundsException;
 
 public class GameEnvironment {
+	Scanner in = new Scanner(System.in);
+
+	public void harvest(Farm playerFarm) {
+		if (playerFarm.listOfCrops.isEmpty() == false) { // if crops not empty
+			boolean harvesting = true;
+
+			while (harvesting) {
+				int lastElement = playerFarm.listOfCrops.size();
+
+				playerFarm.printCrops();
+				System.out.println("Enter " + lastElement + " to go back");
+				System.out.println("What crops would you like to harvest?");
+
+				try { // get index of crop then run harvest crop method of Farm to harvest using the
+
+					// get crop index;
+					int input = (in.nextInt() - 1); // index
+					in.nextLine();
+
+					if (input + 1 == lastElement) {
+						harvesting = false;
+
+					} else {
+						Crop currentCrop = playerFarm.listOfCrops.get(input);
+
+						playerFarm.harvestCrop(currentCrop);
+
+						System.out.println("You harvested a " + currentCrop.name.toLowerCase() + " and sold it for "
+								+ currentCrop.sellingPrice + " dollars \n");
+					}
+					// harvest crop at cropIndex;
+
+				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
+					System.out.println("That isn't a crop");
+				}
+			}
+		} else {
+			System.out.println("You have no crops to harvest");
+		}
+
+	}
+
+	public void playWithAnimals(Farm playerFarm) {
+		if (playerFarm.listOfAnimals.isEmpty() == false) { // if crops not empty
+			boolean playing = true;
+
+			while (playing) {
+				int lastElement = playerFarm.listOfAnimals.size();
+				
+				playerFarm.printAnimals();
+				System.out.println("Enter " + lastElement + " to go back");
+				System.out.println("What animal would you like to play with?");
+
+				try { // get index of animal then run playWith method of Farm to harvest using the
+
+					// get crop index;
+					int input = (in.nextInt() - 1); // index
+					in.nextLine();
+
+					if (input + 1 == lastElement) {
+						playing = false;
+					} else {
+						// harvest crop at cropIndex;
+						Animal currentAnimal = playerFarm.listOfAnimals.get(input);
+
+						currentAnimal.playWith(playerFarm);
+					}
+
+				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
+					System.out.println("That isn't an animal");
+				}
+			}
+		} else {
+			System.out.println("You have no animals to play with");
+		}
+
+	}
+
+	public void feedAnimals(Farm playerFarm) {
+		// not yet implemented
+	}
+
+	public void tendToCrops(Farm playerFarm) {
+		// not yet implemented
+	}
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
+		GameEnvironment game = new GameEnvironment();
+
 		boolean running = true;
 		boolean startGame = true;
 		boolean mainGame = false;
@@ -24,16 +111,16 @@ public class GameEnvironment {
 
 		Farm playerFarm = null;
 		String farmName = null;
-		
-		//Farm creation loop
+
+		// Farm creation loop
 		while (startGame) {
 
 			boolean pickPlayerName = true;
 			boolean pickPlayerAge = true;
 			boolean pickFarmName = true;
 			boolean pickFarmType = true;
-			
-			//player age loop
+
+			// player age loop
 			while (pickPlayerName) {
 
 				System.out.println("Pick a name for your farmer, it must be between 3 and 15 characters");
@@ -48,14 +135,14 @@ public class GameEnvironment {
 					System.out.println("That isn't a valid name,");
 				}
 			}
-			
-			//player age loop
-			while (pickPlayerAge) {	
+
+			// player age loop
+			while (pickPlayerAge) {
 				System.out.println("Welcome " + playerName + ", what is your age?");
 
-				try { // If age is not an integer then catch the exception and print a message															
+				try { // If age is not an integer then catch the exception and print a message
 					playerAge = in.nextInt();
-					
+
 					if (playerAge >= 100 || playerAge <= 0) {
 						System.out.println("That doesn't make any sense");
 					} else {
@@ -63,20 +150,16 @@ public class GameEnvironment {
 						pickPlayerAge = false;
 
 					}
-										
+
 				} catch (InputMismatchException ex) {
 					System.out.println("That isn't an age");
 				} finally {
 					in.nextLine();
 				}
 
-				
-
-
-
 			}
-			
-			//farm name loop
+
+			// farm name loop
 			while (pickFarmName) {
 				System.out.println("Pick a Farm Name, it must be between 3 and 30 characters");
 				farmName = in.nextLine();
@@ -94,7 +177,7 @@ public class GameEnvironment {
 
 			}
 
-			//farm type loop
+			// farm type loop
 			while (pickFarmType) {
 				System.out.println("Pick a Farm Type, each farm gives bonuses for owning things of the same type");
 				System.out.println("");
@@ -129,8 +212,8 @@ public class GameEnvironment {
 			}
 
 		}
-		
-		//Main game loop
+
+		// Main game loop
 		while (mainGame) {
 			System.out.println("-".repeat(50));
 
@@ -158,43 +241,20 @@ public class GameEnvironment {
 						System.out.println("-".repeat(80));
 						System.out.println("What would you like to do?");
 						System.out.println("1. Harvest crops");
-						System.out.println("2. Tend to animals");
+						System.out.println("2. Play with animals");
 						System.out.println("3. Feed animals");
-						System.out.println("4. Use item on crops");
+						System.out.println("4. Tend to crops");
 
 						String choice = in.nextLine();
 
 						if (choice.equals("1")) { // Harvesting crop
-							if (playerFarm.listOfCrops.isEmpty() == false) { // if crops not empty
-								boolean harvesting = true;
-
-								while (harvesting) {
-									playerFarm.printCrops();
-									System.out.println("What crops would you like to harvest?");
-
-									try { // get index of crop then run harvest crop method of Farm to harvest using the
-
-										// get crop index;
-										int cropIndex = (in.nextInt() - 1); // index
-										in.nextLine();
-
-										// harvest crop at cropIndex;
-										Crop currentCrop = playerFarm.listOfCrops.get(cropIndex);
-										System.out.println("You harvested a " + currentCrop.name.toLowerCase()
-												+ " and sold it for " + currentCrop.sellingPrice + " dollars \n");
-
-									} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a
-																										// correct crop
-																										// print message
-										System.out.println("That isn't a crop");
-									}
-								}
-							} else {
-								System.out.println("You have no crops to harvest");
-							}
-
-						} else if (choice.equals("2")) {
-
+							game.harvest(playerFarm);
+						} else if (choice.equals("2")) {					
+							game.playWithAnimals(playerFarm);
+						} else if (choice.equals("3")) {
+							game.feedAnimals(playerFarm);
+						} else if (choice.equals("4")) {
+							game.tendToCrops(playerFarm);
 						}
 
 						viewCrops = false;
