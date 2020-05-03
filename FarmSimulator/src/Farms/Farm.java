@@ -50,7 +50,7 @@ public class Farm {
 		
 		for (int i = 0; i < listOfAnimals.size(); i++) {
 			Animal currentAnimal = listOfAnimals.get(i);
-			System.out.println((i + 1) + ". " + currentAnimal.name + ", <3: " + currentAnimal.health + ", :): " + currentAnimal.happiness);
+			System.out.println("\t" + (i + 1) + ". " + currentAnimal.name + ", <3: " + currentAnimal.health + ", :): " + currentAnimal.happiness);
 			
 		}
 	}
