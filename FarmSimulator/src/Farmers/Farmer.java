@@ -1,4 +1,4 @@
-package Farmers;
+package farmers;
 
 /**
  * 
