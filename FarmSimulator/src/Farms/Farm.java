@@ -1,9 +1,9 @@
-package farms;
+package Farms;
 import java.util.ArrayList;
 import animal.Animal;
 import crops.Crop;
-import farmers.Farmer;
-import items.CropItem;
+import Farmers.Farmer;
+import Items.CropItem;
 import food.Food;
 
 /**
@@ -75,6 +75,34 @@ public class Farm {
 			Crop currentCrop = listOfCrops.get(i);
 			System.out.println("\t" +(i + 1) + ". " + currentCrop.name + ", Days to Harvest: " + currentCrop.daysToHarvest);
 		}
+	}
+	
+	public void printItems() {
+		System.out.println("These are your items:");
+		
+		if(listOfItems.size() == 0) {
+			System.out.println("You currently have no items, visit the general store to buy some \n");
+		}
+		
+		for (int i = 0; i < listOfItems.size(); i++) {
+			CropItem currentItem = listOfItems.get(i);
+			System.out.println("\t" +(i + 1) + ". " + currentItem.name + ", -" + currentItem.timeBoost + "days to harvest for a crop");
+		}
+		
+	}
+	
+	public void printFood() {
+		System.out.println("These are your food items:");
+		
+		if(listOfFood.size() == 0) {
+			System.out.println("You currently have no food, visit the general store to buy some \n");
+		}
+		
+		for (int i = 0; i < listOfFood.size(); i++) {
+			Food currentFood = listOfFood.get(i);
+			System.out.println("\t" +(i + 1) + ". " + currentFood.name + ", +" + currentFood.healthBoost + " health to animals");
+		}
+		
 	}
 	
 	
@@ -172,17 +200,21 @@ public class Farm {
 			System.out.println("The farm is already completely tidy");
 		}
 	}
+	
 
 	/**
 	*Advances to the next day and resets actionsRemaining to 2. Animals' happiness decreases
 	*if they don't have much free space.
 	*/
 	public void nextDay() {
+		
 		dayCounter += 1;
 		actionsRemaining = 2;
 		for (Animal theAnimal: listOfAnimals) {
 			theAnimal.happiness -= ((5 - freeSpace) * 5);
 		}
+		
+		
 	}
 
 }
