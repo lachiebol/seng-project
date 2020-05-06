@@ -1,8 +1,8 @@
 package crops;
-import farms.Farm;
-import items.CropItem;
+import Farms.Farm;
+import Items.CropItem;
 
-public class Crop {
+public class Crop implements Cloneable {
 	public String name;
 	public int purchasePrice;
 	public int sellingPrice;
@@ -25,11 +25,20 @@ public class Crop {
 	 *
 	 * @param item
 	 */
+	
+	public Object clone(){  
+	    try{  
+	        return super.clone();  
+	    }catch(Exception e){ 
+	        return null; 
+	    }
+	}
 
 	public void useItem(CropItem item, Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
-			 daysToHarvest -= item.timeBoost;
+			 this.daysToHarvest -= item.timeBoost;
 			 playerFarm.actionsRemaining -= 1;
+			 System.out.println("You used " + item.name.toLowerCase() + " on " + name + ", -" + item.timeBoost + " days");
 		}
 		else {
 			System.out.println("You have no actions remaining today");

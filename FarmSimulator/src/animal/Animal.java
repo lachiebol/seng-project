@@ -1,6 +1,6 @@
 package animal;
 
-import farms.Farm;
+import Farms.Farm;
 import food.Food;
 
 /**
@@ -9,7 +9,7 @@ import food.Food;
  * This class implements an animal that is able to do actions
  *
  */
-public class Animal {
+public class Animal implements Cloneable {
 	
 	
 
@@ -33,6 +33,14 @@ public class Animal {
 		name = newName;
 		baseEarnings = newBaseEarnings;
 		
+	}
+	
+	public Object clone(){  
+	    try{  
+	        return super.clone();  
+	    }catch(Exception e){ 
+	        return null; 
+	    }
 	}
 
 	/**
