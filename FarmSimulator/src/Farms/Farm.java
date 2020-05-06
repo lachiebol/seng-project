@@ -1,8 +1,10 @@
-package Farms;
+package farms;
 import java.util.ArrayList;
 import animal.Animal;
-import Farmers.Farmer;
 import crops.Crop;
+import farmers.Farmer;
+import items.CropItem;
+import food.Food;
 
 /**
  *
@@ -21,11 +23,14 @@ public class Farm {
 	public Farmer farmer;
 	public ArrayList<Crop> listOfCrops = new ArrayList<Crop>();
 	public ArrayList<Animal> listOfAnimals = new ArrayList<Animal>();
+	public ArrayList<CropItem> listOfItems = new ArrayList<CropItem>();
+	public ArrayList<Food> listOfFood = new ArrayList<Food>();
 	public int money = 500;
-	public static int freeSpace = 5;
+	public int freeSpace = 5;
 	public String type;
 	public int actionsRemaining = 2;
 	public int dayCounter = 0;
+	
 
 	/**
 	 * Initiates a Farm Object.
@@ -55,6 +60,10 @@ public class Farm {
 		}
 	}
 	
+	/**
+	 * Prints a list of owned Crops
+	 */
+	
 	public void printCrops() {
 		System.out.println("These are your crops:");
 		
@@ -77,19 +86,28 @@ public class Farm {
 		if ((money >= crop.purchasePrice) & (freeSpace > 0)) {
 			listOfCrops.add(crop);
 			money -= crop.purchasePrice;
+			freeSpace -= 1;
 		}
-		if (money < crop.purchasePrice) {
-			System.out.println("You do not have enough money to buy that");
+		else {
+			if (money < crop.purchasePrice) {
+				System.out.println("You do not have enough money to buy that");
 			}
-		if (freeSpace == 0) {
-			System.out.println("You do not have enough space to plant that");
+			if (freeSpace == 0) {
+				System.out.println("You do not have enough space to plant that");
 			}
+		}
 	}
-
+	
+	
+	/**
+	 * Harvests the crop, removing it from the farm and giving the player money.
+	 * @param crop
+	 */
 	public void harvestCrop(Crop crop) {
 		if (actionsRemaining > 0) {
 		listOfCrops.remove(crop);
-		money -= crop.sellingPrice;
+		money += crop.sellingPrice;
+		freeSpace += 1;
 		}
 		else {
 			System.out.println("You have no actions remaining today");
@@ -101,14 +119,47 @@ public class Farm {
 	 * @param animal
 	 */
 	public void buyAnimal(Animal animal) {
-		if (money >= animal.purchasePrice) {
+		if ((money >= animal.purchasePrice) & (freeSpace > 0)) {
 			listOfAnimals.add(animal);
 			money -= animal.purchasePrice;
-		}
+			freeSpace -= 1;
+			}
 		else {
 			System.out.println("You do not have enough money to buy that");
 			}
 	}
+	
+	/**
+	 * Buys a crop item to use on crops.
+	 * @param item
+	 */
+	
+	public void buyCropItem(CropItem item) {
+		if (money >= item.price) {
+			listOfItems.add(item);
+			money -= item.price;
+		}
+		else {
+			System.out.println("You do not have enough money to buy that");
+		}
+	}
+	
+	/**
+	 * Buys food that can be fed to animals.
+	 * @param food
+	 */
+	
+	public void buyFood(Food food) {
+		if (money >= food.price) {
+			listOfFood.add(food);
+			money -= food.price;
+		}
+		else {
+			System.out.println("You do not have enough money to buy that");
+		}
+	}
+	
+	
 
 	/**
 	 * Tidies the farm so that more animals and crops can utilize the space.
@@ -123,11 +174,15 @@ public class Farm {
 	}
 
 	/**
-	*Advances to the next day and resets actionsRemaining to 2
+	*Advances to the next day and resets actionsRemaining to 2. Animals' happiness decreases
+	*if they don't have much free space.
 	*/
 	public void nextDay() {
 		dayCounter += 1;
 		actionsRemaining = 2;
+		for (Animal theAnimal: listOfAnimals) {
+			theAnimal.happiness -= ((5 - freeSpace) * 5);
+		}
 	}
 
 }

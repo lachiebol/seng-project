@@ -1,5 +1,5 @@
-package Farms;
-import Farmers.Farmer;
+package farms;
+import farmers.Farmer;
 
 /**
  *

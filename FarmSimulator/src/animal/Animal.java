@@ -1,7 +1,7 @@
 package animal;
 
+import farms.Farm;
 import food.Food;
-import Farms.Farm;
 
 /**
  * @author Lachlan Reynolds, Conor Ansell
@@ -15,11 +15,11 @@ public class Animal {
 
 	public int health = 100;
 	public int happiness = 100;
-	public int bonusEarnings = 5;
-	public double tendToBoost = 1;
+	public double earningsBoost = 2;
 	
+	public int baseEarnings;
 	public String name;
-	public Food favouriteFood;
+	public String favouriteFood;
 	public int purchasePrice;
 
 	/**
@@ -27,10 +27,11 @@ public class Animal {
 	 *
 	 */
 
-	public Animal(Food newFavouriteFood, int newPurchasePrice, String newName) {
+	public Animal(String newFavouriteFood, int newPurchasePrice, String newName, int newBaseEarnings) {
 		favouriteFood = newFavouriteFood;
 		purchasePrice = newPurchasePrice;
 		name = newName;
+		baseEarnings = newBaseEarnings;
 		
 	}
 
@@ -43,7 +44,7 @@ public class Animal {
 	public void feed(Food foodItem, Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
 			if (health + (foodItem.healthBoost * 1.5) <= 100) {
-				if(foodItem == favouriteFood) {
+				if(foodItem.name == favouriteFood) {
 					health += foodItem.healthBoost * 1.5;
 				} else {
 					health += foodItem.healthBoost;
@@ -60,11 +61,11 @@ public class Animal {
 			}
 
 	/**
-	* Calculates and sets bonusEarnings
+	* Calculates and sets earningsBoost
 	*
 	*/
-	public void setBonusEarnings() {
-		bonusEarnings += (int) (((health + happiness) * tendToBoost) * 0.0167);
+	public void setEarningsBoost() {
+		earningsBoost = (((double) (health + happiness)) / 100);
 	}
 
 	/**
@@ -73,21 +74,38 @@ public class Animal {
 	*/
 	public void playWith(Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
-			if (happiness + 20 <= 100) {
+			if (happiness + 20 < 100) {
 				happiness += 20;
+				playerFarm.actionsRemaining -= 1;
 			}
 			else {
-				happiness = 100;
+				if (happiness == 100) {
+					System.out.println("The animal is already very happy");
+				}
+				else {
+					happiness = 100;
+					playerFarm.actionsRemaining -= 1;
+				}
 			}
-
-			playerFarm.actionsRemaining -= 1;
-
-			tendToBoost = 1.5;
-
-			setBonusEarnings();
-			}
+		}
 		else {
 			System.out.println("You have no actions remaining today");
+		}
+	}
+		
+	
+	/**
+	 * Tends to the animal, providing income for the farm.
+	 * @param playerFarm
+	 */
+	public void tendTo(Farm playerFarm) {
+		if (playerFarm.actionsRemaining > 0) {
+			setEarningsBoost();
+			playerFarm.money += (int) (baseEarnings * earningsBoost);
+			playerFarm.actionsRemaining -= 1;
+			}
+		else {
+			System.out.println("You have no remaining actions today");			
 		}
 
 

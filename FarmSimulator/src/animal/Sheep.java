@@ -1,5 +1,4 @@
 package animal;
-import food.Hay;
 
 /** 
  * 
@@ -12,7 +11,7 @@ import food.Hay;
 public class Sheep extends Animal {
 	
 	public Sheep() {
-		super(new Hay(), 40, "Sheep"); //favourite food
+		super("Hay", 40, "Sheep", 40); //favourite food
 	}
 
 }

@@ -1,6 +1,6 @@
 package crops;
-import Items.CropItem;
-import Farms.Farm;
+import farms.Farm;
+import items.CropItem;
 
 public class Crop {
 	public String name;
