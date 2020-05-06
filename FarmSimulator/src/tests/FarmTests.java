@@ -8,11 +8,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import animal.*;
-import farms.*;
+import Farms.*;
 import food.*;
 import crops.*;
-import farmers.Farmer;
-import items.*;
+import Farmers.Farmer;
+import Items.*;
 
 class FarmTests {
 	private DairyFarm testDairyFarm;

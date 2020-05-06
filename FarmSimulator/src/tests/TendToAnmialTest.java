@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import animal.*;
-import farms.*;
-import farmers.Farmer;
+import Farms.*;
+import Farmers.Farmer;
 
 
 class TendToAnmialTest {

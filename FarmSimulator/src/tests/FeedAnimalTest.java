@@ -7,9 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import animal.*;
-import farms.*;
+import Farms.*;
 import food.*;
-import farmers.Farmer;
+import Farmers.Farmer;
 
 
 class FeedAnimalTest {

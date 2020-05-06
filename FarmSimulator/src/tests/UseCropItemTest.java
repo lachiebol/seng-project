@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import farms.*;
+import Farms.*;
 import crops.*;
-import farmers.Farmer;
-import items.*;
+import Farmers.Farmer;
+import Items.*;
 
 class UseCropItemTest {
 	
