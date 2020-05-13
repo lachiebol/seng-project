@@ -13,8 +13,14 @@ import java.lang.IndexOutOfBoundsException;
 
 public class GameEnvironment {
 	Scanner in = new Scanner(System.in);
-
-
+	
+	
+	/**
+	 * Prompts player to pick what crops to harvest then harvests and sells the item
+	 * 
+	 * @param playerFarm Current Farm object used to get farm's inventory
+	 */
+	
 	public void harvest(Farm playerFarm) {
 		if (playerFarm.listOfCrops.isEmpty() == false) { // if crops not empty
 			boolean harvesting = true;
@@ -54,6 +60,12 @@ public class GameEnvironment {
 		}
 
 	}
+	
+	/**
+	 * Prompts player to pick what animal to play with then plays with animal
+	 * 
+	 * @param playerFarm Current Farm object used to get farm's inventory
+	 */
 
 	public void playWithAnimals(Farm playerFarm) {
 		if (playerFarm.listOfAnimals.isEmpty() == false) { // if crops not empty
@@ -90,6 +102,12 @@ public class GameEnvironment {
 		}
 
 	}
+	
+	/**
+	 * Prompts player to pick what animal to play with then feeds the animal
+	 * 
+	 * @param playerFarm Current Farm object used to get farm's inventory
+	 */
 
 	public void feedAnimals(Farm playerFarm) {
 		if (playerFarm.listOfAnimals.isEmpty() == false) { // if crops not empty
@@ -148,6 +166,12 @@ public class GameEnvironment {
 			System.out.println("You have no animals to feed");
 		}
 	}
+	
+	/**
+	 * Prompts player to pick what crop to tend to, then tends to that crop
+	 * 
+	 * @param playerFarm Current Farm object used to get farm's inventory
+	 */
 
 	public void tendToCrops(Farm playerFarm) {
 		// not yet implemented
@@ -207,7 +231,13 @@ public class GameEnvironment {
 			System.out.println("You have no crops to tend to");
 		}
 	}
-
+	
+	/**
+	 * Prompts the player to pick an animal, then purchases the animal
+	 * 
+	 * @param playerFarm Current Farm object used for the buyAnimal method
+	 * @param shopAnimals Array of Animals that the shop owns
+	 */
 	
 	public void purchaseAnimals(Farm playerFarm, ArrayList<Object> shopAnimals) {
 		boolean viewItem = true;
@@ -256,6 +286,13 @@ public class GameEnvironment {
 
 		}
 	}
+	
+	/**
+	 * Prompts the player to pick a crop, then purchases the crop
+	 * 
+	 * @param playerFarm Current Farm object used for the buyAnimal method
+	 * @param shopCrops Array of Crops that the shop owns
+	 */
 	
 	public void purchaseCrops(Farm playerFarm, ArrayList<Object> shopCrops) {
 		boolean viewItem = true;
@@ -309,6 +346,13 @@ public class GameEnvironment {
 		}
 	}
 	
+	/**
+	 * Prompts the player to pick a food item, then purchases the food item
+	 * 
+	 * @param playerFarm Current Farm object used for the buyAnimal method
+	 * @param shopFood Array of Food that the shop owns
+	 */
+	
 	public void purchaseFood(Farm playerFarm, ArrayList<Object> shopFood) {
 		boolean viewItem = true;
 
@@ -357,6 +401,13 @@ public class GameEnvironment {
 		}
 		
 	}
+	
+	/**
+	 * Prompts the player to pick a crop item, then purchases the food item
+	 * 
+	 * @param playerFarm Current Farm object used for the buyAnimal method
+	 * @param shopFood Array of CropItem that the shop owns
+	 */
 	
 	public void purchaseCropItem(Farm playerFarm, ArrayList<Object> shopCropItems) {
 		boolean viewItem = true;
@@ -544,15 +595,17 @@ public class GameEnvironment {
 				boolean viewCrops = true;
 
 				while (viewCrops) {
-					System.out.println("-".repeat(80));
-					// Print a list of animals
-					playerFarm.printAnimals();
-					// Print a list of crops
-					playerFarm.printCrops();
+
 
 					boolean choosing = true;
 
 					while (choosing) {
+						System.out.println("-".repeat(80));
+						// Print a list of animals
+						playerFarm.printAnimals();
+						// Print a list of crops
+						playerFarm.printCrops();
+						
 						System.out.println("-".repeat(80));
 						System.out.println("What would you like to do?");
 						System.out.println("1. Harvest crops");
@@ -562,14 +615,18 @@ public class GameEnvironment {
 						System.out.println("5. Go back to farm");
 						
 						String choice = in.nextLine();
-
+						
 						if (choice.equals("1")) { // Harvesting crop
+							System.out.println("-".repeat(80));
 							game.harvest(playerFarm);
-						} else if (choice.equals("2")) {					
+						} else if (choice.equals("2")) {
+							System.out.println("-".repeat(80));
 							game.playWithAnimals(playerFarm);
 						} else if (choice.equals("3")) {
+							System.out.println("-".repeat(80));
 							game.feedAnimals(playerFarm);
 						} else if (choice.equals("4")) {
+							System.out.println("-".repeat(80));
 							game.tendToCrops(playerFarm);
 						} else if (choice.equals("5")) {
 							choosing = false;
@@ -580,17 +637,29 @@ public class GameEnvironment {
 
 				}
 
-			} else if (input.equals("2")) {
-	
-				System.out.println("-".repeat(80));
-				System.out.println("(" + playerFarm.name + ", " + playerFarm.type + ") (" + player.name + ", Age: " + player.age + ")");
-				System.out.println("Money: " + playerFarm.money + "\n");
+			} else if (input.equals("2")) { //View farm status code
 				
+				boolean viewFarm = true;
+				
+				
+			
+				System.out.println("-".repeat(80));
+				System.out.println("(" + playerFarm.name + ", " + playerFarm.type + ") (" + player.name + ", Age: "
+						+ player.age + ")");
+				
+				System.out.println("Money: " + playerFarm.money + "   Current Day: " + playerFarm.dayCounter
+						+ "   Free space: " + playerFarm.freeSpace);
+				
+				System.out.println(" ");
+
 				playerFarm.printAnimals();
 				playerFarm.printCrops();
+				playerFarm.printFood();
+				playerFarm.printItems();
+			
 				
 				
-			} else if (input.equals("3")) {
+			} else if (input.equals("3")) { //General store code
 				boolean inStore = true;
 
 				while (inStore) {
@@ -625,16 +694,10 @@ public class GameEnvironment {
 					}else if (choice.equals("5")) {
 						inStore = false;
 					}
-//
-//					System.out.println("Crops:");
-//					for (int i = 0; i < shopCrops.size(); i++) {
-//						Crop currentCrop = (Crop) shopCrops.get(i);
-//						System.out.println("\t" + currentCrop.name + ", Cost: " + currentCrop.purchasePrice
-//								+ ", Time to grow: " + currentCrop.daysToHarvest);
-//					}
+
 
 				}
-			}else if (input.equals("4")) {
+			}else if (input.equals("4")) { //End day code
 				boolean endDay = true;
 
 				while (endDay) {
@@ -645,8 +708,13 @@ public class GameEnvironment {
 					String choice = in.nextLine();
 
 					if (choice.equals("1")) {
+						if(playerFarm.dayCounter == 2) {
+							mainGame = false;
+						}
+												
 						System.out.println("Day " + playerFarm.dayCounter + " completed");
 						playerFarm.nextDay();
+						endDay = false;
 					}else if (choice.equals("2")) {
 						endDay = false;
 					}else {
@@ -655,6 +723,15 @@ public class GameEnvironment {
 				}
 			}
 		}
+		
+		//end game text
+		System.out.println("-".repeat(40));
+		System.out.println("");
+		System.out.println("Game Completed!");
+		System.out.println("");
+		System.out.println("-".repeat(40));
+
+
 
 	}
 }

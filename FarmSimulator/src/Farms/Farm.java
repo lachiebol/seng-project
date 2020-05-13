@@ -6,9 +6,7 @@ import Farmers.Farmer;
 import Items.CropItem;
 import food.Food;
 
-/**
- *
- */
+
 
 /**
  * @author Lachlan Reynolds, Conor Ansell
@@ -60,10 +58,10 @@ public class Farm {
 		}
 	}
 	
-	/**
-	 * Prints a list of owned Crops
-	 */
 	
+	/**
+	 * Prints a list of owned crops
+	 */	
 	public void printCrops() {
 		System.out.println("These are your crops:");
 		
@@ -77,6 +75,10 @@ public class Farm {
 		}
 	}
 	
+	
+	/**
+	 * Prints a list of owned items
+	 */
 	public void printItems() {
 		System.out.println("These are your items:");
 		
@@ -91,6 +93,10 @@ public class Farm {
 		
 	}
 	
+	
+	/**
+	 * Prints a list of owned items
+	 */
 	public void printFood() {
 		System.out.println("These are your food items:");
 		
@@ -108,7 +114,7 @@ public class Farm {
 	
 	/**
 	 * Buys a crop to be planted in the farm.
-	 * @param crop
+	 * @param crop current Crop that will be purchased
 	 */
 	public void buyCrop(Crop crop) {
 		if ((money >= crop.purchasePrice) & (freeSpace > 0)) {
@@ -129,7 +135,7 @@ public class Farm {
 	
 	/**
 	 * Harvests the crop, removing it from the farm and giving the player money.
-	 * @param crop
+	 * @param crop current Crop that will be harvested
 	 */
 	public void harvestCrop(Crop crop) {
 		if (actionsRemaining > 0) {
@@ -144,7 +150,7 @@ public class Farm {
 
 	/**
 	 * Buys an animal for the farm
-	 * @param animal
+	 * @param animal current Animal that will be purchased
 	 */
 	public void buyAnimal(Animal animal) {
 		if ((money >= animal.purchasePrice) & (freeSpace > 0)) {
@@ -159,7 +165,7 @@ public class Farm {
 	
 	/**
 	 * Buys a crop item to use on crops.
-	 * @param item
+	 * @param item current CropItem that will be purchased
 	 */
 	
 	public void buyCropItem(CropItem item) {
@@ -174,7 +180,7 @@ public class Farm {
 	
 	/**
 	 * Buys food that can be fed to animals.
-	 * @param food
+	 * @param food current Food that will be purchased
 	 */
 	
 	public void buyFood(Food food) {

@@ -1,4 +1,5 @@
 package crops;
+
 import Farms.Farm;
 import Items.CropItem;
 
@@ -20,27 +21,30 @@ public class Crop implements Cloneable {
 		daysToHarvest = newDaysToHarvest;
 	}
 
+
+
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	/**
 	 * Uses CropItem on Crop which reduces the daysToHarvest
 	 *
-	 * @param item
+	 * @param item that will be used on the crop
+	 * @param playerFarm current farm being used 
 	 */
-	
-	public Object clone(){  
-	    try{  
-	        return super.clone();  
-	    }catch(Exception e){ 
-	        return null; 
-	    }
-	}
 
 	public void useItem(CropItem item, Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
-			 this.daysToHarvest -= item.timeBoost;
-			 playerFarm.actionsRemaining -= 1;
-			 System.out.println("You used " + item.name.toLowerCase() + " on " + name + ", -" + item.timeBoost + " days");
-		}
-		else {
+			this.daysToHarvest -= item.timeBoost;
+			playerFarm.actionsRemaining -= 1;
+			System.out
+					.println("You used " + item.name.toLowerCase() + " on " + name + ", -" + item.timeBoost + " days");
+		} else {
 			System.out.println("You have no actions remaining today");
 		}
 	}

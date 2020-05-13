@@ -7,7 +7,7 @@ package Farmers;
 /**
  * @author Lachlan Reynolds, Conor Ansell
  * 
- * This class implements a farmer that is able to do actions.
+ * This class implements a farmer with a name and age.
  *
  */
 public class Farmer {
