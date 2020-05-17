@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -11,9 +12,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
+import crops.*;
+
+
 public class GeneralStoreCrops {
 
-	private JFrame frame;
+	private JFrame window;
+	private GameManager manager;
+	
+	public GeneralStoreCrops(GameManager incomingManager) {
+		manager = incomingManager;
+		initialize();
+		window.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		window.dispose();
+	}
+	
+	public void finishedWindow() {
+		manager.closeGeneralStoreCrops(this);
+	}
 
 	/**
 	 * Launch the application.
@@ -23,7 +42,7 @@ public class GeneralStoreCrops {
 			public void run() {
 				try {
 					GeneralStoreCrops window = new GeneralStoreCrops();
-					window.frame.setVisible(true);
+					window.window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,160 +61,218 @@ public class GeneralStoreCrops {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 480);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		window = new JFrame();
+		window.setBounds(100, 100, 640, 480);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.getContentPane().setLayout(null);
 		
 		JLabel lblWhichCropAnd = new JLabel("Which crop, and how many do you want to purchase?");
 		lblWhichCropAnd.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblWhichCropAnd.setBounds(40, 11, 558, 51);
-		frame.getContentPane().add(lblWhichCropAnd);
+		window.getContentPane().add(lblWhichCropAnd);
 		
-		JLabel label = new JLabel("Sheep:");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label.setBounds(40, 125, 110, 59);
-		frame.getContentPane().add(label);
+		JLabel lblCarrot = new JLabel("Carrot:");
+		lblCarrot.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblCarrot.setBounds(40, 125, 110, 59);
+		window.getContentPane().add(lblCarrot);
 		
-		JLabel label_1 = new JLabel("Chicken:");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label_1.setBounds(40, 58, 110, 32);
-		frame.getContentPane().add(label_1);
+		JLabel lblBeetroot = new JLabel("Beetroot:");
+		lblBeetroot.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblBeetroot.setBounds(40, 58, 110, 32);
+		window.getContentPane().add(lblBeetroot);
 		
-		JSlider slider = new JSlider();
-		slider.setValue(1);
-		slider.setSnapToTicks(true);
-		slider.setPaintTicks(true);
-		slider.setMinorTickSpacing(1);
-		slider.setMinimum(1);
-		slider.setMaximum(5);
-		slider.setMajorTickSpacing(2);
-		slider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider.setBounds(23, 95, 156, 19);
-		frame.getContentPane().add(slider);
+		JTextArea feedback = new JTextArea();
+		feedback.setEditable(false);
+		feedback.setBounds(23, 309, 387, 123);
+		window.getContentPane().add(feedback);
 		
-		JSlider slider_1 = new JSlider();
-		slider_1.setValue(1);
-		slider_1.setSnapToTicks(true);
-		slider_1.setPaintTicks(true);
-		slider_1.setMinorTickSpacing(1);
-		slider_1.setMinimum(1);
-		slider_1.setMaximum(5);
-		slider_1.setMajorTickSpacing(2);
-		slider_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_1.setBounds(23, 175, 156, 19);
-		frame.getContentPane().add(slider_1);
+		JSlider parsnipSlider = new JSlider();
+		parsnipSlider.setValue(1);
+		parsnipSlider.setSnapToTicks(true);
+		parsnipSlider.setPaintTicks(true);
+		parsnipSlider.setMinorTickSpacing(1);
+		parsnipSlider.setMinimum(1);
+		parsnipSlider.setMaximum(5);
+		parsnipSlider.setMajorTickSpacing(2);
+		parsnipSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		parsnipSlider.setBounds(349, 95, 156, 19);
+		window.getContentPane().add(parsnipSlider);
 		
-		JLabel label_2 = new JLabel("Cow:");
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label_2.setBounds(40, 205, 110, 59);
-		frame.getContentPane().add(label_2);
+		JSlider beetrootSlider = new JSlider();
+		beetrootSlider.setValue(1);
+		beetrootSlider.setSnapToTicks(true);
+		beetrootSlider.setPaintTicks(true);
+		beetrootSlider.setMinorTickSpacing(1);
+		beetrootSlider.setMinimum(1);
+		beetrootSlider.setMaximum(5);
+		beetrootSlider.setMajorTickSpacing(2);
+		beetrootSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		beetrootSlider.setBounds(23, 95, 156, 19);
+		window.getContentPane().add(beetrootSlider);
 		
-		JSlider slider_2 = new JSlider();
-		slider_2.setValue(1);
-		slider_2.setSnapToTicks(true);
-		slider_2.setPaintTicks(true);
-		slider_2.setMinorTickSpacing(1);
-		slider_2.setMinimum(1);
-		slider_2.setMaximum(5);
-		slider_2.setMajorTickSpacing(2);
-		slider_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_2.setBounds(23, 256, 156, 19);
-		frame.getContentPane().add(slider_2);
+		JSlider carrotSlider = new JSlider();
+		carrotSlider.setValue(1);
+		carrotSlider.setSnapToTicks(true);
+		carrotSlider.setPaintTicks(true);
+		carrotSlider.setMinorTickSpacing(1);
+		carrotSlider.setMinimum(1);
+		carrotSlider.setMaximum(5);
+		carrotSlider.setMajorTickSpacing(2);
+		carrotSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		carrotSlider.setBounds(23, 175, 156, 19);
+		window.getContentPane().add(carrotSlider);
 		
-		JButton button = new JButton("Buy");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button.setBounds(189, 237, 83, 51);
-		frame.getContentPane().add(button);
+		JLabel lblCorn = new JLabel("Corn:");
+		lblCorn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblCorn.setBounds(40, 205, 110, 59);
+		window.getContentPane().add(lblCorn);
 		
-		JButton button_1 = new JButton("Buy");
-		button_1.addActionListener(new ActionListener() {
+		JSlider cornSlider = new JSlider();
+		cornSlider.setValue(1);
+		cornSlider.setSnapToTicks(true);
+		cornSlider.setPaintTicks(true);
+		cornSlider.setMinorTickSpacing(1);
+		cornSlider.setMinimum(1);
+		cornSlider.setMaximum(5);
+		cornSlider.setMajorTickSpacing(2);
+		cornSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		cornSlider.setBounds(23, 256, 156, 19);
+		window.getContentPane().add(cornSlider);
+		
+		JButton cornButton = new JButton("Buy");
+		cornButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= cornSlider.getValue(); i += 1) {
+					manager.playerFarm.buyCrop(new Corn());
+					feedback.append(manager.playerFarm.output);
+				}
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_1.setBounds(189, 156, 83, 51);
-		frame.getContentPane().add(button_1);
+		cornButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		cornButton.setBounds(189, 237, 83, 51);
+		window.getContentPane().add(cornButton);
 		
-		JButton button_2 = new JButton("Buy");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_2.setBounds(189, 74, 83, 51);
-		frame.getContentPane().add(button_2);
+		JButton carrotButton = new JButton("Buy");
+		carrotButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= carrotSlider.getValue(); i += 1) {
+					manager.playerFarm.buyCrop(new Carrot());
+					feedback.append(manager.playerFarm.output);
+				}
+			}
+		});
+		carrotButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		carrotButton.setBounds(189, 156, 83, 51);
+		window.getContentPane().add(carrotButton);
 		
-		JButton button_3 = new JButton("Buy");
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_3.setBounds(515, 237, 83, 51);
-		frame.getContentPane().add(button_3);
+		JButton beetrootButton = new JButton("Buy");
+		beetrootButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= beetrootSlider.getValue(); i += 1) {
+					manager.playerFarm.buyCrop(new Beetroot());
+					feedback.append(manager.playerFarm.output);
+				}
+			}
+		});
+		beetrootButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		beetrootButton.setBounds(189, 74, 83, 51);
+		window.getContentPane().add(beetrootButton);
 		
-		JSlider slider_3 = new JSlider();
-		slider_3.setValue(1);
-		slider_3.setSnapToTicks(true);
-		slider_3.setPaintTicks(true);
-		slider_3.setMinorTickSpacing(1);
-		slider_3.setMinimum(1);
-		slider_3.setMaximum(5);
-		slider_3.setMajorTickSpacing(2);
-		slider_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_3.setBounds(349, 256, 156, 19);
-		frame.getContentPane().add(slider_3);
+		JSlider wheatSlider = new JSlider();
+		wheatSlider.setValue(1);
+		wheatSlider.setSnapToTicks(true);
+		wheatSlider.setPaintTicks(true);
+		wheatSlider.setMinorTickSpacing(1);
+		wheatSlider.setMinimum(1);
+		wheatSlider.setMaximum(5);
+		wheatSlider.setMajorTickSpacing(2);
+		wheatSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		wheatSlider.setBounds(349, 256, 156, 19);
+		window.getContentPane().add(wheatSlider);
 		
-		JLabel label_3 = new JLabel("Cow:");
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label_3.setBounds(366, 205, 110, 59);
-		frame.getContentPane().add(label_3);
+		JButton wheatButton = new JButton("Buy");
+		wheatButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= wheatSlider.getValue(); i += 1) {
+					manager.playerFarm.buyCrop(new Wheat());
+					feedback.append(manager.playerFarm.output);
+				}
+			}
+		});
+		wheatButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		wheatButton.setBounds(515, 237, 83, 51);
+		window.getContentPane().add(wheatButton);
 		
-		JLabel label_4 = new JLabel("Sheep:");
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label_4.setBounds(366, 125, 110, 59);
-		frame.getContentPane().add(label_4);
+		JLabel lblWheat = new JLabel("Wheat:");
+		lblWheat.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblWheat.setBounds(366, 205, 110, 59);
+		window.getContentPane().add(lblWheat);
 		
-		JButton button_4 = new JButton("Buy");
-		button_4.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_4.setBounds(515, 156, 83, 51);
-		frame.getContentPane().add(button_4);
+		JLabel lblPotato = new JLabel("Potato:");
+		lblPotato.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblPotato.setBounds(366, 125, 110, 59);
+		window.getContentPane().add(lblPotato);
 		
-		JSlider slider_4 = new JSlider();
-		slider_4.setValue(1);
-		slider_4.setSnapToTicks(true);
-		slider_4.setPaintTicks(true);
-		slider_4.setMinorTickSpacing(1);
-		slider_4.setMinimum(1);
-		slider_4.setMaximum(5);
-		slider_4.setMajorTickSpacing(2);
-		slider_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_4.setBounds(349, 175, 156, 19);
-		frame.getContentPane().add(slider_4);
+		JSlider potatoSlider = new JSlider();
+		potatoSlider.setValue(1);
+		potatoSlider.setSnapToTicks(true);
+		potatoSlider.setPaintTicks(true);
+		potatoSlider.setMinorTickSpacing(1);
+		potatoSlider.setMinimum(1);
+		potatoSlider.setMaximum(5);
+		potatoSlider.setMajorTickSpacing(2);
+		potatoSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		potatoSlider.setBounds(349, 175, 156, 19);
+		window.getContentPane().add(potatoSlider);
 		
-		JButton button_5 = new JButton("Buy");
-		button_5.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_5.setBounds(515, 74, 83, 51);
-		frame.getContentPane().add(button_5);
+		JButton potatoButton = new JButton("Buy");
+		potatoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= potatoSlider.getValue(); i += 1) {
+					manager.playerFarm.buyCrop(new Potato());
+					feedback.append(manager.playerFarm.output);
+				}
+			}
+		});
+		potatoButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		potatoButton.setBounds(515, 156, 83, 51);
+		window.getContentPane().add(potatoButton);
 		
-		JSlider slider_5 = new JSlider();
-		slider_5.setValue(1);
-		slider_5.setSnapToTicks(true);
-		slider_5.setPaintTicks(true);
-		slider_5.setMinorTickSpacing(1);
-		slider_5.setMinimum(1);
-		slider_5.setMaximum(5);
-		slider_5.setMajorTickSpacing(2);
-		slider_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_5.setBounds(349, 95, 156, 19);
-		frame.getContentPane().add(slider_5);
+		JButton parsnipButton = new JButton("Buy");
+		parsnipButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= parsnipSlider.getValue(); i += 1) {
+					manager.playerFarm.buyCrop(new Parsnip());
+					feedback.append(manager.playerFarm.output);
+				}
+			}
+		});
+		parsnipButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		parsnipButton.setBounds(515, 74, 83, 51);
+		window.getContentPane().add(parsnipButton);
 		
-		JLabel label_5 = new JLabel("Chicken:");
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		label_5.setBounds(366, 58, 110, 32);
-		frame.getContentPane().add(label_5);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(23, 309, 387, 123);
-		frame.getContentPane().add(textArea);
+		JLabel lblParsnip = new JLabel("Parsnip:");
+		lblParsnip.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblParsnip.setBounds(366, 58, 110, 32);
+		window.getContentPane().add(lblParsnip);
 		
-		JButton button_6 = new JButton("Back");
-		button_6.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_6.setBounds(481, 381, 117, 51);
-		frame.getContentPane().add(button_6);
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchGeneralStore();
+				finishedWindow();
+			}
+		});
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		backButton.setBounds(481, 381, 117, 51);
+		window.getContentPane().add(backButton);
 	}
 
 }

@@ -28,6 +28,7 @@ public class Farm {
 	public String type;
 	public int actionsRemaining = 2;
 	public int dayCounter = 0;
+	public String output;
 	
 
 	/**
@@ -121,13 +122,14 @@ public class Farm {
 			listOfCrops.add(crop);
 			money -= crop.purchasePrice;
 			freeSpace -= 1;
+			output = "Successful purchase";
 		}
 		else {
 			if (money < crop.purchasePrice) {
-				System.out.println("You do not have enough money to buy that");
+				output = "You do not have enough money to buy that";
 			}
 			if (freeSpace == 0) {
-				System.out.println("You do not have enough space to plant that");
+				output = "You do not have enough space to plant that";
 			}
 		}
 	}
@@ -157,9 +159,10 @@ public class Farm {
 			listOfAnimals.add(animal);
 			money -= animal.purchasePrice;
 			freeSpace -= 1;
+			output = "Successful purchase";
 			}
 		else {
-			System.out.println("You do not have enough money to buy that");
+			output = "Insufficient funds for purchase";
 			}
 	}
 	
@@ -172,9 +175,10 @@ public class Farm {
 		if (money >= item.price) {
 			listOfItems.add(item);
 			money -= item.price;
+			output = "Successful purchase";
 		}
 		else {
-			System.out.println("You do not have enough money to buy that");
+			output = "You do not have enough money to buy that";
 		}
 	}
 	
@@ -187,9 +191,10 @@ public class Farm {
 		if (money >= food.price) {
 			listOfFood.add(food);
 			money -= food.price;
+			output = "Successful purchase";
 		}
 		else {
-			System.out.println("You do not have enough money to buy that");
+			output = "You do not have enough money to buy that";
 		}
 	}
 	
@@ -201,9 +206,10 @@ public class Farm {
 	public void tendToLand() {
 		if(freeSpace < 5) {
 			freeSpace = 5;
+			output = "You tidied the farm";
 		}
 		else {
-			System.out.println("The farm is already completely tidy");
+			output = "The farm is already completely tidy";
 		}
 	}
 	
@@ -219,8 +225,5 @@ public class Farm {
 		for (Animal theAnimal: listOfAnimals) {
 			theAnimal.happiness -= ((5 - freeSpace) * 5);
 		}
-		
-		
 	}
-
 }

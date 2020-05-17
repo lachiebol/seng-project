@@ -9,9 +9,31 @@ import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
+import food.Carrots;
+import food.Hay;
+import food.Seeds;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class GeneralStoreFood {
 
-	private JFrame frmGeneralStore;
+	private JFrame window;
+	private GameManager manager;
+	
+	public GeneralStoreFood(GameManager incomingManager) {
+		manager = incomingManager;
+		initialize();
+		window.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		window.dispose();
+	}
+	
+	public void finishedWindow() {
+		manager.closeGeneralStoreFood(this);
+	}
 
 	/**
 	 * Launch the application.
@@ -21,7 +43,7 @@ public class GeneralStoreFood {
 			public void run() {
 				try {
 					GeneralStoreFood window = new GeneralStoreFood();
-					window.frmGeneralStore.setVisible(true);
+					window.window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,89 +62,124 @@ public class GeneralStoreFood {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmGeneralStore = new JFrame();
-		frmGeneralStore.setTitle("General Store - Food");
-		frmGeneralStore.getContentPane().setLayout(null);
+		window = new JFrame();
+		window.setTitle("General Store - Food");
+		window.getContentPane().setLayout(null);
 		
 		JLabel lblCarrot = new JLabel("Carrot:");
 		lblCarrot.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblCarrot.setBounds(58, 84, 110, 59);
-		frmGeneralStore.getContentPane().add(lblCarrot);
+		window.getContentPane().add(lblCarrot);
 		
-		JSlider slider = new JSlider();
-		slider.setValue(1);
-		slider.setSnapToTicks(true);
-		slider.setPaintTicks(true);
-		slider.setMinorTickSpacing(1);
-		slider.setMinimum(1);
-		slider.setMaximum(5);
-		slider.setMajorTickSpacing(2);
-		slider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider.setBounds(23, 154, 200, 19);
-		frmGeneralStore.getContentPane().add(slider);
+		JSlider carrotSlider = new JSlider();
+		carrotSlider.setValue(1);
+		carrotSlider.setSnapToTicks(true);
+		carrotSlider.setPaintTicks(true);
+		carrotSlider.setMinorTickSpacing(1);
+		carrotSlider.setMinimum(1);
+		carrotSlider.setMaximum(5);
+		carrotSlider.setMajorTickSpacing(2);
+		carrotSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		carrotSlider.setBounds(23, 154, 200, 19);
+		window.getContentPane().add(carrotSlider);
+		
+		JTextArea feedback = new JTextArea();
+		feedback.setEditable(false);
+		feedback.setBounds(385, 96, 231, 246);
+		window.getContentPane().add(feedback);
 		
 		JLabel lblSeeds = new JLabel("Seeds:");
 		lblSeeds.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblSeeds.setBounds(58, 209, 110, 59);
-		frmGeneralStore.getContentPane().add(lblSeeds);
+		window.getContentPane().add(lblSeeds);
 		
-		JSlider slider_1 = new JSlider();
-		slider_1.setValue(1);
-		slider_1.setSnapToTicks(true);
-		slider_1.setPaintTicks(true);
-		slider_1.setMinorTickSpacing(1);
-		slider_1.setMinimum(1);
-		slider_1.setMaximum(5);
-		slider_1.setMajorTickSpacing(2);
-		slider_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_1.setBounds(23, 279, 200, 19);
-		frmGeneralStore.getContentPane().add(slider_1);
+		JSlider seedsSlider = new JSlider();
+		seedsSlider.setValue(1);
+		seedsSlider.setSnapToTicks(true);
+		seedsSlider.setPaintTicks(true);
+		seedsSlider.setMinorTickSpacing(1);
+		seedsSlider.setMinimum(1);
+		seedsSlider.setMaximum(5);
+		seedsSlider.setMajorTickSpacing(2);
+		seedsSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		seedsSlider.setBounds(23, 279, 200, 19);
+		window.getContentPane().add(seedsSlider);
 		
 		JLabel lblHay = new JLabel("Hay:");
 		lblHay.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHay.setBounds(58, 332, 110, 59);
-		frmGeneralStore.getContentPane().add(lblHay);
+		window.getContentPane().add(lblHay);
 		
-		JSlider slider_2 = new JSlider();
-		slider_2.setValue(1);
-		slider_2.setSnapToTicks(true);
-		slider_2.setPaintTicks(true);
-		slider_2.setMinorTickSpacing(1);
-		slider_2.setMinimum(1);
-		slider_2.setMaximum(5);
-		slider_2.setMajorTickSpacing(2);
-		slider_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_2.setBounds(23, 402, 200, 19);
-		frmGeneralStore.getContentPane().add(slider_2);
+		JSlider haySlider = new JSlider();
+		haySlider.setValue(1);
+		haySlider.setSnapToTicks(true);
+		haySlider.setPaintTicks(true);
+		haySlider.setMinorTickSpacing(1);
+		haySlider.setMinimum(1);
+		haySlider.setMaximum(5);
+		haySlider.setMajorTickSpacing(2);
+		haySlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		haySlider.setBounds(23, 402, 200, 19);
+		window.getContentPane().add(haySlider);
 		
-		JButton button = new JButton("Buy");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button.setBounds(233, 381, 104, 51);
-		frmGeneralStore.getContentPane().add(button);
+		JButton hayButton = new JButton("Buy");
+		hayButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= haySlider.getValue(); i += 1) {
+					manager.playerFarm.buyFood(new Hay());
+					feedback.append("\n" + manager.playerFarm.output);
+				}
+			}
+		});
+		hayButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		hayButton.setBounds(233, 381, 104, 51);
+		window.getContentPane().add(hayButton);
 		
-		JButton button_1 = new JButton("Buy");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_1.setBounds(233, 257, 104, 51);
-		frmGeneralStore.getContentPane().add(button_1);
+		JButton seedsButton = new JButton("Buy");
+		seedsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= seedsSlider.getValue(); i += 1) {
+					manager.playerFarm.buyFood(new Seeds());
+					feedback.append("\n" + manager.playerFarm.output);
+				}
+			}
+		});
+		seedsButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		seedsButton.setBounds(233, 257, 104, 51);
+		window.getContentPane().add(seedsButton);
 		
-		JButton button_2 = new JButton("Buy");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_2.setBounds(233, 134, 104, 51);
-		frmGeneralStore.getContentPane().add(button_2);
+		JButton carrotButton = new JButton("Buy");
+		carrotButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= carrotSlider.getValue(); i += 1) {
+					manager.playerFarm.buyFood(new Carrots());
+					feedback.append("\n" + manager.playerFarm.output);
+				}
+			}
+		});
+		carrotButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		carrotButton.setBounds(233, 134, 104, 51);
+		window.getContentPane().add(carrotButton);
 		
 		JLabel lblWhichFoodAnd = new JLabel("Which food, and how much do you want to purchase?");
 		lblWhichFoodAnd.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblWhichFoodAnd.setBounds(20, 11, 606, 51);
-		frmGeneralStore.getContentPane().add(lblWhichFoodAnd);
+		window.getContentPane().add(lblWhichFoodAnd);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(385, 96, 231, 246);
-		frmGeneralStore.getContentPane().add(textArea);
 		
-		JButton button_3 = new JButton("Back");
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_3.setBounds(499, 381, 117, 51);
-		frmGeneralStore.getContentPane().add(button_3);
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchGeneralStore();
+				finishedWindow();
+			}
+		});
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		backButton.setBounds(499, 381, 117, 51);
+		window.getContentPane().add(backButton);
 	}
 
 }

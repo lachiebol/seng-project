@@ -12,8 +12,23 @@ import javax.swing.JButton;
 
 public class FeedAnimal2 {
 
-	private JFrame frmFeedAnimal;
+	private JFrame window;
 	private JTextField textField;
+	private GameManager manager;
+	
+	public FeedAnimal2(GameManager incomingManager) {
+		manager = incomingManager;
+		initialize();
+		window.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		window.dispose();
+	}
+	
+	public void finishedWindow() {
+		manager.closeFeedAnimal2(this);
+	}
 
 	/**
 	 * Launch the application.
@@ -23,7 +38,7 @@ public class FeedAnimal2 {
 			public void run() {
 				try {
 					FeedAnimal2 window = new FeedAnimal2();
-					window.frmFeedAnimal.setVisible(true);
+					window.window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,51 +57,53 @@ public class FeedAnimal2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmFeedAnimal = new JFrame();
-		frmFeedAnimal.setTitle("Feed Animal");
-		frmFeedAnimal.setBounds(100, 100, 640, 480);
-		frmFeedAnimal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmFeedAnimal.getContentPane().setLayout(null);
+		window = new JFrame();
+		window.setTitle("Feed Animal");
+		window.setBounds(100, 100, 640, 480);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.getContentPane().setLayout(null);
 		
 		JLabel lblWhatWouldYou = new JLabel("What would you like to feed this animal?");
 		lblWhatWouldYou.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblWhatWouldYou.setBounds(25, 24, 380, 32);
-		frmFeedAnimal.getContentPane().add(lblWhatWouldYou);
+		window.getContentPane().add(lblWhatWouldYou);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
 		textArea.setBounds(35, 67, 242, 314);
-		frmFeedAnimal.getContentPane().add(textArea);
+		window.getContentPane().add(textArea);
 		
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setColumns(10);
 		textField.setBounds(365, 146, 96, 44);
-		frmFeedAnimal.getContentPane().add(textField);
+		window.getContentPane().add(textField);
 		
 		JButton btnFeed = new JButton("Feed");
 		btnFeed.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnFeed.setBounds(365, 201, 96, 44);
-		frmFeedAnimal.getContentPane().add(btnFeed);
+		window.getContentPane().add(btnFeed);
 		
 		JLabel lblNewLabel = new JLabel("Enter the number corresponding");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(297, 97, 236, 37);
-		frmFeedAnimal.getContentPane().add(lblNewLabel);
+		window.getContentPane().add(lblNewLabel);
 		
 		JLabel lblToTheFood = new JLabel("to the food.");
 		lblToTheFood.setHorizontalAlignment(SwingConstants.CENTER);
 		lblToTheFood.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblToTheFood.setBounds(365, 116, 96, 37);
-		frmFeedAnimal.getContentPane().add(lblToTheFood);
+		window.getContentPane().add(lblToTheFood);
 		
 		JButton button_1 = new JButton("Back");
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		button_1.setBounds(507, 362, 96, 56);
-		frmFeedAnimal.getContentPane().add(button_1);
+		window.getContentPane().add(button_1);
 		
 		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setEditable(false);
 		textArea_1.setBounds(313, 256, 196, 68);
-		frmFeedAnimal.getContentPane().add(textArea_1);
+		window.getContentPane().add(textArea_1);
 	}
 
 }

@@ -21,6 +21,7 @@ public class Animal implements Cloneable {
 	public String name;
 	public String favouriteFood;
 	public int purchasePrice;
+	public String output;
 
 	/**
 	 * Initialises the Animal object
@@ -85,19 +86,21 @@ public class Animal implements Cloneable {
 			if (happiness + 20 < 100) {
 				happiness += 20;
 				playerFarm.actionsRemaining -= 1;
+				output = "You played with the animal";
 			}
 			else {
 				if (happiness == 100) {
-					System.out.println("The animal is already very happy");
+					output = "The animal is already very happy";
 				}
 				else {
 					happiness = 100;
 					playerFarm.actionsRemaining -= 1;
+					output = "You played with the animal";
 				}
 			}
 		}
 		else {
-			System.out.println("You have no actions remaining today");
+			output = "You have no actions remaining today";
 		}
 	}
 		

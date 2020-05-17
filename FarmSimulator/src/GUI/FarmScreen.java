@@ -75,11 +75,23 @@ public class FarmScreen {
 		frame.getContentPane().add(txtpnWelcomeToYour);
 		
 		JButton btnCropAndAnimals = new JButton("View Crop and Animal Status");
+		btnCropAndAnimals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchCropAndAnimalStatus();
+				finishedWindow();
+			}
+		});
 		btnCropAndAnimals.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCropAndAnimals.setBounds(64, 165, 201, 73);
 		frame.getContentPane().add(btnCropAndAnimals);
 		
 		JButton btnVisitGeneralStore = new JButton("Visit General Store\r\n");
+		btnVisitGeneralStore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent b) {
+				manager.launchGeneralStore();
+				finishedWindow();
+			}
+		});
 		btnVisitGeneralStore.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnVisitGeneralStore.setBounds(66, 268, 199, 73);
 		frame.getContentPane().add(btnVisitGeneralStore);
@@ -92,10 +104,10 @@ public class FarmScreen {
 		JButton btnViewFarmStatus = new JButton("View Farm Status\r\n");
 		btnViewFarmStatus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				manager.launchFarmStatusScreen();
 				finishedWindow();
 			}
 		});
-
 		btnViewFarmStatus.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnViewFarmStatus.setBounds(335, 165, 201, 73);
 		frame.getContentPane().add(btnViewFarmStatus);

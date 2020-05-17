@@ -9,9 +9,31 @@ import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
+import animal.Chicken;
+import animal.Cow;
+import animal.Sheep;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class GeneralStoreAnimals {
 
-	private JFrame frmGeneralStore;
+	private JFrame window;
+	private GameManager manager;
+	
+	GeneralStoreAnimals(GameManager incomingManager) {
+		manager = incomingManager;
+		initialize();
+		window.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		window.dispose();
+	}
+	
+	public void finishedWindow() {
+		manager.closeGeneralStoreAnimals(this);
+	}
 
 	/**
 	 * Launch the application.
@@ -21,7 +43,7 @@ public class GeneralStoreAnimals {
 			public void run() {
 				try {
 					GeneralStoreAnimals window = new GeneralStoreAnimals();
-					window.frmGeneralStore.setVisible(true);
+					window.window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,90 +62,125 @@ public class GeneralStoreAnimals {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmGeneralStore = new JFrame();
-		frmGeneralStore.setTitle("General Store - Animals");
-		frmGeneralStore.setBounds(100, 100, 640, 480);
-		frmGeneralStore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmGeneralStore.getContentPane().setLayout(null);
+		window = new JFrame();
+		window.setTitle("General Store - Animals");
+		window.setBounds(100, 100, 640, 480);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Chicken:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblNewLabel.setBounds(55, 73, 110, 59);
-		frmGeneralStore.getContentPane().add(lblNewLabel);
+		window.getContentPane().add(lblNewLabel);
 		
 		JLabel lblSheep = new JLabel("Sheep:");
 		lblSheep.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblSheep.setBounds(55, 198, 110, 59);
-		frmGeneralStore.getContentPane().add(lblSheep);
+		window.getContentPane().add(lblSheep);
+		
+		JTextArea feedback = new JTextArea();
+		feedback.setEditable(false);
+		feedback.setBounds(375, 127, 223, 229);
+		window.getContentPane().add(feedback);
 		
 		JLabel lblCow = new JLabel("Cow:");
 		lblCow.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblCow.setBounds(55, 321, 110, 59);
-		frmGeneralStore.getContentPane().add(lblCow);
+		window.getContentPane().add(lblCow);
 		
-		JSlider slider = new JSlider();
-		slider.setMajorTickSpacing(2);
-		slider.setPaintTicks(true);
-		slider.setSnapToTicks(true);
-		slider.setMinimum(1);
-		slider.setValue(1);
-		slider.setMinorTickSpacing(1);
-		slider.setMaximum(5);
-		slider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider.setBounds(20, 143, 200, 19);
-		frmGeneralStore.getContentPane().add(slider);
+		JSlider chickenSlider = new JSlider();
+		chickenSlider.setMajorTickSpacing(2);
+		chickenSlider.setPaintTicks(true);
+		chickenSlider.setSnapToTicks(true);
+		chickenSlider.setMinimum(1);
+		chickenSlider.setValue(1);
+		chickenSlider.setMinorTickSpacing(1);
+		chickenSlider.setMaximum(5);
+		chickenSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chickenSlider.setBounds(20, 143, 200, 19);
+		window.getContentPane().add(chickenSlider);
 		
 		JLabel lblNewLabel_1 = new JLabel("Which animal, and how many do you want to purchase?");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblNewLabel_1.setBounds(10, 11, 606, 51);
-		frmGeneralStore.getContentPane().add(lblNewLabel_1);
+		window.getContentPane().add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Buy");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		btnNewButton.setBounds(230, 123, 104, 51);
-		frmGeneralStore.getContentPane().add(btnNewButton);
+		JButton buyChickenButton = new JButton("Buy");
+		buyChickenButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= chickenSlider.getValue(); i += 1) {
+					manager.playerFarm.buyAnimal(new Chicken());
+					feedback.append("\n" + manager.playerFarm.output);
+				}
+			}
+		});
+		buyChickenButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		buyChickenButton.setBounds(230, 123, 104, 51);
+		window.getContentPane().add(buyChickenButton);
 		
-		JButton button = new JButton("Buy");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button.setBounds(230, 246, 104, 51);
-		frmGeneralStore.getContentPane().add(button);
+		JSlider sheepSlider = new JSlider();
+		sheepSlider.setValue(1);
+		sheepSlider.setSnapToTicks(true);
+		sheepSlider.setPaintTicks(true);
+		sheepSlider.setMinorTickSpacing(1);
+		sheepSlider.setMinimum(1);
+		sheepSlider.setMaximum(5);
+		sheepSlider.setMajorTickSpacing(2);
+		sheepSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		sheepSlider.setBounds(20, 268, 200, 19);
+		window.getContentPane().add(sheepSlider);
 		
-		JButton button_1 = new JButton("Buy");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		button_1.setBounds(230, 370, 104, 51);
-		frmGeneralStore.getContentPane().add(button_1);
+		JButton buySheepButton = new JButton("Buy");
+		buySheepButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= sheepSlider.getValue(); i += 1) {
+					manager.playerFarm.buyAnimal(new Sheep());
+					feedback.append("\n" + manager.playerFarm.output);
+				}
+			}
+		});
+		buySheepButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		buySheepButton.setBounds(230, 246, 104, 51);
+		window.getContentPane().add(buySheepButton);
 		
-		JSlider slider_1 = new JSlider();
-		slider_1.setValue(1);
-		slider_1.setSnapToTicks(true);
-		slider_1.setPaintTicks(true);
-		slider_1.setMinorTickSpacing(1);
-		slider_1.setMinimum(1);
-		slider_1.setMaximum(5);
-		slider_1.setMajorTickSpacing(2);
-		slider_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_1.setBounds(20, 268, 200, 19);
-		frmGeneralStore.getContentPane().add(slider_1);
+		JSlider cowSlider = new JSlider();
+		cowSlider.setValue(1);
+		cowSlider.setSnapToTicks(true);
+		cowSlider.setPaintTicks(true);
+		cowSlider.setMinorTickSpacing(1);
+		cowSlider.setMinimum(1);
+		cowSlider.setMaximum(5);
+		cowSlider.setMajorTickSpacing(2);
+		cowSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		cowSlider.setBounds(20, 391, 200, 19);
+		window.getContentPane().add(cowSlider);
 		
-		JSlider slider_2 = new JSlider();
-		slider_2.setValue(1);
-		slider_2.setSnapToTicks(true);
-		slider_2.setPaintTicks(true);
-		slider_2.setMinorTickSpacing(1);
-		slider_2.setMinimum(1);
-		slider_2.setMaximum(5);
-		slider_2.setMajorTickSpacing(2);
-		slider_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		slider_2.setBounds(20, 391, 200, 19);
-		frmGeneralStore.getContentPane().add(slider_2);
+		JButton buyCowButton = new JButton("Buy");
+		buyCowButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedback.setText("");
+				for (int i = 1 ; i <= cowSlider.getValue(); i += 1) {
+					manager.playerFarm.buyAnimal(new Cow());
+					feedback.append("\n" + manager.playerFarm.output);
+				}
+			}
+		});
+		buyCowButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		buyCowButton.setBounds(230, 370, 104, 51);
+		window.getContentPane().add(buyCowButton);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(370, 96, 231, 246);
-		frmGeneralStore.getContentPane().add(textArea);
 		
-		JButton btnNewButton_1 = new JButton("Back");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		btnNewButton_1.setBounds(484, 381, 117, 51);
-		frmGeneralStore.getContentPane().add(btnNewButton_1);
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchGeneralStore();
+				finishedWindow();
+			}
+		});
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		backButton.setBounds(484, 381, 117, 51);
+		window.getContentPane().add(backButton);
 	}
 }
