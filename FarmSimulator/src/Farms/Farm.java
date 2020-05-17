@@ -178,7 +178,7 @@ public class Farm {
 			output = "Successful purchase";
 		}
 		else {
-			output = "You do not have enough money to buy that";
+			output = "Insufficient funds for purchase";
 		}
 	}
 	
@@ -194,7 +194,7 @@ public class Farm {
 			output = "Successful purchase";
 		}
 		else {
-			output = "You do not have enough money to buy that";
+			output = "Insufficient funds for purchase";
 		}
 	}
 	
@@ -209,7 +209,7 @@ public class Farm {
 			output = "You tidied the farm";
 		}
 		else {
-			output = "The farm is already completely tidy";
+			output = "Insufficient funds for purchase";
 		}
 	}
 	

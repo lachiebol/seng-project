@@ -2,10 +2,15 @@ package GUI;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextArea;
+
+import animal.*;
+import crops.*;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -67,86 +72,83 @@ public class CropAndAnimalStatus {
 		lblNewLabel.setBounds(34, 11, 227, 33);
 		window.getContentPane().add(lblNewLabel);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(16, 51, 241, 151);
-		window.getContentPane().add(textArea);
+		JTextArea animalList = new JTextArea();
+		animalList.setEditable(false);
+		animalList.setBounds(16, 51, 270, 151);
+		window.getContentPane().add(animalList);
+		animalList.setText("Animal" + "     " + "Happiness" + "     " + "Health");
+		for (Animal animal : manager.playerFarm.listOfAnimals) {
+			animalList.append("\n" + animal.name + "       " + animal.happiness + "                " + animal.health);
+		}
 		
 		JLabel lblTheseAreYour = new JLabel("These are your crops:");
 		lblTheseAreYour.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTheseAreYour.setBounds(34, 237, 227, 33);
 		window.getContentPane().add(lblTheseAreYour);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setEditable(false);
-		textArea_1.setBounds(20, 281, 241, 151);
-		window.getContentPane().add(textArea_1);
+		JTextArea cropList = new JTextArea();
+		cropList.setEditable(false);
+		cropList.setBounds(20, 281, 266, 151);
+		window.getContentPane().add(cropList);
+		cropList.setText("Crop" + "     " + "Days Until Harvest");
+		for (Crop crop : manager.playerFarm.listOfCrops) {
+			animalList.append("\n" + crop.name + "     " + crop.daysToHarvest);
+		}
 		
-		JButton btnNewButton = new JButton("Play with Animal");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton playButton = new JButton("Play with Animal");
+		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchPlayWithAnimal();
 				finishedWindow();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(355, 20, 206, 52);
-		window.getContentPane().add(btnNewButton);
+		playButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		playButton.setBounds(355, 20, 206, 52);
+		window.getContentPane().add(playButton);
 		
-		JButton btnFeedAnimal = new JButton("Feed Animal");
-		btnFeedAnimal.addActionListener(new ActionListener() {
+		JButton feedButton = new JButton("Feed Animal");
+		feedButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchFeedAnimal();
 				finishedWindow();
 			}
 		});
-		btnFeedAnimal.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnFeedAnimal.setBounds(355, 83, 206, 52);
-		window.getContentPane().add(btnFeedAnimal);
+		feedButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		feedButton.setBounds(355, 99, 206, 52);
+		window.getContentPane().add(feedButton);
 		
-		JButton btnTendToAnimal = new JButton("Tend to Animal");
-		btnTendToAnimal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				manager.launchTendToAnimal();
-				finishedWindow();
-			}
-		});
-		btnTendToAnimal.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnTendToAnimal.setBounds(355, 146, 206, 52);
-		window.getContentPane().add(btnTendToAnimal);
-		
-		JButton btnTendToCrops = new JButton("Tend to Crop");
-		btnTendToCrops.addActionListener(new ActionListener() {
+		JButton tendToCropButton = new JButton("Tend to Crop");
+		tendToCropButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchTendToCrop();
 				finishedWindow();
 			}
 		});
-		btnTendToCrops.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnTendToCrops.setBounds(355, 209, 206, 52);
-		window.getContentPane().add(btnTendToCrops);
+		tendToCropButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tendToCropButton.setBounds(355, 188, 206, 52);
+		window.getContentPane().add(tendToCropButton);
 		
-		JButton btnHarvestCrop = new JButton("Harvest Crop");
-		btnHarvestCrop.addActionListener(new ActionListener() {
+		JButton harvestCropButton = new JButton("Harvest Crop");
+		harvestCropButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchHarvestCrop();
 				finishedWindow();
 			}
 		});
-		btnHarvestCrop.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnHarvestCrop.setBounds(355, 273, 206, 52);
-		window.getContentPane().add(btnHarvestCrop);
+		harvestCropButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		harvestCropButton.setBounds(355, 273, 206, 52);
+		window.getContentPane().add(harvestCropButton);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchFarmScreen();
 				finishedWindow();
 			}
 		});
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnBack.setBounds(355, 380, 206, 52);
-		window.getContentPane().add(btnBack);
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		backButton.setBounds(355, 380, 206, 52);
+		window.getContentPane().add(backButton);
 	}
 
 }

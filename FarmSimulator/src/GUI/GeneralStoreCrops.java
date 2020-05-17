@@ -145,7 +145,7 @@ public class GeneralStoreCrops {
 				feedback.setText("");
 				for (int i = 1 ; i <= cornSlider.getValue(); i += 1) {
 					manager.playerFarm.buyCrop(new Corn());
-					feedback.append(manager.playerFarm.output);
+					feedback.append("\n" + manager.playerFarm.output);
 				}
 			}
 		});
@@ -159,7 +159,7 @@ public class GeneralStoreCrops {
 				feedback.setText("");
 				for (int i = 1 ; i <= carrotSlider.getValue(); i += 1) {
 					manager.playerFarm.buyCrop(new Carrot());
-					feedback.append(manager.playerFarm.output);
+					feedback.append("\n" + manager.playerFarm.output);
 				}
 			}
 		});
@@ -173,7 +173,7 @@ public class GeneralStoreCrops {
 				feedback.setText("");
 				for (int i = 1 ; i <= beetrootSlider.getValue(); i += 1) {
 					manager.playerFarm.buyCrop(new Beetroot());
-					feedback.append(manager.playerFarm.output);
+					feedback.append("\n" + manager.playerFarm.output);
 				}
 			}
 		});
@@ -199,7 +199,7 @@ public class GeneralStoreCrops {
 				feedback.setText("");
 				for (int i = 1 ; i <= wheatSlider.getValue(); i += 1) {
 					manager.playerFarm.buyCrop(new Wheat());
-					feedback.append(manager.playerFarm.output);
+					feedback.append("\n" + manager.playerFarm.output);
 				}
 			}
 		});
@@ -235,7 +235,7 @@ public class GeneralStoreCrops {
 				feedback.setText("");
 				for (int i = 1 ; i <= potatoSlider.getValue(); i += 1) {
 					manager.playerFarm.buyCrop(new Potato());
-					feedback.append(manager.playerFarm.output);
+					feedback.append("\n" + manager.playerFarm.output);
 				}
 			}
 		});
@@ -249,7 +249,7 @@ public class GeneralStoreCrops {
 				feedback.setText("");
 				for (int i = 1 ; i <= parsnipSlider.getValue(); i += 1) {
 					manager.playerFarm.buyCrop(new Parsnip());
-					feedback.append(manager.playerFarm.output);
+					feedback.append("\n" + manager.playerFarm.output);
 				}
 			}
 		});

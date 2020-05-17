@@ -78,7 +78,7 @@ public class PlayWithAnimal {
 		window.getContentPane().add(animalList);
 		int i = 1;
 		for (Animal animal : manager.playerFarm.listOfAnimals) {
-			animalList.append(Integer.toString(i) + animal.name + "\n");
+			animalList.append(Integer.toString(i) + "     " + animal.name + "\n");
 			i += 1;
 		}
 		
@@ -100,8 +100,8 @@ public class PlayWithAnimal {
 			public void actionPerformed(ActionEvent e) {
 				String indexInput = input.getText();
 				int index = 0;
-				index = Integer.parseInt(indexInput);
-				if ((index <= manager.playerFarm.listOfAnimals.size()) && (index > 0)) {
+				index = Integer.parseInt(indexInput) - 1;
+				if ((index < manager.playerFarm.listOfAnimals.size()) && (index >= 0)) {
 					manager.playerFarm.listOfAnimals.get(index).playWith(manager.playerFarm);
 					feedback.setText(manager.playerFarm.listOfAnimals.get(index).output);
 					happinessList.setText("");

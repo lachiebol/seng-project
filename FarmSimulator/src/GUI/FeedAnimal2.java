@@ -8,12 +8,17 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import animal.Animal;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FeedAnimal2 {
 
 	private JFrame window;
-	private JTextField textField;
+	private JTextField input;
 	private GameManager manager;
 	
 	public FeedAnimal2(GameManager incomingManager) {
@@ -68,21 +73,48 @@ public class FeedAnimal2 {
 		lblWhatWouldYou.setBounds(25, 24, 380, 32);
 		window.getContentPane().add(lblWhatWouldYou);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(35, 67, 242, 314);
-		window.getContentPane().add(textArea);
+		JTextArea feedback = new JTextArea();
+		feedback.setEditable(false);
+		feedback.setBounds(313, 256, 196, 68);
+		window.getContentPane().add(feedback);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setColumns(10);
-		textField.setBounds(365, 146, 96, 44);
-		window.getContentPane().add(textField);
+		JTextArea animalList = new JTextArea();
+		animalList.setEditable(false);
+		animalList.setBounds(35, 67, 242, 314);
+		window.getContentPane().add(animalList);
+		animalList.setText("   " + "Animal" + "          " + "Health");
+		for (Animal animal : manager.playerFarm.listOfAnimals) {
+			animalList.append("\n" + (manager.playerFarm.listOfAnimals.indexOf(animal) + 1) + "  " + animal.name + animal.health);
+		}
+		input = new JTextField();
+		input.setHorizontalAlignment(SwingConstants.CENTER);
+		input.setColumns(10);
+		input.setBounds(365, 146, 96, 44);
+		window.getContentPane().add(input);
 		
-		JButton btnFeed = new JButton("Feed");
-		btnFeed.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnFeed.setBounds(365, 201, 96, 44);
-		window.getContentPane().add(btnFeed);
+		JButton feedButton = new JButton("Feed");
+		feedButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String indexInput = input.getText();
+				int index = 0;
+				index = Integer.parseInt(indexInput) - 1;
+				if ((index <= manager.playerFarm.listOfAnimals.size()) && (index >= 0)) {
+					manager.playerFarm.listOfAnimals.get(manager.feedAnimalIndex).
+					feed(manager.playerFarm.listOfFood.get(index), manager.playerFarm);
+					animalList.setText("   " + "Animal" + "          " + "Health");
+					for (Animal animal : manager.playerFarm.listOfAnimals) {
+						animalList.append("\n" + (manager.playerFarm.listOfAnimals.indexOf(animal) + 1) + "  " + animal.name + animal.health);
+					}
+					feedback.setText(manager.playerFarm.output);
+					}
+				else {
+						feedback.setText("Please enter a valid number");
+					}
+				}
+		});
+		feedButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		feedButton.setBounds(365, 201, 96, 44);
+		window.getContentPane().add(feedButton);
 		
 		JLabel lblNewLabel = new JLabel("Enter the number corresponding");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -95,15 +127,16 @@ public class FeedAnimal2 {
 		lblToTheFood.setBounds(365, 116, 96, 37);
 		window.getContentPane().add(lblToTheFood);
 		
-		JButton button_1 = new JButton("Back");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		button_1.setBounds(507, 362, 96, 56);
-		window.getContentPane().add(button_1);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setEditable(false);
-		textArea_1.setBounds(313, 256, 196, 68);
-		window.getContentPane().add(textArea_1);
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchFeedAnimal();
+				finishedWindow();
+			}
+		});
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		backButton.setBounds(507, 362, 96, 56);
+		window.getContentPane().add(backButton);
 	}
 
 }

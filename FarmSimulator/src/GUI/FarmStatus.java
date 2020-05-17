@@ -122,6 +122,7 @@ public class FarmStatus {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				manager.launchFarmScreen();
 				finishedWindow();
 			}
 		});

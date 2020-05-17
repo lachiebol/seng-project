@@ -64,6 +64,8 @@ public class GeneralStoreFood {
 	private void initialize() {
 		window = new JFrame();
 		window.setTitle("General Store - Food");
+		window.setBounds(100, 100, 640, 480);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.getContentPane().setLayout(null);
 		
 		JLabel lblCarrot = new JLabel("Carrot:");

@@ -159,7 +159,7 @@ public class GeneralStoreCropItems {
 				feedback.setText("");
 				for (int i = 1 ; i <= sprinklerSlider.getValue(); i += 1) {
 					manager.playerFarm.buyCropItem(new AutomaticSprinkler());
-					feedback.append("/n" + manager.playerFarm.output);
+					feedback.append("\n" + manager.playerFarm.output);
 				}
 			}
 		});

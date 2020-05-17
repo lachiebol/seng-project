@@ -22,9 +22,9 @@ public class GameManager {
 	FeedAnimal2 feedAnimal2Window;
 	HarvestCrop harvestCropWindow;
 	PlayWithAnimal playWithAnimalWindow;
-	TendToAnimal tendToAnimalWindow;
 	TendToCrop tendToCropWindow;
 	TendToCrop2 tendToCrop2Window;
+	int feedAnimalIndex;
 	
 	String name;
 	String farmName;
@@ -175,14 +175,6 @@ public class GameManager {
 	}
 	
 	public void closePlayWithAnimal(PlayWithAnimal gameWindow) {
-		gameWindow.closeWindow();
-	}
-	
-	public void launchTendToAnimal() {
-		tendToAnimalWindow = new TendToAnimal(this);
-	}
-	
-	public void closeTendToAnimal(TendToAnimal gameWindow) {
 		gameWindow.closeWindow();
 	}
 	
