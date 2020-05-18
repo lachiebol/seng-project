@@ -20,6 +20,13 @@ public class Crop implements Cloneable {
 		sellingPrice = newSellingPrice;
 		daysToHarvest = newDaysToHarvest;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("%s, %d days to harvest", name, daysToHarvest);
+	}
+
 
 
 
