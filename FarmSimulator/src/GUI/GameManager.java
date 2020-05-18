@@ -26,6 +26,7 @@ public class GameManager {
 	TendToCrop2 tendToCrop2Window;
 	int feedAnimalIndex;
 	
+	
 	String name;
 	String farmName;
 	int age;
