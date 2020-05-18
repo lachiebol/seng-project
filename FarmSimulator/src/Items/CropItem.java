@@ -16,11 +16,19 @@ public class CropItem {
 	/**
 	 * Initiates a Crop Item.
 	 */
+
 	
 	public CropItem(String newName, int newPrice, int newTimeBoost) {
 		name = newName;
 		price = newPrice;
 		timeBoost = newTimeBoost;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("%s, -%d days to harvest", name, timeBoost);
+	}
+
 
 }
