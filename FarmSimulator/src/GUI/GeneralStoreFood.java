@@ -73,6 +73,11 @@ public class GeneralStoreFood {
 		lblCarrot.setBounds(58, 84, 110, 59);
 		window.getContentPane().add(lblCarrot);
 		
+		JLabel moneyLabel = new JLabel("Money: $" + Integer.toString(manager.playerFarm.money));
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		moneyLabel.setBounds(380, 73, 218, 25);
+		window.getContentPane().add(moneyLabel);
+		
 		JSlider carrotSlider = new JSlider();
 		carrotSlider.setValue(1);
 		carrotSlider.setSnapToTicks(true);
@@ -87,7 +92,7 @@ public class GeneralStoreFood {
 		
 		JTextArea feedback = new JTextArea();
 		feedback.setEditable(false);
-		feedback.setBounds(385, 96, 231, 246);
+		feedback.setBounds(380, 120, 231, 246);
 		window.getContentPane().add(feedback);
 		
 		JLabel lblSeeds = new JLabel("Seeds:");
@@ -132,6 +137,7 @@ public class GeneralStoreFood {
 					manager.playerFarm.buyFood(new Hay());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		hayButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -146,6 +152,7 @@ public class GeneralStoreFood {
 					manager.playerFarm.buyFood(new Seeds());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		seedsButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -160,6 +167,7 @@ public class GeneralStoreFood {
 					manager.playerFarm.buyFood(new Carrots());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		carrotButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -183,5 +191,4 @@ public class GeneralStoreFood {
 		backButton.setBounds(499, 381, 117, 51);
 		window.getContentPane().add(backButton);
 	}
-
 }

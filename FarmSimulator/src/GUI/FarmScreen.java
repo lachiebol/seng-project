@@ -97,6 +97,13 @@ public class FarmScreen {
 		frame.getContentPane().add(btnVisitGeneralStore);
 		
 		JButton btnMoveOntoNext = new JButton("Move on to next day\r\n");
+		btnMoveOntoNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.playerFarm.nextDay();
+				manager.launchFarmScreen();
+				finishedWindow();
+			}
+		});
 		btnMoveOntoNext.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnMoveOntoNext.setBounds(335, 268, 201, 73);
 		frame.getContentPane().add(btnMoveOntoNext);

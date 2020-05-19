@@ -20,13 +20,6 @@ public class Crop implements Cloneable {
 		sellingPrice = newSellingPrice;
 		daysToHarvest = newDaysToHarvest;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return String.format("%s, %d days to harvest", name, daysToHarvest);
-	}
-
 
 
 
@@ -49,10 +42,19 @@ public class Crop implements Cloneable {
 		if (playerFarm.actionsRemaining > 0) {
 			this.daysToHarvest -= item.timeBoost;
 			playerFarm.actionsRemaining -= 1;
+			playerFarm.listOfItems.remove(item);
 			System.out
 					.println("You used " + item.name.toLowerCase() + " on " + name + ", -" + item.timeBoost + " days");
 		} else {
 			System.out.println("You have no actions remaining today");
 		}
+	}
+	
+	/**
+	 * Returns a string representation of the crop.
+	 */
+	
+	public String toString() {
+		return name;
 	}
 }

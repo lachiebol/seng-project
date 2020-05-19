@@ -73,6 +73,11 @@ public class GeneralStoreAnimals {
 		lblNewLabel.setBounds(55, 73, 110, 59);
 		window.getContentPane().add(lblNewLabel);
 		
+		JLabel moneyLabel = new JLabel("Money: $" + Integer.toString(manager.playerFarm.money));
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		moneyLabel.setBounds(380, 73, 218, 25);
+		window.getContentPane().add(moneyLabel);
+		
 		JLabel lblSheep = new JLabel("Sheep:");
 		lblSheep.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblSheep.setBounds(55, 198, 110, 59);
@@ -113,6 +118,7 @@ public class GeneralStoreAnimals {
 					manager.playerFarm.buyAnimal(new Chicken());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		buyChickenButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -139,6 +145,7 @@ public class GeneralStoreAnimals {
 					manager.playerFarm.buyAnimal(new Sheep());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		buySheepButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -165,6 +172,7 @@ public class GeneralStoreAnimals {
 					manager.playerFarm.buyAnimal(new Cow());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		buyCowButton.setFont(new Font("Tahoma", Font.PLAIN, 26));

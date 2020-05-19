@@ -68,17 +68,22 @@ public class GeneralStoreCrops {
 		
 		JLabel lblWhichCropAnd = new JLabel("Which crop, and how many do you want to purchase?");
 		lblWhichCropAnd.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblWhichCropAnd.setBounds(40, 11, 558, 51);
+		lblWhichCropAnd.setBounds(10, 0, 558, 51);
 		window.getContentPane().add(lblWhichCropAnd);
+		
+		JLabel moneyLabel = new JLabel("Money: $" + Integer.toString(manager.playerFarm.money));
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		moneyLabel.setBounds(205, 49, 218, 25);
+		window.getContentPane().add(moneyLabel);
 		
 		JLabel lblCarrot = new JLabel("Carrot:");
 		lblCarrot.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblCarrot.setBounds(40, 125, 110, 59);
+		lblCarrot.setBounds(40, 135, 110, 59);
 		window.getContentPane().add(lblCarrot);
 		
 		JLabel lblBeetroot = new JLabel("Beetroot:");
 		lblBeetroot.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblBeetroot.setBounds(40, 58, 110, 32);
+		lblBeetroot.setBounds(40, 69, 110, 32);
 		window.getContentPane().add(lblBeetroot);
 		
 		JTextArea feedback = new JTextArea();
@@ -95,7 +100,7 @@ public class GeneralStoreCrops {
 		parsnipSlider.setMaximum(5);
 		parsnipSlider.setMajorTickSpacing(2);
 		parsnipSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		parsnipSlider.setBounds(349, 95, 156, 19);
+		parsnipSlider.setBounds(349, 102, 156, 19);
 		window.getContentPane().add(parsnipSlider);
 		
 		JSlider beetrootSlider = new JSlider();
@@ -107,7 +112,7 @@ public class GeneralStoreCrops {
 		beetrootSlider.setMaximum(5);
 		beetrootSlider.setMajorTickSpacing(2);
 		beetrootSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		beetrootSlider.setBounds(23, 95, 156, 19);
+		beetrootSlider.setBounds(23, 105, 156, 19);
 		window.getContentPane().add(beetrootSlider);
 		
 		JSlider carrotSlider = new JSlider();
@@ -119,7 +124,7 @@ public class GeneralStoreCrops {
 		carrotSlider.setMaximum(5);
 		carrotSlider.setMajorTickSpacing(2);
 		carrotSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		carrotSlider.setBounds(23, 175, 156, 19);
+		carrotSlider.setBounds(23, 195, 156, 19);
 		window.getContentPane().add(carrotSlider);
 		
 		JLabel lblCorn = new JLabel("Corn:");
@@ -136,7 +141,7 @@ public class GeneralStoreCrops {
 		cornSlider.setMaximum(5);
 		cornSlider.setMajorTickSpacing(2);
 		cornSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		cornSlider.setBounds(23, 256, 156, 19);
+		cornSlider.setBounds(23, 267, 156, 19);
 		window.getContentPane().add(cornSlider);
 		
 		JButton cornButton = new JButton("Buy");
@@ -147,10 +152,11 @@ public class GeneralStoreCrops {
 					manager.playerFarm.buyCrop(new Corn());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		cornButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		cornButton.setBounds(189, 237, 83, 51);
+		cornButton.setBounds(189, 247, 83, 51);
 		window.getContentPane().add(cornButton);
 		
 		JButton carrotButton = new JButton("Buy");
@@ -161,10 +167,11 @@ public class GeneralStoreCrops {
 					manager.playerFarm.buyCrop(new Carrot());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		carrotButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		carrotButton.setBounds(189, 156, 83, 51);
+		carrotButton.setBounds(189, 175, 83, 51);
 		window.getContentPane().add(carrotButton);
 		
 		JButton beetrootButton = new JButton("Buy");
@@ -175,10 +182,11 @@ public class GeneralStoreCrops {
 					manager.playerFarm.buyCrop(new Beetroot());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		beetrootButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		beetrootButton.setBounds(189, 74, 83, 51);
+		beetrootButton.setBounds(189, 85, 83, 51);
 		window.getContentPane().add(beetrootButton);
 		
 		JSlider wheatSlider = new JSlider();
@@ -190,7 +198,7 @@ public class GeneralStoreCrops {
 		wheatSlider.setMaximum(5);
 		wheatSlider.setMajorTickSpacing(2);
 		wheatSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		wheatSlider.setBounds(349, 256, 156, 19);
+		wheatSlider.setBounds(349, 267, 156, 19);
 		window.getContentPane().add(wheatSlider);
 		
 		JButton wheatButton = new JButton("Buy");
@@ -201,10 +209,11 @@ public class GeneralStoreCrops {
 					manager.playerFarm.buyCrop(new Wheat());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		wheatButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		wheatButton.setBounds(515, 237, 83, 51);
+		wheatButton.setBounds(515, 247, 83, 51);
 		window.getContentPane().add(wheatButton);
 		
 		JLabel lblWheat = new JLabel("Wheat:");
@@ -214,7 +223,7 @@ public class GeneralStoreCrops {
 		
 		JLabel lblPotato = new JLabel("Potato:");
 		lblPotato.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblPotato.setBounds(366, 125, 110, 59);
+		lblPotato.setBounds(366, 132, 110, 59);
 		window.getContentPane().add(lblPotato);
 		
 		JSlider potatoSlider = new JSlider();
@@ -226,7 +235,7 @@ public class GeneralStoreCrops {
 		potatoSlider.setMaximum(5);
 		potatoSlider.setMajorTickSpacing(2);
 		potatoSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		potatoSlider.setBounds(349, 175, 156, 19);
+		potatoSlider.setBounds(349, 182, 156, 19);
 		window.getContentPane().add(potatoSlider);
 		
 		JButton potatoButton = new JButton("Buy");
@@ -237,10 +246,11 @@ public class GeneralStoreCrops {
 					manager.playerFarm.buyCrop(new Potato());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		potatoButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		potatoButton.setBounds(515, 156, 83, 51);
+		potatoButton.setBounds(515, 163, 83, 51);
 		window.getContentPane().add(potatoButton);
 		
 		JButton parsnipButton = new JButton("Buy");
@@ -251,16 +261,17 @@ public class GeneralStoreCrops {
 					manager.playerFarm.buyCrop(new Parsnip());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		parsnipButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		parsnipButton.setBounds(515, 74, 83, 51);
+		parsnipButton.setBounds(515, 81, 83, 51);
 		window.getContentPane().add(parsnipButton);
 		
 		
 		JLabel lblParsnip = new JLabel("Parsnip:");
 		lblParsnip.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblParsnip.setBounds(366, 58, 110, 32);
+		lblParsnip.setBounds(366, 65, 110, 32);
 		window.getContentPane().add(lblParsnip);
 		
 		JButton backButton = new JButton("Back");

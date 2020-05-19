@@ -124,27 +124,26 @@ public class TendToCrop {
 		JButton btnTend = new JButton("Tend to\r\n");
 		btnTend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (manager.playerFarm.listOfCrops.size() != 0 && manager.playerFarm.listOfItems.size() != 0) {
+				if ((manager.playerFarm.listOfCrops.size() != 0) && (manager.playerFarm.listOfItems.size() != 0) 
+						&& (manager.playerFarm.actionsRemaining > 0)) {
 					int cropIndex = listOfCrops.getSelectedIndex();
 					int itemIndex = listOfItems.getSelectedIndex();
 					Crop currentCrop = manager.playerFarm.listOfCrops.get(cropIndex);
 					CropItem currentItem = manager.playerFarm.listOfItems.get(itemIndex);
 					
-					itemListModel.remove(itemIndex);
-					manager.playerFarm.listOfItems.remove(currentItem);
-					
-					currentCrop.daysToHarvest -= currentItem.timeBoost;
-					
-					
-
+					currentCrop.useItem(currentItem, manager.playerFarm);
+					listOfItems.updateUI();
 					feedbackLabel.setText("You used " + currentItem.name + " on " + currentCrop.name);
 				}else {
 					if(manager.playerFarm.listOfCrops.size() == 0){
-						noCropLabel.setText("You have no crops, visit the general store to buy some");
+						noCropLabel.setText("You have no crops.");
 					}
 					
 					if (manager.playerFarm.listOfItems.size() == 0) {
-						noItemLabel.setText("You have no items");
+						noItemLabel.setText("You have no items.");
+					}
+					if (manager.playerFarm.actionsRemaining == 0) {
+						feedbackLabel.setText("You have no actions remaining today");
 					}
 				}
 			}

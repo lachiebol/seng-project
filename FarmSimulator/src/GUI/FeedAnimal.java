@@ -18,8 +18,8 @@ import java.awt.event.ActionEvent;
 public class FeedAnimal {
 
 	private JFrame window;
-	private JTextField input;
 	private GameManager manager;
+	private JTextField input_1;
 	
 	public FeedAnimal(GameManager incomingManager) {
 		manager = incomingManager;
@@ -83,19 +83,17 @@ public class FeedAnimal {
 		animalList.setBounds(35, 67, 242, 269);
 		window.getContentPane().add(animalList);
 		animalList.setText("   " + "Animal" + "         " + "Health");
-		for (Animal animal : manager.playerFarm.listOfAnimals) {
-			animalList.append("\n" + (manager.playerFarm.listOfAnimals.indexOf(animal) + 1) + "  " + animal.name + animal.health);
 		
-		input = new JTextField();
-		input.setHorizontalAlignment(SwingConstants.CENTER);
-		input.setColumns(10);
-		input.setBounds(365, 146, 96, 44);
-		window.getContentPane().add(input);
+		input_1 = new JTextField();
+		input_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		input_1.setBounds(362, 169, 96, 38);
+		window.getContentPane().add(input_1);
+		input_1.setColumns(10);
 		
 		JButton nextButton = new JButton("Next");
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String indexInput = input.getText();
+				String indexInput = input_1.getText();
 				int index = 0;
 				index = Integer.parseInt(indexInput) - 1;
 				if ((index < manager.playerFarm.listOfAnimals.size()) && (index >= 0)) {
@@ -113,10 +111,21 @@ public class FeedAnimal {
 					}
 				}
 			});
-		
 		nextButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		nextButton.setBounds(365, 201, 96, 44);
+		nextButton.setBounds(362, 218, 96, 39);
 		window.getContentPane().add(nextButton);
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.launchCropAndAnimalStatus();
+				finishedWindow();
+			}
+		});
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		backButton.setBounds(495, 386, 96, 46);
+		window.getContentPane().add(backButton);
+		
 		
 		JLabel label = new JLabel("Enter the number corresponding");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -129,16 +138,6 @@ public class FeedAnimal {
 		lblToTheAnimal.setBounds(351, 118, 123, 37);
 		window.getContentPane().add(lblToTheAnimal);
 		
-		JButton backButton = new JButton("Back");
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				manager.launchCropAndAnimalStatus();
-				finishedWindow();
-			}
-		});
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		backButton.setBounds(504, 376, 96, 56);
-		window.getContentPane().add(backButton);
+		
 		}
 	}
-}

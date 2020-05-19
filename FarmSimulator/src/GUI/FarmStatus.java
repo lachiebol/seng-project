@@ -9,11 +9,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.SystemColor;
 
 public class FarmStatus {
 
 	private JFrame frame;
 	private GameManager manager;
+	private JTextField feedback;
 	
 	public FarmStatus(GameManager incomingManager) {
 		manager = incomingManager;
@@ -99,6 +102,13 @@ public class FarmStatus {
 		lblYouHavelength_2.setBounds(10, 283, 422, 45);
 		frame.getContentPane().add(lblYouHavelength_2);
 		
+		feedback = new JTextField();
+		feedback.setBackground(SystemColor.control);
+		feedback.setEditable(false);
+		feedback.setBounds(171, 386, 177, 29);
+		frame.getContentPane().add(feedback);
+		feedback.setColumns(10);
+		
 		JLabel lblYouHavelength_3 = new JLabel("You have " + manager.playerFarm.listOfFood.size() + " food items");
 		lblYouHavelength_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblYouHavelength_3.setBounds(10, 318, 422, 45);
@@ -110,9 +120,8 @@ public class FarmStatus {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(manager.playerFarm.freeSpace);
 				manager.playerFarm.tendToLand();
-				
 				freeSpaceLabel.setText("Your farm currently has " + manager.playerFarm.freeSpace +  " free space");
-				
+				feedback.setText(manager.playerFarm.output);
 				
 			}
 		});
@@ -132,5 +141,4 @@ public class FarmStatus {
 		
 
 	}
-
 }

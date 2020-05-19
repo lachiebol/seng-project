@@ -72,6 +72,11 @@ public class GeneralStoreCropItems {
 		feedback.setBounds(385, 96, 231, 246);
 		window.getContentPane().add(feedback);
 		
+		JLabel moneyLabel = new JLabel("Money: $" + Integer.toString(manager.playerFarm.money));
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		moneyLabel.setBounds(380, 73, 218, 25);
+		window.getContentPane().add(moneyLabel);
+		
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,6 +152,7 @@ public class GeneralStoreCropItems {
 					manager.playerFarm.buyCropItem(new Fertilizer());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		fertilizerButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -161,6 +167,7 @@ public class GeneralStoreCropItems {
 					manager.playerFarm.buyCropItem(new AutomaticSprinkler());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		sprinklerButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -175,6 +182,7 @@ public class GeneralStoreCropItems {
 					manager.playerFarm.buyCropItem(new ScareCrow());
 					feedback.append("\n" + manager.playerFarm.output);
 				}
+				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
 			}
 		});
 		scarecrowButton.setFont(new Font("Tahoma", Font.PLAIN, 26));

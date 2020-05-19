@@ -112,13 +112,8 @@ public class Animal implements Cloneable {
 	 * @param playerFarm
 	 */
 	public void tendTo(Farm playerFarm) {
-		if (playerFarm.actionsRemaining > 0) {
 			setEarningsBoost();
 			playerFarm.money += (int) (baseEarnings * earningsBoost);
-			playerFarm.actionsRemaining -= 1;
-			}
-		else {
-			System.out.println("You have no remaining actions today");			
 		}
 
 
@@ -128,5 +123,5 @@ public class Animal implements Cloneable {
 
 
 }
-}
+
 

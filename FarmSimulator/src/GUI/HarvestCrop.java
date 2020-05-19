@@ -113,7 +113,7 @@ public class HarvestCrop {
 
 					feedbackLabel.setText("You harvested " + currentCrop.name + " and sold it for $" + cost);
 				}else {
-					feedbackLabel.setText("You currently have no crops\n\nVisit the general store to buy some");
+					feedbackLabel.setText("You have no crops, visit the general store to buy some");
 				}
 			}
 		});

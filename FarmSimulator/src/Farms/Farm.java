@@ -162,8 +162,13 @@ public class Farm {
 			output = "Successful purchase";
 			}
 		else {
-			output = "Insufficient funds for purchase";
+			if (money < animal.purchasePrice) {
+				output = "Insufficient funds for purchase";
 			}
+			else {
+			output = "Insufficient space for purchase";
+			}
+		}
 	}
 	
 	/**
@@ -205,11 +210,17 @@ public class Farm {
 	 */
 	public void tendToLand() {
 		if(freeSpace < 5) {
-			freeSpace = 5;
-			output = "You tidied the farm";
+			if (actionsRemaining > 0) {
+				freeSpace = 5;
+				output = "You tidied the farm";
+				actionsRemaining -= 1;
+			}
+			else {
+				output = "You have no actions remaining";
+			}
 		}
 		else {
-			output = "Insufficient funds for purchase";
+			output = "The farm is already tidy";
 		}
 	}
 	
@@ -224,6 +235,12 @@ public class Farm {
 		actionsRemaining = 2;
 		for (Animal theAnimal: listOfAnimals) {
 			theAnimal.happiness -= ((5 - freeSpace) * 5);
+			theAnimal.tendTo(this);
+		}
+		for (Crop crop: listOfCrops) {
+			if (crop.daysToHarvest > 0) {
+				crop.daysToHarvest -= 1;
+			}
 		}
 	}
 }

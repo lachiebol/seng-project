@@ -92,7 +92,7 @@ public class CropAndAnimalStatus {
 		window.getContentPane().add(cropList);
 		cropList.setText("Crop" + "     " + "Days Until Harvest");
 		for (Crop crop : manager.playerFarm.listOfCrops) {
-			animalList.append("\n" + crop.name + "     " + crop.daysToHarvest);
+			cropList.append("\n" + crop.name + "     " + crop.daysToHarvest);
 		}
 		
 		JButton playButton = new JButton("Play with Animal");
