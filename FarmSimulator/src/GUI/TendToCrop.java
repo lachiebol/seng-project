@@ -93,11 +93,11 @@ public class TendToCrop {
 		window.getContentPane().add(feedbackLabel);
 		
 		JLabel noCropLabel = new JLabel("\r\n");
-		noCropLabel.setBounds(20, 50, 196, 14);
+		noCropLabel.setBounds(23, 380, 196, 14);
 		window.getContentPane().add(noCropLabel);
 		
 		JLabel noItemLabel = new JLabel("");
-		noItemLabel.setBounds(261, 50, 199, 14);
+		noItemLabel.setBounds(261, 380, 199, 14);
 		window.getContentPane().add(noItemLabel);
 		
 		JList<Crop> listOfCrops = new JList<>(cropListModel);
@@ -132,7 +132,8 @@ public class TendToCrop {
 					CropItem currentItem = manager.playerFarm.listOfItems.get(itemIndex);
 					
 					currentCrop.useItem(currentItem, manager.playerFarm);
-					listOfItems.updateUI();
+					
+					itemListModel.remove(itemIndex);
 					feedbackLabel.setText("You used " + currentItem.name + " on " + currentCrop.name);
 				}else {
 					if(manager.playerFarm.listOfCrops.size() == 0){
@@ -152,6 +153,16 @@ public class TendToCrop {
 		btnTend.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTend.setBounds(505, 188, 109, 44);
 		window.getContentPane().add(btnTend);
+		
+		JLabel cropLabel = new JLabel("Crop");
+		cropLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		cropLabel.setBounds(93, 39, 51, 36);
+		window.getContentPane().add(cropLabel);
+		
+		JLabel itemLabel = new JLabel("Item");
+		itemLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		itemLabel.setBounds(332, 47, 56, 28);
+		window.getContentPane().add(itemLabel);
 		
 
 		

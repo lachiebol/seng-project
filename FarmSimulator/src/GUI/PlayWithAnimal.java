@@ -124,6 +124,7 @@ public class PlayWithAnimal {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.launchCropAndAnimalStatus();
+				finishedWindow();
 			}
 		});
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 20));

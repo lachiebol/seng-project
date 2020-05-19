@@ -82,8 +82,11 @@ public class HarvestCrop {
 		feedbackLabel.setBounds(60, 401, 436, 31);
 		window.getContentPane().add(feedbackLabel);
 		
+		
+		
+		
 		JList<Crop> listOfCrops = new JList<>(cropListModel);
-		listOfCrops.setBounds(168, 73, 243, 280);
+		listOfCrops.setBounds(126, 106, 205, 259);
 		window.getContentPane().add(listOfCrops);
 		
 		
@@ -104,21 +107,27 @@ public class HarvestCrop {
 					int cropIndex = listOfCrops.getSelectedIndex();
 					Crop currentCrop = manager.playerFarm.listOfCrops.get(cropIndex);
 					int initMoney = manager.playerFarm.money;
-					manager.playerFarm.harvestCrop(currentCrop);
-					cropListModel.remove(cropIndex);
 					
-					int endMoney = manager.playerFarm.money;
+					if (currentCrop.daysToHarvest == 0) {
+						manager.playerFarm.harvestCrop(currentCrop);
+						cropListModel.remove(cropIndex);
 					
-					int cost = endMoney - initMoney;
+						int endMoney = manager.playerFarm.money;
+					
+						int cost = endMoney - initMoney;
 
-					feedbackLabel.setText("You harvested " + currentCrop.name + " and sold it for $" + cost);
+						feedbackLabel.setText("You harvested " + currentCrop.name + " and sold it for $" + cost);
+					}
+					else {
+						feedbackLabel.setText("That crop isn't fully grown yet");
+					}
 				}else {
 					feedbackLabel.setText("You have no crops, visit the general store to buy some");
 				}
 			}
 		});
 		btnHarvest.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnHarvest.setBounds(474, 180, 109, 44);
+		btnHarvest.setBounds(474, 207, 109, 44);
 		window.getContentPane().add(btnHarvest);
 		
 
@@ -132,7 +141,21 @@ public class HarvestCrop {
 		});
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		backButton.setBounds(508, 376, 96, 56);
-		window.getContentPane().add(backButton);
+		window.getContentPane().add(backButton);	
+				
+		JTextArea remainingTimes = new JTextArea();
+		remainingTimes.setFont(new Font("Tahoma", Font.BOLD, 13));
+		remainingTimes.setEditable(false);
+		remainingTimes.setBounds(331, 106, 87, 259);
+		window.getContentPane().add(remainingTimes);
+		for (Crop crop : manager.playerFarm.listOfCrops) {
+			remainingTimes.append(" " + Integer.toString(crop.daysToHarvest) + "\n");
+		}
+				
+		JLabel lblNewLabel = new JLabel("  Crop                 Days until Harvest");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(126, 73, 335, 29);
+		window.getContentPane().add(lblNewLabel);
 		
 
 	}

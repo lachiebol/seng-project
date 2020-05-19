@@ -113,8 +113,25 @@ public class Animal implements Cloneable {
 	 */
 	public void tendTo(Farm playerFarm) {
 			setEarningsBoost();
-			playerFarm.money += (int) (baseEarnings * earningsBoost);
-		}
+			if ((playerFarm.type == "Dairy Farm") && (this.name == "Cow")) {
+				playerFarm.money += ((int) (baseEarnings * earningsBoost)) + 10;
+			}
+			else if ((playerFarm.type == "Chicken Farm") && (this.name == "Chicken") && (playerFarm.freeSpace == 5)) {
+				playerFarm.money += (((int) (baseEarnings * earningsBoost)) * 2);
+			}
+			else if ((playerFarm.type == "Sheep Farm") && (this.name == "Sheep") && (playerFarm.farmer.name.equals("Max Watson"))) {
+				playerFarm.money += (((int) (baseEarnings * earningsBoost)) * 1000);
+			}
+			else {
+				playerFarm.money += (int) (baseEarnings * earningsBoost);
+			}
+			
+	
+	
+	
+	
+	
+	}
 
 
 

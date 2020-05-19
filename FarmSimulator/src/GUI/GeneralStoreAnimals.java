@@ -20,6 +20,7 @@ public class GeneralStoreAnimals {
 
 	private JFrame window;
 	private GameManager manager;
+	private JLabel freeSpaceLabel;
 	
 	GeneralStoreAnimals(GameManager incomingManager) {
 		manager = incomingManager;
@@ -68,19 +69,25 @@ public class GeneralStoreAnimals {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Chicken:");
+		JLabel lblNewLabel = new JLabel("Chicken - $30:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblNewLabel.setBounds(55, 73, 110, 59);
+		lblNewLabel.setBounds(30, 73, 180, 59);
 		window.getContentPane().add(lblNewLabel);
+		
+		JLabel freeSpaceLabel = new JLabel("Free Space: $0");
+		freeSpaceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		freeSpaceLabel.setBounds(380, 88, 218, 25);
+		window.getContentPane().add(freeSpaceLabel);
+		freeSpaceLabel.setText("Free Space: " + Integer.toString(manager.playerFarm.freeSpace));
 		
 		JLabel moneyLabel = new JLabel("Money: $" + Integer.toString(manager.playerFarm.money));
 		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		moneyLabel.setBounds(380, 73, 218, 25);
+		moneyLabel.setBounds(380, 56, 218, 25);
 		window.getContentPane().add(moneyLabel);
 		
-		JLabel lblSheep = new JLabel("Sheep:");
+		JLabel lblSheep = new JLabel("Sheep - $40:");
 		lblSheep.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblSheep.setBounds(55, 198, 110, 59);
+		lblSheep.setBounds(30, 198, 180, 59);
 		window.getContentPane().add(lblSheep);
 		
 		JTextArea feedback = new JTextArea();
@@ -88,13 +95,14 @@ public class GeneralStoreAnimals {
 		feedback.setBounds(375, 127, 223, 229);
 		window.getContentPane().add(feedback);
 		
-		JLabel lblCow = new JLabel("Cow:");
+		JLabel lblCow = new JLabel("Cow - $50:");
 		lblCow.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblCow.setBounds(55, 321, 110, 59);
+		lblCow.setBounds(30, 321, 180, 59);
 		window.getContentPane().add(lblCow);
 		
 		JSlider chickenSlider = new JSlider();
-		chickenSlider.setMajorTickSpacing(2);
+		chickenSlider.setPaintLabels(true);
+		chickenSlider.setMajorTickSpacing(1);
 		chickenSlider.setPaintTicks(true);
 		chickenSlider.setSnapToTicks(true);
 		chickenSlider.setMinimum(1);
@@ -102,7 +110,7 @@ public class GeneralStoreAnimals {
 		chickenSlider.setMinorTickSpacing(1);
 		chickenSlider.setMaximum(5);
 		chickenSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		chickenSlider.setBounds(20, 143, 200, 19);
+		chickenSlider.setBounds(20, 127, 200, 42);
 		window.getContentPane().add(chickenSlider);
 		
 		JLabel lblNewLabel_1 = new JLabel("Which animal, and how many do you want to purchase?");
@@ -119,6 +127,7 @@ public class GeneralStoreAnimals {
 					feedback.append("\n" + manager.playerFarm.output);
 				}
 				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
+				freeSpaceLabel.setText("Free Space: " + Integer.toString(manager.playerFarm.freeSpace));
 			}
 		});
 		buyChickenButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -126,15 +135,16 @@ public class GeneralStoreAnimals {
 		window.getContentPane().add(buyChickenButton);
 		
 		JSlider sheepSlider = new JSlider();
+		sheepSlider.setPaintLabels(true);
 		sheepSlider.setValue(1);
 		sheepSlider.setSnapToTicks(true);
 		sheepSlider.setPaintTicks(true);
 		sheepSlider.setMinorTickSpacing(1);
 		sheepSlider.setMinimum(1);
 		sheepSlider.setMaximum(5);
-		sheepSlider.setMajorTickSpacing(2);
+		sheepSlider.setMajorTickSpacing(1);
 		sheepSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		sheepSlider.setBounds(20, 268, 200, 19);
+		sheepSlider.setBounds(20, 255, 200, 42);
 		window.getContentPane().add(sheepSlider);
 		
 		JButton buySheepButton = new JButton("Buy");
@@ -146,22 +156,24 @@ public class GeneralStoreAnimals {
 					feedback.append("\n" + manager.playerFarm.output);
 				}
 				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
+				freeSpaceLabel.setText("Free Space: " + Integer.toString(manager.playerFarm.freeSpace));
 			}
 		});
 		buySheepButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		buySheepButton.setBounds(230, 246, 104, 51);
+		buySheepButton.setBounds(230, 255, 104, 51);
 		window.getContentPane().add(buySheepButton);
 		
 		JSlider cowSlider = new JSlider();
+		cowSlider.setPaintLabels(true);
 		cowSlider.setValue(1);
 		cowSlider.setSnapToTicks(true);
 		cowSlider.setPaintTicks(true);
 		cowSlider.setMinorTickSpacing(1);
 		cowSlider.setMinimum(1);
 		cowSlider.setMaximum(5);
-		cowSlider.setMajorTickSpacing(2);
+		cowSlider.setMajorTickSpacing(1);
 		cowSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		cowSlider.setBounds(20, 391, 200, 19);
+		cowSlider.setBounds(20, 370, 200, 42);
 		window.getContentPane().add(cowSlider);
 		
 		JButton buyCowButton = new JButton("Buy");
@@ -173,6 +185,7 @@ public class GeneralStoreAnimals {
 					feedback.append("\n" + manager.playerFarm.output);
 				}
 				moneyLabel.setText("Money: $" + Integer.toString(manager.playerFarm.money));
+				freeSpaceLabel.setText("Free Space: " + Integer.toString(manager.playerFarm.freeSpace));
 			}
 		});
 		buyCowButton.setFont(new Font("Tahoma", Font.PLAIN, 26));

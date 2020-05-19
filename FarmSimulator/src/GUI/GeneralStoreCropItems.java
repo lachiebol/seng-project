@@ -69,12 +69,12 @@ public class GeneralStoreCropItems {
 		
 		JTextArea feedback = new JTextArea();
 		feedback.setEditable(false);
-		feedback.setBounds(385, 96, 231, 246);
+		feedback.setBounds(385, 124, 231, 246);
 		window.getContentPane().add(feedback);
 		
 		JLabel moneyLabel = new JLabel("Money: $" + Integer.toString(manager.playerFarm.money));
 		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		moneyLabel.setBounds(380, 73, 218, 25);
+		moneyLabel.setBounds(385, 73, 218, 25);
 		window.getContentPane().add(moneyLabel);
 		
 		JButton backButton = new JButton("Back");
@@ -93,55 +93,58 @@ public class GeneralStoreCropItems {
 		lblWhichCropItem.setBounds(10, 11, 616, 51);
 		window.getContentPane().add(lblWhichCropItem);
 		
-		JLabel lblAutomaticSprinkler = new JLabel("Scarecrow:");
+		JLabel lblAutomaticSprinkler = new JLabel("Scarecrow - $5:");
 		lblAutomaticSprinkler.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblAutomaticSprinkler.setBounds(41, 73, 179, 59);
+		lblAutomaticSprinkler.setBounds(20, 73, 260, 59);
 		window.getContentPane().add(lblAutomaticSprinkler);
 		
 		JSlider scarecrowSlider = new JSlider();
+		scarecrowSlider.setPaintLabels(true);
 		scarecrowSlider.setValue(1);
 		scarecrowSlider.setSnapToTicks(true);
 		scarecrowSlider.setPaintTicks(true);
 		scarecrowSlider.setMinorTickSpacing(1);
 		scarecrowSlider.setMinimum(1);
 		scarecrowSlider.setMaximum(5);
-		scarecrowSlider.setMajorTickSpacing(2);
+		scarecrowSlider.setMajorTickSpacing(1);
 		scarecrowSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		scarecrowSlider.setBounds(20, 141, 200, 19);
+		scarecrowSlider.setBounds(20, 130, 200, 42);
 		window.getContentPane().add(scarecrowSlider);
 		
-		JLabel lblAutomaticSprinkler_1 = new JLabel("Automatic Sprinkler:");
+		JLabel lblAutomaticSprinkler_1 = new JLabel("Automatic Sprinkler - $10:");
 		lblAutomaticSprinkler_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblAutomaticSprinkler_1.setBounds(20, 196, 250, 59);
+		lblAutomaticSprinkler_1.setBounds(20, 196, 314, 59);
 		window.getContentPane().add(lblAutomaticSprinkler_1);
 		
 		JSlider sprinklerSlider = new JSlider();
+		sprinklerSlider.setPaintLabels(true);
 		sprinklerSlider.setValue(1);
 		sprinklerSlider.setSnapToTicks(true);
 		sprinklerSlider.setPaintTicks(true);
 		sprinklerSlider.setMinorTickSpacing(1);
 		sprinklerSlider.setMinimum(1);
 		sprinklerSlider.setMaximum(5);
-		sprinklerSlider.setMajorTickSpacing(2);
+		sprinklerSlider.setMajorTickSpacing(1);
 		sprinklerSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		sprinklerSlider.setBounds(20, 266, 200, 19);
+		sprinklerSlider.setBounds(20, 254, 200, 42);
 		window.getContentPane().add(sprinklerSlider);
 		
-		JLabel lblFertilizer = new JLabel("Fertilizer:");
+		JLabel lblFertilizer = new JLabel("Fertilizer - $15:");
 		lblFertilizer.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblFertilizer.setBounds(55, 319, 110, 59);
+		lblFertilizer.setBounds(20, 319, 218, 59);
 		window.getContentPane().add(lblFertilizer);
 		
 		JSlider fertilizerSlider = new JSlider();
+		fertilizerSlider.setPaintLabels(true);
 		fertilizerSlider.setValue(1);
 		fertilizerSlider.setSnapToTicks(true);
 		fertilizerSlider.setPaintTicks(true);
 		fertilizerSlider.setMinorTickSpacing(1);
 		fertilizerSlider.setMinimum(1);
 		fertilizerSlider.setMaximum(5);
-		fertilizerSlider.setMajorTickSpacing(2);
+		fertilizerSlider.setMajorTickSpacing(1);
 		fertilizerSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		fertilizerSlider.setBounds(20, 389, 200, 19);
+		fertilizerSlider.setBounds(20, 378, 200, 42);
 		window.getContentPane().add(fertilizerSlider);
 		
 		JButton fertilizerButton = new JButton("Buy");
@@ -156,7 +159,7 @@ public class GeneralStoreCropItems {
 			}
 		});
 		fertilizerButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		fertilizerButton.setBounds(230, 368, 104, 51);
+		fertilizerButton.setBounds(230, 378, 104, 51);
 		window.getContentPane().add(fertilizerButton);
 		
 		JButton sprinklerButton = new JButton("Buy");
@@ -171,7 +174,7 @@ public class GeneralStoreCropItems {
 			}
 		});
 		sprinklerButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		sprinklerButton.setBounds(230, 244, 104, 51);
+		sprinklerButton.setBounds(230, 254, 104, 51);
 		window.getContentPane().add(sprinklerButton);
 		
 		JButton scarecrowButton = new JButton("Buy");

@@ -23,12 +23,14 @@ public class GameManager {
 	HarvestCrop harvestCropWindow;
 	PlayWithAnimal playWithAnimalWindow;
 	TendToCrop tendToCropWindow;
+	EndScreen endScreenWindow;
 	int feedAnimalIndex;
 	
 	String name;
 	String farmName;
 	int age;
 	String farmType;
+	int gameLength;
 	
 	Farm playerFarm;
 	Farmer player;
@@ -182,6 +184,14 @@ public class GameManager {
 	}
 	
 	public void closeTendToCrop(TendToCrop gameWindow) {
+		gameWindow.closeWindow();
+	}
+	
+	public void launchEndScreen() {
+		endScreenWindow = new EndScreen(this);
+	}
+	
+	public void closeEndScreen(EndScreen gameWindow) {
 		gameWindow.closeWindow();
 	}
 	

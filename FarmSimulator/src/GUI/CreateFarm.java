@@ -136,11 +136,11 @@ public class CreateFarm {
 		txtpnPickAFarm.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtpnPickAFarm.setText("Pick a farm type, each farm gives bonuses for owning things that belong on that farm\r\n");
 		txtpnPickAFarm.setBackground(SystemColor.menu);
-		txtpnPickAFarm.setBounds(10, 218, 231, 143);
+		txtpnPickAFarm.setBounds(10, 218, 231, 109);
 		frame.getContentPane().add(txtpnPickAFarm);
 		
 		JLabel pickedFarmTypeLabel = new JLabel("");
-		pickedFarmTypeLabel.setBounds(10, 360, 240, 14);
+		pickedFarmTypeLabel.setBounds(10, 338, 240, 14);
 		frame.getContentPane().add(pickedFarmTypeLabel);
 		
 		JButton btnChickenFarm = new JButton("Chicken Farm");
@@ -216,7 +216,7 @@ public class CreateFarm {
 				
 				if (name.matches(".*\\d.*")) {
 					nameErrorLabel.setText("No numbers allowed");
-				}else if (name.length() <= 3 || name.length() >= 15) {
+				}else if (name.length() < 3 || name.length() > 15) {
 					nameErrorLabel.setText("Your name must be between 3 and 15 characters");
 				}else {
 					nameErrorLabel.setText("");
@@ -224,7 +224,7 @@ public class CreateFarm {
 				
 				if (farmName.matches(".*\\d.*")) {
 					farmNameErrorLabel.setText("No numbers allowed");
-				}else if (farmName.length() <= 3 || farmName.length() >= 30) {
+				}else if (farmName.length() < 3 || farmName.length() > 30) {
 					farmNameErrorLabel.setText("Your farm name must be between 3 and 30 characters");
 				}else {
 					farmNameErrorLabel.setText("");
@@ -239,7 +239,8 @@ public class CreateFarm {
 				
 				
 				
-				if(nameErrorLabel.getText() == "" && ageErrorLabel.getText() == "" && farmNameErrorLabel.getText() == "" && typePicked) {
+				if(nameErrorLabel.getText() == "" && ageErrorLabel.getText() == "" 
+						&& farmNameErrorLabel.getText() == "" && typePicked && manager.gameLength != 0) {
 					manager.setAge(age);
 					manager.setFarmName(farmName);
 					manager.setName(name);
@@ -252,6 +253,38 @@ public class CreateFarm {
 		});
 		btnNewButton.setBounds(469, 254, 145, 63);
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel pickedGameLengthLabel = new JLabel("");
+		pickedGameLengthLabel.setBounds(441, 382, 173, 37);
+		frame.getContentPane().add(pickedGameLengthLabel);
+		
+		JTextPane txtpnPickTheDuration = new JTextPane();
+		txtpnPickTheDuration.setText("Pick the duration of your game");
+		txtpnPickTheDuration.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtpnPickTheDuration.setEditable(false);
+		txtpnPickTheDuration.setBackground(SystemColor.menu);
+		txtpnPickTheDuration.setBounds(10, 369, 169, 63);
+		frame.getContentPane().add(txtpnPickTheDuration);
+		
+		JButton daysButton5 = new JButton("5 Days");
+		daysButton5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.gameLength = 5;
+				pickedGameLengthLabel.setText("5 day game selected");
+			}
+		});
+		daysButton5.setBounds(180, 382, 125, 37);
+		frame.getContentPane().add(daysButton5);
+		
+		JButton daysButton10 = new JButton("10 Days");
+		daysButton10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.gameLength = 10;
+				pickedGameLengthLabel.setText("10 day game selected");
+			}
+		});
+		daysButton10.setBounds(306, 382, 125, 37);
+		frame.getContentPane().add(daysButton10);
 		
 
 

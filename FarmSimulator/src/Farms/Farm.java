@@ -27,7 +27,7 @@ public class Farm {
 	public int freeSpace = 5;
 	public String type;
 	public int actionsRemaining = 2;
-	public int dayCounter = 0;
+	public int dayCounter = 1;
 	public String output;
 	
 
@@ -226,20 +226,33 @@ public class Farm {
 	
 
 	/**
-	*Advances to the next day and resets actionsRemaining to 2. Animals' happiness decreases
-	*if they don't have much free space.
+	*Advances to the next day and resets actionsRemaining to 2. Animal's happiness decreases
+	*if they don't have much free space. Animal's health decreases. Crop's time to harvest decreases.
+	*Crop farm has double growth rate.
 	*/
 	public void nextDay() {
 		
 		dayCounter += 1;
 		actionsRemaining = 2;
 		for (Animal theAnimal: listOfAnimals) {
-			theAnimal.happiness -= ((5 - freeSpace) * 5);
 			theAnimal.tendTo(this);
+			theAnimal.happiness -= 5 + ((5 - freeSpace) * 5);
+			theAnimal.health -= 10;
 		}
 		for (Crop crop: listOfCrops) {
-			if (crop.daysToHarvest > 0) {
-				crop.daysToHarvest -= 1;
+			if (this.type == "Crop Farm") {
+				if (crop.daysToHarvest >= 2) {
+					crop.daysToHarvest -= 2;
+				}
+				else {
+					crop.daysToHarvest = 0;
+				}
+				
+			}
+			else {
+				if (crop.daysToHarvest > 0) {
+					crop.daysToHarvest -= 1;
+				}
 			}
 		}
 	}

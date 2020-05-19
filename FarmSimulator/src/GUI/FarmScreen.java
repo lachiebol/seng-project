@@ -70,9 +70,21 @@ public class FarmScreen {
 		txtpnWelcomeToYour.setBackground(SystemColor.menu);
 		txtpnWelcomeToYour.setEditable(false);
 		txtpnWelcomeToYour.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtpnWelcomeToYour.setText("Welcome to your farm " + manager.name + ", you have " + manager.playerFarm.actionsRemaining + " actions remaining. What would you like to do?");
-		txtpnWelcomeToYour.setBounds(64, 46, 472, 104);
+		txtpnWelcomeToYour.setText("Welcome to your farm " + manager.name + ", you have " 
+				+ manager.playerFarm.actionsRemaining + " actions remaining. What would you like to do?");
+		txtpnWelcomeToYour.setBounds(64, 46, 472, 66);
 		frame.getContentPane().add(txtpnWelcomeToYour);
+		
+		JLabel daysLabel = new JLabel("New label");
+		daysLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		daysLabel.setBounds(447, 124, 104, 31);
+		frame.getContentPane().add(daysLabel);
+		daysLabel.setText("Day " + Integer.toString(manager.playerFarm.dayCounter));
+		
+		JLabel moneyLabel = new JLabel("Money: " + manager.playerFarm.money);
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		moneyLabel.setBounds(64, 124, 141, 30);
+		frame.getContentPane().add(moneyLabel);
 		
 		JButton btnCropAndAnimals = new JButton("View Crop and Animal Status");
 		btnCropAndAnimals.addActionListener(new ActionListener() {
@@ -99,9 +111,20 @@ public class FarmScreen {
 		JButton btnMoveOntoNext = new JButton("Move on to next day\r\n");
 		btnMoveOntoNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.playerFarm.nextDay();
-				manager.launchFarmScreen();
-				finishedWindow();
+				if (manager.playerFarm.dayCounter < manager.gameLength) {
+					manager.playerFarm.nextDay();
+					daysLabel.setText("Day" + manager.playerFarm.dayCounter);
+					moneyLabel.setText("Money: " + manager.playerFarm.money);
+					txtpnWelcomeToYour.setText("Welcome to your farm " + manager.name + ", you have " 
+					+ manager.playerFarm.actionsRemaining + " actions remaining. What would you like to do?");
+					if (manager.playerFarm.dayCounter == manager.gameLength) {
+						btnMoveOntoNext.setText("End Game");
+					}
+				}
+				else {
+					manager.launchEndScreen();
+					finishedWindow();
+				}
 			}
 		});
 		btnMoveOntoNext.setFont(new Font("Tahoma", Font.PLAIN, 13));

@@ -79,15 +79,16 @@ public class GeneralStoreFood {
 		window.getContentPane().add(moneyLabel);
 		
 		JSlider carrotSlider = new JSlider();
+		carrotSlider.setPaintLabels(true);
 		carrotSlider.setValue(1);
 		carrotSlider.setSnapToTicks(true);
 		carrotSlider.setPaintTicks(true);
 		carrotSlider.setMinorTickSpacing(1);
 		carrotSlider.setMinimum(1);
 		carrotSlider.setMaximum(5);
-		carrotSlider.setMajorTickSpacing(2);
+		carrotSlider.setMajorTickSpacing(1);
 		carrotSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		carrotSlider.setBounds(23, 154, 200, 19);
+		carrotSlider.setBounds(23, 134, 200, 42);
 		window.getContentPane().add(carrotSlider);
 		
 		JTextArea feedback = new JTextArea();
@@ -101,15 +102,16 @@ public class GeneralStoreFood {
 		window.getContentPane().add(lblSeeds);
 		
 		JSlider seedsSlider = new JSlider();
+		seedsSlider.setPaintLabels(true);
 		seedsSlider.setValue(1);
 		seedsSlider.setSnapToTicks(true);
 		seedsSlider.setPaintTicks(true);
 		seedsSlider.setMinorTickSpacing(1);
 		seedsSlider.setMinimum(1);
 		seedsSlider.setMaximum(5);
-		seedsSlider.setMajorTickSpacing(2);
+		seedsSlider.setMajorTickSpacing(1);
 		seedsSlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		seedsSlider.setBounds(23, 279, 200, 19);
+		seedsSlider.setBounds(23, 257, 200, 42);
 		window.getContentPane().add(seedsSlider);
 		
 		JLabel lblHay = new JLabel("Hay:");
@@ -118,15 +120,16 @@ public class GeneralStoreFood {
 		window.getContentPane().add(lblHay);
 		
 		JSlider haySlider = new JSlider();
+		haySlider.setPaintLabels(true);
 		haySlider.setValue(1);
 		haySlider.setSnapToTicks(true);
 		haySlider.setPaintTicks(true);
 		haySlider.setMinorTickSpacing(1);
 		haySlider.setMinimum(1);
 		haySlider.setMaximum(5);
-		haySlider.setMajorTickSpacing(2);
+		haySlider.setMajorTickSpacing(1);
 		haySlider.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		haySlider.setBounds(23, 402, 200, 19);
+		haySlider.setBounds(23, 381, 200, 42);
 		window.getContentPane().add(haySlider);
 		
 		JButton hayButton = new JButton("Buy");
