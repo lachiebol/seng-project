@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import animal.Animal;
+import food.Food;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -78,13 +79,14 @@ public class FeedAnimal2 {
 		feedback.setBounds(313, 256, 196, 68);
 		window.getContentPane().add(feedback);
 		
-		JTextArea animalList = new JTextArea();
-		animalList.setEditable(false);
-		animalList.setBounds(35, 67, 242, 314);
-		window.getContentPane().add(animalList);
-		animalList.setText("   " + "Animal" + "          " + "Health");
-		for (Animal animal : manager.playerFarm.listOfAnimals) {
-			animalList.append("\n" + (manager.playerFarm.listOfAnimals.indexOf(animal) + 1) + "  " + animal.name + animal.health);
+		JTextArea foodList = new JTextArea();
+		foodList.setEditable(false);
+		foodList.setBounds(35, 67, 242, 314);
+		window.getContentPane().add(foodList);
+		foodList.setText("   Food        Health Boost");
+		for (Food food : manager.playerFarm.listOfFood) {
+			foodList.append("\n" + (manager.playerFarm.listOfFood.indexOf(food) + 1) + "  " 
+					+ food.name + "          "+ food.healthBoost);
 		}
 		input = new JTextField();
 		input.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,9 +103,10 @@ public class FeedAnimal2 {
 				if ((index <= manager.playerFarm.listOfAnimals.size()) && (index >= 0)) {
 					manager.playerFarm.listOfAnimals.get(manager.feedAnimalIndex).
 					feed(manager.playerFarm.listOfFood.get(index), manager.playerFarm);
-					animalList.setText("   " + "Animal" + "          " + "Health");
-					for (Animal animal : manager.playerFarm.listOfAnimals) {
-						animalList.append("\n" + (manager.playerFarm.listOfAnimals.indexOf(animal) + 1) + "  " + animal.name + animal.health);
+					foodList.setText("   " + "Food" + "          " + "Health Boost");
+					for (Food food : manager.playerFarm.listOfFood) {
+						foodList.append("\n" + (manager.playerFarm.listOfFood.indexOf(food) + 1) + "  " 
+								+ food.name + "          " +  food.healthBoost);
 					}
 					feedback.setText(manager.playerFarm.output);
 					}

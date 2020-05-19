@@ -68,7 +68,7 @@ public class GeneralStoreFood {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.getContentPane().setLayout(null);
 		
-		JLabel lblCarrot = new JLabel("Carrot:");
+		JLabel lblCarrot = new JLabel("Carrot - $3:");
 		lblCarrot.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblCarrot.setBounds(58, 84, 110, 59);
 		window.getContentPane().add(lblCarrot);
@@ -96,7 +96,7 @@ public class GeneralStoreFood {
 		feedback.setBounds(380, 120, 231, 246);
 		window.getContentPane().add(feedback);
 		
-		JLabel lblSeeds = new JLabel("Seeds:");
+		JLabel lblSeeds = new JLabel("Seeds - $3:");
 		lblSeeds.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblSeeds.setBounds(58, 209, 110, 59);
 		window.getContentPane().add(lblSeeds);
@@ -114,7 +114,7 @@ public class GeneralStoreFood {
 		seedsSlider.setBounds(23, 257, 200, 42);
 		window.getContentPane().add(seedsSlider);
 		
-		JLabel lblHay = new JLabel("Hay:");
+		JLabel lblHay = new JLabel("Hay - $3:");
 		lblHay.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblHay.setBounds(58, 332, 110, 59);
 		window.getContentPane().add(lblHay);

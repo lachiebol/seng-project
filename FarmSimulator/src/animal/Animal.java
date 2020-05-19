@@ -54,7 +54,7 @@ public class Animal implements Cloneable {
 		if (playerFarm.actionsRemaining > 0) {
 			if (health + (foodItem.healthBoost * 1.5) <= 100) {
 				if(foodItem.name == favouriteFood) {
-					health += foodItem.healthBoost * 1.5;
+					health += (foodItem.healthBoost * 1.5);
 					playerFarm.output = "The animal loved that";
 				} else {
 					health += foodItem.healthBoost;

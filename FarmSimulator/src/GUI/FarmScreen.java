@@ -81,7 +81,7 @@ public class FarmScreen {
 		frame.getContentPane().add(daysLabel);
 		daysLabel.setText("Day " + Integer.toString(manager.playerFarm.dayCounter));
 		
-		JLabel moneyLabel = new JLabel("Money: " + manager.playerFarm.money);
+		JLabel moneyLabel = new JLabel("Money: $" + manager.playerFarm.money);
 		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		moneyLabel.setBounds(64, 124, 141, 30);
 		frame.getContentPane().add(moneyLabel);
@@ -109,12 +109,15 @@ public class FarmScreen {
 		frame.getContentPane().add(btnVisitGeneralStore);
 		
 		JButton btnMoveOntoNext = new JButton("Move on to next day\r\n");
+		if (manager.playerFarm.dayCounter == manager.gameLength) {
+			btnMoveOntoNext.setText("End Game");
+		}
 		btnMoveOntoNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (manager.playerFarm.dayCounter < manager.gameLength) {
 					manager.playerFarm.nextDay();
 					daysLabel.setText("Day" + manager.playerFarm.dayCounter);
-					moneyLabel.setText("Money: " + manager.playerFarm.money);
+					moneyLabel.setText("Money: $" + manager.playerFarm.money);
 					txtpnWelcomeToYour.setText("Welcome to your farm " + manager.name + ", you have " 
 					+ manager.playerFarm.actionsRemaining + " actions remaining. What would you like to do?");
 					if (manager.playerFarm.dayCounter == manager.gameLength) {

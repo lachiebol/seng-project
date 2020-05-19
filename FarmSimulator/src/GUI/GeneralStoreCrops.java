@@ -78,12 +78,12 @@ public class GeneralStoreCrops {
 		moneyLabel.setBounds(20, 46, 327, 25);
 		window.getContentPane().add(moneyLabel);
 		
-		JLabel lblCarrot = new JLabel("Carrot:");
+		JLabel lblCarrot = new JLabel("Carrot - $30:");
 		lblCarrot.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblCarrot.setBounds(40, 135, 110, 59);
 		window.getContentPane().add(lblCarrot);
 		
-		JLabel lblBeetroot = new JLabel("Beetroot:");
+		JLabel lblBeetroot = new JLabel("Beetroot - $30:");
 		lblBeetroot.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblBeetroot.setBounds(40, 69, 110, 32);
 		window.getContentPane().add(lblBeetroot);
@@ -132,7 +132,7 @@ public class GeneralStoreCrops {
 		carrotSlider.setBounds(23, 175, 156, 42);
 		window.getContentPane().add(carrotSlider);
 		
-		JLabel lblCorn = new JLabel("Corn:");
+		JLabel lblCorn = new JLabel("Corn - $30:");
 		lblCorn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblCorn.setBounds(40, 205, 110, 59);
 		window.getContentPane().add(lblCorn);
@@ -227,12 +227,12 @@ public class GeneralStoreCrops {
 		wheatButton.setBounds(515, 238, 83, 51);
 		window.getContentPane().add(wheatButton);
 		
-		JLabel lblWheat = new JLabel("Wheat:");
+		JLabel lblWheat = new JLabel("Wheat - $30:");
 		lblWheat.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblWheat.setBounds(366, 205, 110, 59);
 		window.getContentPane().add(lblWheat);
 		
-		JLabel lblPotato = new JLabel("Potato:");
+		JLabel lblPotato = new JLabel("Potato - $30:");
 		lblPotato.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblPotato.setBounds(366, 132, 110, 59);
 		window.getContentPane().add(lblPotato);
@@ -283,7 +283,7 @@ public class GeneralStoreCrops {
 		window.getContentPane().add(parsnipButton);
 		
 		
-		JLabel lblParsnip = new JLabel("Parsnip:");
+		JLabel lblParsnip = new JLabel("Parsnip - $30:");
 		lblParsnip.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblParsnip.setBounds(366, 65, 110, 32);
 		window.getContentPane().add(lblParsnip);

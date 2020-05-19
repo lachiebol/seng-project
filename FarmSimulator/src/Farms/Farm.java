@@ -237,7 +237,7 @@ public class Farm {
 		for (Animal theAnimal: listOfAnimals) {
 			theAnimal.tendTo(this);
 			theAnimal.happiness -= 5 + ((5 - freeSpace) * 5);
-			theAnimal.health -= 10;
+			theAnimal.health -= 20;
 		}
 		for (Crop crop: listOfCrops) {
 			if (this.type == "Crop Farm") {

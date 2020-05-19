@@ -83,6 +83,11 @@ public class FeedAnimal {
 		animalList.setBounds(35, 67, 242, 269);
 		window.getContentPane().add(animalList);
 		animalList.setText("   " + "Animal" + "         " + "Health");
+		for (Animal animal: manager.playerFarm.listOfAnimals) {
+			int listNumber = manager.playerFarm.listOfAnimals.indexOf(animal) + 1;
+			animalList.append("\n" + Integer.toString(listNumber) + "   " + animal.name + "         " + animal.health);
+		}
+		
 		
 		input_1 = new JTextField();
 		input_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
