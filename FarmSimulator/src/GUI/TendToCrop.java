@@ -101,12 +101,20 @@ public class TendToCrop {
 		window.getContentPane().add(noItemLabel);
 		
 		JList<Crop> listOfCrops = new JList<>(cropListModel);
-		listOfCrops.setBounds(20, 75, 199, 280);
+		listOfCrops.setBounds(20, 75, 134, 280);
 		window.getContentPane().add(listOfCrops);
 		
 		JList<CropItem> listOfItems = new JList<>(itemListModel);
-		listOfItems.setBounds(261, 75, 199, 280);
+		listOfItems.setBounds(290, 75, 170, 280);
 		window.getContentPane().add(listOfItems);
+		
+		JTextArea timesRemaining = new JTextArea();
+		timesRemaining.setFont(new Font("Tahoma", Font.BOLD, 13));
+		timesRemaining.setBounds(154, 75, 84, 280);
+		window.getContentPane().add(timesRemaining);
+		for (Crop crop: manager.playerFarm.listOfCrops) {
+			timesRemaining.append(" " + crop.daysToHarvest + "\n");
+		}
 		
 		
 		
@@ -135,6 +143,11 @@ public class TendToCrop {
 					
 					itemListModel.remove(itemIndex);
 					feedbackLabel.setText("You used " + currentItem.name + " on " + currentCrop.name);
+					
+					timesRemaining.setText("");
+					for (Crop crop: manager.playerFarm.listOfCrops) {
+						timesRemaining.append(" " + crop.daysToHarvest + "\n");
+					}
 				}else {
 					if(manager.playerFarm.listOfCrops.size() == 0){
 						noCropLabel.setText("You have no crops.");
@@ -154,19 +167,16 @@ public class TendToCrop {
 		btnTend.setBounds(505, 188, 109, 44);
 		window.getContentPane().add(btnTend);
 		
-		JLabel cropLabel = new JLabel("Crop");
+		JLabel cropLabel = new JLabel("Crop        Time until Harvest");
 		cropLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		cropLabel.setBounds(93, 39, 51, 36);
+		cropLabel.setBounds(20, 43, 272, 36);
 		window.getContentPane().add(cropLabel);
 		
 		JLabel itemLabel = new JLabel("Item");
 		itemLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		itemLabel.setBounds(332, 47, 56, 28);
+		itemLabel.setBounds(345, 47, 56, 28);
 		window.getContentPane().add(itemLabel);
 		
-
-		
-
 
 		}
 	}

@@ -82,12 +82,24 @@ public class HarvestCrop {
 		feedbackLabel.setBounds(60, 401, 436, 31);
 		window.getContentPane().add(feedbackLabel);
 		
-		
+		JTextArea remainingTimes = new JTextArea();
+		remainingTimes.setFont(new Font("Tahoma", Font.BOLD, 13));
+		remainingTimes.setEditable(false);
+		remainingTimes.setBounds(331, 106, 87, 259);
+		window.getContentPane().add(remainingTimes);
+		for (Crop crop : manager.playerFarm.listOfCrops) {
+			remainingTimes.append(" " + Integer.toString(crop.daysToHarvest) + "\n");
+		}		
 		
 		
 		JList<Crop> listOfCrops = new JList<>(cropListModel);
 		listOfCrops.setBounds(126, 106, 205, 259);
 		window.getContentPane().add(listOfCrops);
+		
+		JLabel moneyLabel = new JLabel("Money: $" + manager.playerFarm.money);
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		moneyLabel.setBounds(450, 130, 154, 31);
+		window.getContentPane().add(moneyLabel);
 		
 		
 		JLabel lblWhichCropWould = new JLabel("Which crop would you like to harvest?");
@@ -115,8 +127,14 @@ public class HarvestCrop {
 						int endMoney = manager.playerFarm.money;
 					
 						int cost = endMoney - initMoney;
+						
+						remainingTimes.setText("");
+						for (Crop crop : manager.playerFarm.listOfCrops) {
+							remainingTimes.append(" " + Integer.toString(crop.daysToHarvest) + "\n");
+						}
 
 						feedbackLabel.setText("You harvested " + currentCrop.name + " and sold it for $" + cost);
+						moneyLabel.setText("Money: $" + manager.playerFarm.money);
 					}
 					else {
 						feedbackLabel.setText("That crop isn't fully grown yet");
@@ -143,20 +161,10 @@ public class HarvestCrop {
 		backButton.setBounds(508, 376, 96, 56);
 		window.getContentPane().add(backButton);	
 				
-		JTextArea remainingTimes = new JTextArea();
-		remainingTimes.setFont(new Font("Tahoma", Font.BOLD, 13));
-		remainingTimes.setEditable(false);
-		remainingTimes.setBounds(331, 106, 87, 259);
-		window.getContentPane().add(remainingTimes);
-		for (Crop crop : manager.playerFarm.listOfCrops) {
-			remainingTimes.append(" " + Integer.toString(crop.daysToHarvest) + "\n");
-		}
-				
 		JLabel lblNewLabel = new JLabel("  Crop                 Days until Harvest");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(126, 73, 335, 29);
 		window.getContentPane().add(lblNewLabel);
-		
-
+				
 	}
 }
