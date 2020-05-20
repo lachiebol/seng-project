@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Items.CropItem;
+import Items.WateringCan;
 import animal.Animal;
 import crops.Crop;
 
@@ -20,6 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListModel;
+import javax.swing.JScrollBar;
 
 public class TendToCrop {
 
@@ -79,6 +81,7 @@ public class TendToCrop {
 		cropListModel.addAll(manager.playerFarm.listOfCrops);
 		itemListModel.addAll(manager.playerFarm.listOfItems);
 		
+		
 		JLabel headTextLabel = new JLabel("Which crop would you like to tend to?");
 		headTextLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		headTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,6 +104,7 @@ public class TendToCrop {
 		window.getContentPane().add(noItemLabel);
 		
 		JList<Crop> listOfCrops = new JList<>(cropListModel);
+		listOfCrops.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		listOfCrops.setBounds(20, 75, 134, 280);
 		window.getContentPane().add(listOfCrops);
 		
@@ -140,8 +144,9 @@ public class TendToCrop {
 					CropItem currentItem = manager.playerFarm.listOfItems.get(itemIndex);
 					
 					currentCrop.useItem(currentItem, manager.playerFarm);
-					
-					itemListModel.remove(itemIndex);
+					if (currentItem.name != "Watering Can") {
+						itemListModel.remove(itemIndex);
+					}
 					feedbackLabel.setText("You used " + currentItem.name + " on " + currentCrop.name);
 					
 					timesRemaining.setText("");
@@ -152,10 +157,8 @@ public class TendToCrop {
 					if(manager.playerFarm.listOfCrops.size() == 0){
 						noCropLabel.setText("You have no crops.");
 					}
+
 					
-					if (manager.playerFarm.listOfItems.size() == 0) {
-						noItemLabel.setText("You have no items.");
-					}
 					if (manager.playerFarm.actionsRemaining == 0) {
 						feedbackLabel.setText("You have no actions remaining today");
 					}

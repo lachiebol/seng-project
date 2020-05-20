@@ -141,9 +141,9 @@ public class Farm {
 	 */
 	public void harvestCrop(Crop crop) {
 		if (actionsRemaining > 0) {
-		listOfCrops.remove(crop);
-		money += crop.sellingPrice;
-		freeSpace += 1;
+			listOfCrops.remove(crop);
+			money += crop.sellingPrice;
+			freeSpace += 1;
 		}
 		else {
 			System.out.println("You have no actions remaining today");

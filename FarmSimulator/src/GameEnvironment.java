@@ -27,7 +27,7 @@ public class GameEnvironment {
 
 			while (harvesting) {
 				int lastElement = playerFarm.listOfCrops.size();
-
+				System.out.println("You have " + playerFarm.actionsRemaining + " actions remaining");
 				playerFarm.printCrops();
 				System.out.println("Enter " + lastElement + " to go back");
 				System.out.println("What crops would you like to harvest?");
@@ -52,11 +52,15 @@ public class GameEnvironment {
 					// harvest crop at cropIndex;
 
 				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
+					System.out.println("-".repeat(80));
 					System.out.println("That isn't a crop");
+					System.out.println("-".repeat(80));
 				}
 			}
 		} else {
+			System.out.println("-".repeat(80));
 			System.out.println("You have no crops to harvest");
+			System.out.println("-".repeat(80));
 		}
 
 	}
@@ -73,7 +77,7 @@ public class GameEnvironment {
 
 			while (playing) {
 				int lastElement = playerFarm.listOfAnimals.size();
-				
+				System.out.println("You have " + playerFarm.actionsRemaining + " actions remaining");
 				playerFarm.printAnimals();
 				System.out.println("Enter " + lastElement + " to go back");
 				System.out.println("What animal would you like to play with?");
@@ -94,11 +98,15 @@ public class GameEnvironment {
 					}
 
 				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
+					System.out.println("-".repeat(80));
 					System.out.println("That isn't an animal");
+					System.out.println("-".repeat(80));
 				}
 			}
 		} else {
+			System.out.println("-".repeat(80));
 			System.out.println("You have no animals to play with");
+			System.out.println("-".repeat(80));
 		}
 
 	}
@@ -115,7 +123,7 @@ public class GameEnvironment {
 
 			while (feeding) {
 				int lastElement = playerFarm.listOfAnimals.size();
-				
+				System.out.println("You have " + playerFarm.actionsRemaining + " actions remaining");
 				playerFarm.printAnimals();
 				System.out.println("Enter " + lastElement + " to go back");
 				System.out.println("What animal would you like to feed?");
@@ -159,7 +167,9 @@ public class GameEnvironment {
 					}
 
 				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
+					System.out.println("-".repeat(80));
 					System.out.println("That isn't an animal");
+					System.out.println("-".repeat(80));
 				}
 			}
 		} else {
@@ -180,12 +190,12 @@ public class GameEnvironment {
 
 			while (tending) {
 				int lastElement = playerFarm.listOfCrops.size();
-				
+				System.out.println("You have " + playerFarm.actionsRemaining + " actions remaining");
 				playerFarm.printCrops();
 				System.out.println("Enter " + lastElement + " to go back");
 				System.out.println("What crop would you like to tend to");
 
-				try { // get index of animal then run playWith method of Farm to harvest using the
+				try { // get index of crop then run tendToCrop method of Farm to tend to the crop
 
 					// get crop index;
 					int input = (in.nextInt() - 1); // index
@@ -217,7 +227,9 @@ public class GameEnvironment {
 								}
 								
 							} catch (InputMismatchException | IndexOutOfBoundsException ex) {
+								System.out.println("-".repeat(80));
 								System.out.println("That isn't an item");
+								System.out.println("-".repeat(80));
 							}
 						}
 						
@@ -244,6 +256,7 @@ public class GameEnvironment {
 
 		while (viewItem) {
 			System.out.println("-".repeat(80));
+			System.out.println("You have $" + playerFarm.money);
 			System.out.println("Animals:");
 			for (int i = 0; i < shopAnimals.size(); i++) {
 				Animal currentAnimal = (Animal) shopAnimals.get(i);
@@ -299,6 +312,7 @@ public class GameEnvironment {
 
 		while (viewItem) {
 			System.out.println("-".repeat(80));
+			System.out.println("You have $" + playerFarm.money);
 			System.out.println("Crops:");
 			for (int i = 0; i < shopCrops.size(); i++) {
 				Crop currentCrop = (Crop) shopCrops.get(i);
@@ -358,7 +372,8 @@ public class GameEnvironment {
 
 		while (viewItem) {
 			System.out.println("-".repeat(80));
-			System.out.println("Crops:");
+			System.out.println("You have $" + playerFarm.money);
+			System.out.println("Food:");
 			for (int i = 0; i < shopFood.size(); i++) {
 				Food currentCrop = (Food) shopFood.get(i);
 				System.out.println("\t" + (i + 1) + ". " + currentCrop.name + ", Cost: "
@@ -414,7 +429,8 @@ public class GameEnvironment {
 
 		while (viewItem) {
 			System.out.println("-".repeat(80));
-			System.out.println("Crops:");
+			System.out.println("You have $" + playerFarm.money);
+			System.out.println("Crop Items:");
 			for (int i = 0; i < shopCropItems.size(); i++) {
 				CropItem currentCropItem = (CropItem) shopCropItems.get(i);
 				System.out.println("\t" + (i + 1) + ". " + currentCropItem.name + ", Cost: "
@@ -471,6 +487,8 @@ public class GameEnvironment {
 		Farmer player = null;
 		String playerName = "";
 		int playerAge = 0;
+		int gameLength = 0;
+		
 
 		Farm playerFarm = null;
 		String farmName = null;
@@ -484,6 +502,7 @@ public class GameEnvironment {
 			boolean pickPlayerAge = true;
 			boolean pickFarmName = true;
 			boolean pickFarmType = true;
+			boolean pickGameLength = true;
 
 			// player age loop
 			while (pickPlayerName) {
@@ -571,9 +590,34 @@ public class GameEnvironment {
 
 				System.out.println("");
 
+				
+
+			}
+			
+			while(pickGameLength) {
+				System.out.println("Pick how many days you want to play for");
+				System.out.println("");
+				System.out.println("1. 5 days");
+				System.out.println("2. 10 days");
+
+
+				String farmType = in.nextLine();
+
+				if (farmType.equals("1")) {
+					gameLength = 5;
+					pickGameLength = false;
+				} else if (farmType.equals("2")) {
+					gameLength = 10;
+					pickGameLength = false;
+				}else {
+					System.out.println("Please enter a valid number");
+				}
+				
+				System.out.println("You have picked " + gameLength + " days");
+				System.out.println("");
+				
 				startGame = false;
 				mainGame = true;
-
 			}
 
 		}
@@ -641,21 +685,34 @@ public class GameEnvironment {
 				
 				boolean viewFarm = true;
 				
-				
-			
-				System.out.println("-".repeat(80));
-				System.out.println("(" + playerFarm.name + ", " + playerFarm.type + ") (" + player.name + ", Age: "
-						+ player.age + ")");
-				
-				System.out.println("Money: " + playerFarm.money + "   Current Day: " + playerFarm.dayCounter
-						+ "   Free space: " + playerFarm.freeSpace);
-				
-				System.out.println(" ");
-
-				playerFarm.printAnimals();
-				playerFarm.printCrops();
-				playerFarm.printFood();
-				playerFarm.printItems();
+				while (viewFarm) {
+					System.out.println("-".repeat(80));
+					System.out.println("(" + playerFarm.name + ", " + playerFarm.type + ") (" + player.name + ", Age: "
+							+ player.age + ")");
+					
+					System.out.println("Money: " + playerFarm.money + "   Current Day: " + playerFarm.dayCounter + "/" + gameLength
+							+ "   Free space: " + playerFarm.freeSpace);
+					
+					System.out.println(" ");
+	
+					playerFarm.printAnimals();
+					playerFarm.printCrops();
+					playerFarm.printFood();
+					playerFarm.printItems();
+					
+					System.out.println("1. Tend to farm (Free up space)");
+					System.out.println("2. Go back to farm");
+					
+					String choice = in.nextLine();
+					
+					if (choice.equals("1")) {
+						playerFarm.tendToLand();
+					}else if (choice.equals("2")) {
+						viewFarm = false;
+					}else {
+						System.out.println("Please enter a valid number");
+					}
+				}
 			
 				
 				
@@ -675,6 +732,7 @@ public class GameEnvironment {
 
 					System.out.println("-".repeat(80));
 					System.out.println("Welcome to the general store, what would you like to look at?");
+					System.out.println("You have $" + playerFarm.money);
 					System.out.println("1. View Animals");
 					System.out.println("2. View Crops");
 					System.out.println("3. View Food");
@@ -708,7 +766,7 @@ public class GameEnvironment {
 					String choice = in.nextLine();
 
 					if (choice.equals("1")) {
-						if(playerFarm.dayCounter == 2) {
+						if(playerFarm.dayCounter == gameLength) {
 							mainGame = false;
 						}
 												
