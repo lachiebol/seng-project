@@ -13,14 +13,13 @@ import java.lang.IndexOutOfBoundsException;
 
 public class GameEnvironment {
 	Scanner in = new Scanner(System.in);
-	
-	
+
 	/**
 	 * Prompts player to pick what crops to harvest then harvests and sells the item
 	 * 
 	 * @param playerFarm Current Farm object used to get farm's inventory
 	 */
-	
+
 	public void harvest(Farm playerFarm) {
 		if (playerFarm.listOfCrops.isEmpty() == false) { // if crops not empty
 			boolean harvesting = true;
@@ -64,7 +63,7 @@ public class GameEnvironment {
 		}
 
 	}
-	
+
 	/**
 	 * Prompts player to pick what animal to play with then plays with animal
 	 * 
@@ -79,7 +78,7 @@ public class GameEnvironment {
 				int lastElement = playerFarm.listOfAnimals.size();
 				System.out.println("You have " + playerFarm.actionsRemaining + " actions remaining");
 				playerFarm.printAnimals();
-				System.out.println("Enter " + lastElement + " to go back");
+				System.out.println("Enter " + (lastElement + 1) + " to go back");
 				System.out.println("What animal would you like to play with?");
 
 				try { // get index of animal then run playWith method of Farm to harvest using the
@@ -88,13 +87,17 @@ public class GameEnvironment {
 					int input = (in.nextInt() - 1); // index
 					in.nextLine();
 
-					if (input + 1 == lastElement) {
+					if (input + 1 == lastElement + 1) {
 						playing = false;
 					} else {
 						// harvest crop at cropIndex;
 						Animal currentAnimal = playerFarm.listOfAnimals.get(input);
-
+						
 						currentAnimal.playWith(playerFarm);
+						
+						System.out.println("-".repeat(80));
+						System.out.println(currentAnimal.output);
+						System.out.println("-".repeat(80));
 					}
 
 				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
@@ -110,7 +113,7 @@ public class GameEnvironment {
 		}
 
 	}
-	
+
 	/**
 	 * Prompts player to pick what animal to play with then feeds the animal
 	 * 
@@ -125,7 +128,7 @@ public class GameEnvironment {
 				int lastElement = playerFarm.listOfAnimals.size();
 				System.out.println("You have " + playerFarm.actionsRemaining + " actions remaining");
 				playerFarm.printAnimals();
-				System.out.println("Enter " + lastElement + " to go back");
+				System.out.println("Enter " + (lastElement + 1) + " to go back");
 				System.out.println("What animal would you like to feed?");
 
 				try { // get index of animal then run playWith method of Farm to harvest using the
@@ -134,36 +137,41 @@ public class GameEnvironment {
 					int input = (in.nextInt() - 1); // index
 					in.nextLine();
 
-					if (input + 1 == lastElement) {
+					if (input + 1 == lastElement + 1) {
 						feeding = false;
 					} else {
-						
+
 						Animal currentAnimal = playerFarm.listOfAnimals.get(input);
-						
+
 						boolean pickingFood = true;
-						
+
 						while (pickingFood) {
 							int foodSize = playerFarm.listOfFood.size();
 							playerFarm.printFood();
-							System.out.println("Enter what food you would like to feed this animal, or hit " + foodSize + " to go back.");
-							
+							System.out.println("Enter what food you would like to feed this animal, or hit " + (foodSize + 1)
+									+ " to go back.");
+
 							try {
 								int foodIndex = (in.nextInt() - 1);
 								in.nextLine();
-								
-								if (foodIndex + 1 == foodSize) {
+
+								if (foodIndex + 1 == foodSize + 1) {
 									pickingFood = false;
 								} else {
 									Food currentFood = playerFarm.listOfFood.get(foodIndex);
-									
+
 									currentAnimal.feed(currentFood, playerFarm);
+									
+									System.out.println("-".repeat(80));
+									System.out.println(playerFarm.output);
+									System.out.println("-".repeat(80));
 								}
-								
+
 							} catch (InputMismatchException | IndexOutOfBoundsException ex) {
 								System.out.println("That isn't food");
 							}
 						}
-						
+
 					}
 
 				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
@@ -176,7 +184,7 @@ public class GameEnvironment {
 			System.out.println("You have no animals to feed");
 		}
 	}
-	
+
 	/**
 	 * Prompts player to pick what crop to tend to, then tends to that crop
 	 * 
@@ -184,7 +192,7 @@ public class GameEnvironment {
 	 */
 
 	public void tendToCrops(Farm playerFarm) {
-		// not yet implemented
+	
 		if (playerFarm.listOfCrops.isEmpty() == false) { // if crops not empty
 			boolean tending = true;
 
@@ -192,7 +200,7 @@ public class GameEnvironment {
 				int lastElement = playerFarm.listOfCrops.size();
 				System.out.println("You have " + playerFarm.actionsRemaining + " actions remaining");
 				playerFarm.printCrops();
-				System.out.println("Enter " + lastElement + " to go back");
+				System.out.println("Enter " + (lastElement + 1) + " to go back");
 				System.out.println("What crop would you like to tend to");
 
 				try { // get index of crop then run tendToCrop method of Farm to tend to the crop
@@ -201,38 +209,39 @@ public class GameEnvironment {
 					int input = (in.nextInt() - 1); // index
 					in.nextLine();
 
-					if (input + 1 == lastElement) {
+					if (input + 1 == lastElement + 1) {
 						tending = false;
 					} else {
-						
+
 						Crop currentCrop = (Crop) playerFarm.listOfCrops.get(input);
-						
+
 						boolean pickingItem = true;
-						
+
 						while (pickingItem) {
 							int itemSize = playerFarm.listOfItems.size();
 							playerFarm.printItems();
-							System.out.println("Enter what item you would like to use on this crop, or hit " + itemSize + " to go back.");
-							
+							System.out.println("Enter what item you would like to use on this crop, or hit " + (itemSize + 1)
+									+ " to go back.");
+
 							try {
 								int itemIndex = (in.nextInt() - 1);
 								in.nextLine();
-								
-								if (itemIndex + 1 == itemSize) {
+
+								if (itemIndex + 1 == itemSize + 1) {
 									pickingItem = false;
 								} else {
 									CropItem currentItem = playerFarm.listOfItems.get(itemIndex);
-									
+
 									currentCrop.useItem(currentItem, playerFarm);
 								}
-								
+
 							} catch (InputMismatchException | IndexOutOfBoundsException ex) {
 								System.out.println("-".repeat(80));
 								System.out.println("That isn't an item");
 								System.out.println("-".repeat(80));
 							}
 						}
-						
+
 					}
 
 				} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
@@ -243,14 +252,14 @@ public class GameEnvironment {
 			System.out.println("You have no crops to tend to");
 		}
 	}
-	
+
 	/**
 	 * Prompts the player to pick an animal, then purchases the animal
 	 * 
-	 * @param playerFarm Current Farm object used for the buyAnimal method
+	 * @param playerFarm  Current Farm object used for the buyAnimal method
 	 * @param shopAnimals Array of Animals that the shop owns
 	 */
-	
+
 	public void purchaseAnimals(Farm playerFarm, ArrayList<Object> shopAnimals) {
 		boolean viewItem = true;
 
@@ -276,22 +285,32 @@ public class GameEnvironment {
 
 				} else {
 					Animal currentAnimal = (Animal) shopAnimals.get(animalInput);
-					
+
 					System.out.println("How many would you like to purchase?");
 
 					int amount = in.nextInt();
 					in.nextLine();
 
-					for (int i = 0; i < amount; i++) {
-						//creates clone of currentAnimal so attributes are individual
-						Animal purchasedAnimal = (Animal) currentAnimal.clone();
-						playerFarm.buyAnimal(purchasedAnimal);
-					}
+					if (amount * currentAnimal.purchasePrice > playerFarm.money) {
+						System.out.println("-".repeat(80));
+						System.out.println("You do not have enough money to make that purchase");
+					} else if (amount > playerFarm.freeSpace) {
+						System.out.println("-".repeat(80));
+						System.out.println("You do not have enough free space to make that purchase");
+					} else {
 
-					System.out.println("You bought " + amount + " " + currentAnimal.name + " for $"
-							+ (currentAnimal.purchasePrice * amount));
+						for (int i = 0; i < amount; i++) {
+							// creates clone of currentAnimal so attributes are individual
+							Animal purchasedAnimal = (Animal) currentAnimal.clone();
+							playerFarm.buyAnimal(purchasedAnimal);
+
+						}
+
+						System.out.println("You bought " + amount + " " + currentAnimal.name + " for $"
+								+ (currentAnimal.purchasePrice * amount));
+
+					}
 				}
-				
 
 			} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct animal print message
 				System.out.println("That isn't an animal");
@@ -299,14 +318,14 @@ public class GameEnvironment {
 
 		}
 	}
-	
+
 	/**
 	 * Prompts the player to pick a crop, then purchases the crop
 	 * 
 	 * @param playerFarm Current Farm object used for the buyAnimal method
-	 * @param shopCrops Array of Crops that the shop owns
+	 * @param shopCrops  Array of Crops that the shop owns
 	 */
-	
+
 	public void purchaseCrops(Farm playerFarm, ArrayList<Object> shopCrops) {
 		boolean viewItem = true;
 
@@ -316,13 +335,12 @@ public class GameEnvironment {
 			System.out.println("Crops:");
 			for (int i = 0; i < shopCrops.size(); i++) {
 				Crop currentCrop = (Crop) shopCrops.get(i);
-				System.out.println("\t" + (i + 1) + ". " + currentCrop.name + ", Cost: "
-						+ currentCrop.purchasePrice);
+				System.out.println("\t" + (i + 1) + ". " + currentCrop.name + ", Cost: " + currentCrop.purchasePrice);
 			}
-			
 
 			try { // get index of crop then run harvest crop method of Farm to harvest using the
-				System.out.println("Enter what Crop you would like to buy, or hit " + (shopCrops.size() + 1) + " to go back");
+				System.out.println(
+						"Enter what Crop you would like to buy, or hit " + (shopCrops.size() + 1) + " to go back");
 
 				// get crop index;
 				int CropInput = (in.nextInt() - 1); // index
@@ -330,43 +348,46 @@ public class GameEnvironment {
 
 				if ((CropInput + 1) == (shopCrops.size() + 1)) {
 					viewItem = false;
-
 				} else {
 					Crop currentCrop = (Crop) shopCrops.get(CropInput);
-					
-					
+
 					System.out.println("How many would you like to purchase?");
-					
+
 					int amount = in.nextInt();
 					in.nextLine();
-					
-					for(int i = 0; i < amount; i++) {	
-						//creates clone of currentCrop so attributes are individual
-						Crop purchasedCrop = (Crop) currentCrop.clone();
-						playerFarm.buyCrop(purchasedCrop);
-					}
-					
-					System.out.println("You bought " + amount + " " + currentCrop.name +  " for $"
-							+ (currentCrop.purchasePrice * amount));
-				}
-				// harvest crop at cropIndex;
 
-			} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct crop print message
+					if (amount * currentCrop.purchasePrice > playerFarm.money) {
+						System.out.println("-".repeat(80));
+						System.out.println("You don't have enough money to make that purchase");
+					} else if (amount > playerFarm.freeSpace) {
+						System.out.println("-".repeat(80));
+						System.out.println("You don't have enough space to make that purchase");
+					} else {
+
+						for (int i = 0; i < amount; i++) {
+							// creates clone of currentCrop so attributes are individual
+							Crop purchasedCrop = (Crop) currentCrop.clone();
+							playerFarm.buyCrop(purchasedCrop);
+						}
+						System.out.println("You bought " + amount + " " + currentCrop.name + " for $"
+								+ (currentCrop.purchasePrice * amount));
+
+					}
+				}
+			} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not correct crop print message
 				System.out.println("That isn't a crop");
 			}
-			
-			
-			
+
 		}
 	}
-	
+
 	/**
 	 * Prompts the player to pick a food item, then purchases the food item
 	 * 
 	 * @param playerFarm Current Farm object used for the buyAnimal method
-	 * @param shopFood Array of Food that the shop owns
+	 * @param shopFood   Array of Food that the shop owns
 	 */
-	
+
 	public void purchaseFood(Farm playerFarm, ArrayList<Object> shopFood) {
 		boolean viewItem = true;
 
@@ -376,13 +397,12 @@ public class GameEnvironment {
 			System.out.println("Food:");
 			for (int i = 0; i < shopFood.size(); i++) {
 				Food currentCrop = (Food) shopFood.get(i);
-				System.out.println("\t" + (i + 1) + ". " + currentCrop.name + ", Cost: "
-						+ currentCrop.price);
+				System.out.println("\t" + (i + 1) + ". " + currentCrop.name + ", Cost: " + currentCrop.price);
 			}
-			
 
 			try { // get index of crop then run harvest crop method of Farm to harvest using the
-				System.out.println("Enter what Food you would like to buy, or hit " + (shopFood.size() + 1) + " to go back");
+				System.out.println(
+						"Enter what Food you would like to buy, or hit " + (shopFood.size() + 1) + " to go back");
 
 				// get crop index;
 				int foodInput = (in.nextInt() - 1); // index
@@ -390,40 +410,42 @@ public class GameEnvironment {
 
 				if ((foodInput + 1) == (shopFood.size() + 1)) {
 					viewItem = false;
-
 				} else {
 					Food currentFood = (Food) shopFood.get(foodInput);
 					System.out.println("How many would you like to purchase?");
-					
+
 					int amount = in.nextInt();
 					in.nextLine();
-					
-					for(int i = 0; i < amount; i++) {									
-						playerFarm.buyFood(currentFood);
-					}
-					
-					System.out.println("You bought " + amount + " " + currentFood.name +  " for $"
-							+ (currentFood.price * amount));
-				}
-				// harvest crop at cropIndex;
 
-			} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct food print message
-				System.out.println("That isn't a food");
+					if (amount * currentFood.price > playerFarm.money) {
+						System.out.println("-".repeat(80));
+						System.out.println("You don't have enough money to make that purchase");
+					} else {
+						for (int i = 0; i < amount; i++) {
+							playerFarm.buyFood(currentFood);
+						}
+
+						System.out.println("You bought " + amount + " " + currentFood.name + " for $"
+								+ (currentFood.price * amount));
+
+					}
+				}
+
+			} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not correct food print message
+				System.out.println("That isn't a valid input");
 			}
-			
-			
-			
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * Prompts the player to pick a crop item, then purchases the food item
 	 * 
 	 * @param playerFarm Current Farm object used for the buyAnimal method
-	 * @param shopFood Array of CropItem that the shop owns
+	 * @param shopFood   Array of CropItem that the shop owns
 	 */
-	
+
 	public void purchaseCropItem(Farm playerFarm, ArrayList<Object> shopCropItems) {
 		boolean viewItem = true;
 
@@ -433,13 +455,12 @@ public class GameEnvironment {
 			System.out.println("Crop Items:");
 			for (int i = 0; i < shopCropItems.size(); i++) {
 				CropItem currentCropItem = (CropItem) shopCropItems.get(i);
-				System.out.println("\t" + (i + 1) + ". " + currentCropItem.name + ", Cost: "
-						+ currentCropItem.price);
+				System.out.println("\t" + (i + 1) + ". " + currentCropItem.name + ", Cost: " + currentCropItem.price);
 			}
-			
 
 			try { // get index of crop then run harvest crop method of Farm to harvest using the
-				System.out.println("Enter what crop item you would like to buy, or hit " + (shopCropItems.size() + 1) + " to go back");
+				System.out.println("Enter what crop item you would like to buy, or hit " + (shopCropItems.size() + 1)
+						+ " to go back");
 
 				// get crop index;
 				int cropItemInput = (in.nextInt() - 1); // index
@@ -451,35 +472,36 @@ public class GameEnvironment {
 				} else {
 					CropItem currentCropItem = (CropItem) shopCropItems.get(cropItemInput);
 					System.out.println("How many would you like to purchase?");
-					
+
 					int amount = in.nextInt();
 					in.nextLine();
-					
-					for(int i = 0; i < amount; i++) {									
-						playerFarm.buyCropItem(currentCropItem);
-					}
-					
-					System.out.println("You bought " + amount + " " + currentCropItem.name +  " for $"
-							+ (currentCropItem.price * amount));
-				}
-				
 
-			} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct Crop Item print message
+					if (amount * currentCropItem.price > playerFarm.money) {
+						System.out.println("-".repeat(80));
+						System.out.println("You don't have enough money to make that purchase");
+					} else {
+						for (int i = 0; i < amount; i++) {
+							playerFarm.buyCropItem(currentCropItem);
+
+						}
+						System.out.println("You bought " + amount + " " + currentCropItem.name + " for $"
+								+ (currentCropItem.price * amount));
+					}
+				}
+
+			} catch (InputMismatchException | IndexOutOfBoundsException ex) { // if not a correct Crop Item print
+																				// message
 				System.out.println("That isn't a Crop Item");
 			}
-			
-			
-			
-		}
-		
-	}
-	
 
-	public static void main (String[] args) {
+		}
+
+	}
+
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		GameEnvironment game = new GameEnvironment();
 
-		boolean running = true;
 		boolean startGame = true;
 		boolean mainGame = false;
 		boolean endGame = false;
@@ -488,12 +510,9 @@ public class GameEnvironment {
 		String playerName = "";
 		int playerAge = 0;
 		int gameLength = 0;
-		
 
 		Farm playerFarm = null;
 		String farmName = null;
-		
-		
 
 		// Farm creation loop
 		while (startGame) {
@@ -504,7 +523,7 @@ public class GameEnvironment {
 			boolean pickFarmType = true;
 			boolean pickGameLength = true;
 
-			// player age loop
+			// player name loop
 			while (pickPlayerName) {
 
 				System.out.println("Pick a name for your farmer, it must be between 3 and 15 characters");
@@ -590,16 +609,13 @@ public class GameEnvironment {
 
 				System.out.println("");
 
-				
-
 			}
-			
-			while(pickGameLength) {
+
+			while (pickGameLength) {
 				System.out.println("Pick how many days you want to play for");
 				System.out.println("");
 				System.out.println("1. 5 days");
 				System.out.println("2. 10 days");
-
 
 				String farmType = in.nextLine();
 
@@ -609,13 +625,13 @@ public class GameEnvironment {
 				} else if (farmType.equals("2")) {
 					gameLength = 10;
 					pickGameLength = false;
-				}else {
+				} else {
 					System.out.println("Please enter a valid number");
 				}
-				
+
 				System.out.println("You have picked " + gameLength + " days");
 				System.out.println("");
-				
+
 				startGame = false;
 				mainGame = true;
 			}
@@ -624,10 +640,12 @@ public class GameEnvironment {
 
 		// Main game loop
 		while (mainGame) {
+
+			
 			System.out.println("-".repeat(90));
 
-			System.out.println("Welcome to your farm " + player.name + ", you have " + playerFarm.actionsRemaining + " actions remaining."
-					 + " What would you like to do?");
+			System.out.println("Welcome to your farm " + player.name + ", you have " + playerFarm.actionsRemaining
+					+ " actions remaining." + " What would you like to do?");
 			System.out.println("1. View crop and animal status");
 			System.out.println("2. View farm status");
 			System.out.println("3. Visit general store");
@@ -640,7 +658,6 @@ public class GameEnvironment {
 
 				while (viewCrops) {
 
-
 					boolean choosing = true;
 
 					while (choosing) {
@@ -649,7 +666,7 @@ public class GameEnvironment {
 						playerFarm.printAnimals();
 						// Print a list of crops
 						playerFarm.printCrops();
-						
+
 						System.out.println("-".repeat(80));
 						System.out.println("What would you like to do?");
 						System.out.println("1. Harvest crops");
@@ -657,9 +674,9 @@ public class GameEnvironment {
 						System.out.println("3. Feed animals");
 						System.out.println("4. Tend to crops");
 						System.out.println("5. Go back to farm");
-						
+
 						String choice = in.nextLine();
-						
+
 						if (choice.equals("1")) { // Harvesting crop
 							System.out.println("-".repeat(80));
 							game.harvest(playerFarm);
@@ -681,54 +698,53 @@ public class GameEnvironment {
 
 				}
 
-			} else if (input.equals("2")) { //View farm status code
-				
+			} else if (input.equals("2")) { // View farm status code
+
 				boolean viewFarm = true;
-				
+
 				while (viewFarm) {
 					System.out.println("-".repeat(80));
 					System.out.println("(" + playerFarm.name + ", " + playerFarm.type + ") (" + player.name + ", Age: "
 							+ player.age + ")");
-					
-					System.out.println("Money: " + playerFarm.money + "   Current Day: " + playerFarm.dayCounter + "/" + gameLength
-							+ "   Free space: " + playerFarm.freeSpace);
-					
+
+					System.out.println("Money: " + playerFarm.money + "   Current Day: " + playerFarm.dayCounter + "/"
+							+ gameLength + "   Free space: " + playerFarm.freeSpace);
+
 					System.out.println(" ");
-	
+
 					playerFarm.printAnimals();
 					playerFarm.printCrops();
 					playerFarm.printFood();
 					playerFarm.printItems();
-					
+
 					System.out.println("1. Tend to farm (Free up space)");
 					System.out.println("2. Go back to farm");
-					
+
 					String choice = in.nextLine();
-					
+
 					if (choice.equals("1")) {
 						playerFarm.tendToLand();
-					}else if (choice.equals("2")) {
+					} else if (choice.equals("2")) {
 						viewFarm = false;
-					}else {
+					} else {
 						System.out.println("Please enter a valid number");
 					}
 				}
-			
-				
-				
-			} else if (input.equals("3")) { //General store code
+
+			} else if (input.equals("3")) { // General store code
 				boolean inStore = true;
 
 				while (inStore) {
-					//SHOP ITEMS					
+					// SHOP ITEMS
 					ArrayList<Object> shopCropItems = new ArrayList<>(
 							Arrays.asList(new Fertilizer(), new ScareCrow(), new AutomaticSprinkler()));
-					
+
 					ArrayList<Object> shopFood = new ArrayList<>(Arrays.asList(new Carrots(), new Hay(), new Seeds()));
-					ArrayList<Object> shopAnimals = new ArrayList<>(Arrays.asList(new Sheep(), new Cow(), new Chicken()));
-					
-					ArrayList<Object> shopCrops = new ArrayList<>(
-							Arrays.asList(new Beetroot(), new Carrot(), new Corn(), new Parsnip(), new Wheat(), new Potato()));
+					ArrayList<Object> shopAnimals = new ArrayList<>(
+							Arrays.asList(new Sheep(), new Cow(), new Chicken()));
+
+					ArrayList<Object> shopCrops = new ArrayList<>(Arrays.asList(new Beetroot(), new Carrot(),
+							new Corn(), new Parsnip(), new Wheat(), new Potato()));
 
 					System.out.println("-".repeat(80));
 					System.out.println("Welcome to the general store, what would you like to look at?");
@@ -741,21 +757,20 @@ public class GameEnvironment {
 
 					String choice = in.nextLine();
 
-					if (choice.equals("1")) {						
-						game.purchaseAnimals(playerFarm, shopAnimals);														
-					}else if (choice.equals("2")){
+					if (choice.equals("1")) {
+						game.purchaseAnimals(playerFarm, shopAnimals);
+					} else if (choice.equals("2")) {
 						game.purchaseCrops(playerFarm, shopCrops);
-					}else if (choice.equals("3")) {
+					} else if (choice.equals("3")) {
 						game.purchaseFood(playerFarm, shopFood);
-					}else if (choice.equals("4")){
+					} else if (choice.equals("4")) {
 						game.purchaseCropItem(playerFarm, shopCropItems);
-					}else if (choice.equals("5")) {
+					} else if (choice.equals("5")) {
 						inStore = false;
 					}
 
-
 				}
-			}else if (input.equals("4")) { //End day code
+			} else if (input.equals("4")) { // End day code
 				boolean endDay = true;
 
 				while (endDay) {
@@ -766,30 +781,28 @@ public class GameEnvironment {
 					String choice = in.nextLine();
 
 					if (choice.equals("1")) {
-						if(playerFarm.dayCounter == gameLength) {
+						if (playerFarm.dayCounter == gameLength) {
 							mainGame = false;
 						}
-												
+
 						System.out.println("Day " + playerFarm.dayCounter + " completed");
 						playerFarm.nextDay();
 						endDay = false;
-					}else if (choice.equals("2")) {
+					} else if (choice.equals("2")) {
 						endDay = false;
-					}else {
+					} else {
 						System.out.println("Enter a valid option");
 					}
 				}
 			}
 		}
-		
-		//end game text
+
+		// end game text
 		System.out.println("-".repeat(40));
 		System.out.println("");
 		System.out.println("Game Completed!");
 		System.out.println("");
 		System.out.println("-".repeat(40));
-
-
 
 	}
 }
