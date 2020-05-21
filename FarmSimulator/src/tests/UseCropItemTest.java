@@ -32,4 +32,15 @@ class UseCropItemTest {
 		assertEquals(7, testSheepFarm.listOfCrops.get(0).daysToHarvest);
 		assertEquals(1, testSheepFarm.actionsRemaining);
 	}
+	
+	@Test
+	public void useCropItemTest2() {
+		testSheepFarm.buyCrop(new Potato());
+		testSheepFarm.buyCropItem(new AutomaticSprinkler());
+		testSheepFarm.listOfCrops.get(0).daysToHarvest = 1;
+		testSheepFarm.listOfCrops.get(0).useItem(testSheepFarm.listOfItems.get(0), testSheepFarm);
+		
+		assertEquals(0, testSheepFarm.listOfCrops.get(0).daysToHarvest);
+		assertEquals(1, testSheepFarm.actionsRemaining);
+	}
 }
