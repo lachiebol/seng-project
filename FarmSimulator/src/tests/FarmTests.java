@@ -15,6 +15,7 @@ import Farmers.Farmer;
 import Items.*;
 
 class FarmTests {
+	private CropFarm testCropFarm;
 	private DairyFarm testDairyFarm;
 	private Farmer testFarmer;
 	
@@ -22,6 +23,7 @@ class FarmTests {
 	public void init() {
 		testFarmer = new Farmer("Conor", 19);
 		testDairyFarm = new DairyFarm("My Farm", testFarmer);
+		testCropFarm = new CropFarm("My Farm", testFarmer);
 	}
 	
 	@Test
@@ -38,11 +40,30 @@ class FarmTests {
 		assertEquals(1, testDairyFarm.freeSpace);
 	}
 	
+	
+	@Test
+	public void buyCropTest2() {
+		testDairyFarm.money = new Beetroot().purchasePrice - 1;
+		
+		testDairyFarm.buyCrop(new Beetroot());
+		
+		testCropFarm.freeSpace = 1;
+		
+		testCropFarm.buyCrop(new Beetroot());
+		testCropFarm.buyCrop(new Beetroot());
+				
+			
+		
+		assertEquals("Insufficient funds for purchase", testDairyFarm.output);
+		assertEquals("Insufficient space for purchase", testCropFarm.output);
+	}
+	
 	@Test
 	public void buyAnimalTest() {
 		testDairyFarm.buyAnimal(new Cow());
 		testDairyFarm.buyAnimal(new Sheep());
 		testDairyFarm.buyAnimal(new Chicken());
+		
 		
 		assertTrue(((testDairyFarm.listOfAnimals.get(0)) instanceof Cow));
 		assertTrue(((testDairyFarm.listOfAnimals.get(1)) instanceof Sheep));
@@ -51,11 +72,34 @@ class FarmTests {
 	}
 	
 	@Test
+	public void buyAnimalTest2() {
+		testDairyFarm.money = new Cow().purchasePrice - 1;
+		
+		testDairyFarm.buyAnimal(new Cow());
+		
+		testCropFarm.freeSpace = 1;
+		
+		testCropFarm.buyAnimal(new Cow());
+		testCropFarm.buyAnimal(new Cow());
+				
+			
+		
+		assertEquals("Insufficient funds for purchase", testDairyFarm.output);
+		assertEquals("Insufficient space for purchase", testCropFarm.output);
+	}
+	
+	@Test
 	public void buyCropItemTest() {
 		testDairyFarm.buyCropItem(new Fertilizer());
 		testDairyFarm.buyCropItem(new ScareCrow());
 		testDairyFarm.buyCropItem(new AutomaticSprinkler());
 		
+		testCropFarm.money = 0;
+		
+		testCropFarm.buyCropItem(new Fertilizer());
+		
+		
+		assertEquals("Insufficient funds for purchase", testCropFarm.output);
 		assertTrue(((testDairyFarm.listOfItems.get(0)) instanceof Fertilizer));
 		assertTrue(((testDairyFarm.listOfItems.get(1)) instanceof ScareCrow));
 		assertTrue(((testDairyFarm.listOfItems.get(2)) instanceof AutomaticSprinkler));
@@ -73,6 +117,18 @@ class FarmTests {
 	}
 	
 	@Test
+	public void buyFoodTest2() {
+		testDairyFarm.money = 0;
+		
+		testDairyFarm.buyFood(new Seeds());
+		
+		assertEquals("Insufficient funds for purchase", testDairyFarm.output);
+
+		
+	}
+	
+	
+	@Test
 	public void tendToLandTest() {
 		testDairyFarm.buyAnimal(new Cow());
 		testDairyFarm.buyAnimal(new Sheep());
@@ -84,19 +140,45 @@ class FarmTests {
 		assertEquals(5, testDairyFarm.freeSpace);
 	}
 	
+	@Test
+	public void tendToLandTest2() {	
+		testCropFarm.actionsRemaining = 0;
+		testCropFarm.freeSpace = 0;
+		testCropFarm.tendToLand();
+		testDairyFarm.tendToLand();
+		
+		assertEquals("The farm is already tidy", testDairyFarm.output);
+		assertEquals("You have no actions remaining", testCropFarm.output);
+		
+	}
+	
+	
+	@Test
 	public void nextDayTest() {
 		testDairyFarm.buyAnimal(new Cow());
 		testDairyFarm.buyAnimal(new Sheep());
 		testDairyFarm.buyAnimal(new Chicken());
-		testDairyFarm.buyAnimal(new Cow());
-		
-		testDairyFarm.nextDay();
+		testDairyFarm.buyCrop(new Wheat());
 		testDairyFarm.nextDay();
 		
 		assertEquals(2, testDairyFarm.dayCounter);
-		assertEquals(60, testDairyFarm.listOfAnimals.get(0).happiness);
-		assertEquals(60, testDairyFarm.listOfAnimals.get(1).happiness);
-		assertEquals(60, testDairyFarm.listOfAnimals.get(2).happiness);
+		assertEquals(9, testDairyFarm.listOfCrops.get(0).daysToHarvest);
+		assertEquals(80, testDairyFarm.listOfAnimals.get(0).health);
+		//assertEquals(80, testDairyFarm.listOfAnimals.get(1).happiness);
+		//assertEquals(80, testDairyFarm.listOfAnimals.get(2).happiness);
+	}
+	
+	@Test
+	public void nextDayTest2() {
+		testCropFarm.buyCrop(new Wheat());
+		testCropFarm.buyCrop(new Beetroot());
+		testCropFarm.listOfCrops.get(1).daysToHarvest = 1;
+		
+		testCropFarm.nextDay();
+		
+		assertEquals(8, testCropFarm.listOfCrops.get(0).daysToHarvest);
+		assertTrue(testCropFarm.listOfCrops.get(1).daysToHarvest >= 0);
+		
 	}
 	
 	@Test

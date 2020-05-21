@@ -41,8 +41,8 @@ class FeedAnimalTest {
 		testChicken.health = 90;
 		testChicken.feed(seedFood, testChickenFarm);
 		
-		assertEquals(90, testChicken.health);
-		assertEquals(2, testChickenFarm.actionsRemaining);
+		assertEquals(100, testChicken.health);
+		assertEquals(1, testChickenFarm.actionsRemaining);
 	}
 	
 	@Test
@@ -63,8 +63,29 @@ class FeedAnimalTest {
 		testChicken.health = 90;
 		testChicken.feed(hayFood, testChickenFarm);
 		
-		assertEquals(90, testChicken.health);
-		assertEquals(2, testChickenFarm.actionsRemaining);
+		assertEquals(100, testChicken.health);
+		assertEquals(1, testChickenFarm.actionsRemaining);
+	}
+	
+	@Test
+	public void testActionsRemainingFeedingChicking() {
+		Hay hayFood = new Hay();
+		ChickenFarm testChickenFarm = new ChickenFarm("My Farm", testFarmer);
+		testChickenFarm.actionsRemaining = 0;
+		testChicken.health = 90;
+		testChicken.feed(hayFood, testChickenFarm);
+		
+		
+		assertEquals("You have no actions remaining today", testChickenFarm.output);
+	}
+	
+	@Test
+	public void testAnimalNotHungy() {
+		Hay hayFood = new Hay();
+		ChickenFarm testChickenFarm = new ChickenFarm("My Farm", testFarmer);
+		testChicken.feed(hayFood, testChickenFarm);
+		
+		assertEquals("This animal does not need to eat", testChickenFarm.output);
 	}
 	
 	
