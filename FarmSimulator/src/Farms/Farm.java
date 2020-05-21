@@ -98,6 +98,7 @@ public class Farm {
 	/**
 	 * Prints a list of owned items
 	 */
+	
 	public void printFood() {
 		System.out.println("These are your food items:");
 		
@@ -126,10 +127,10 @@ public class Farm {
 		}
 		else {
 			if (money < crop.purchasePrice) {
-				output = "You do not have enough money to buy that";
+				output = "Insufficient funds for purchase";
 			}
 			if (freeSpace == 0) {
-				output = "You do not have enough space to plant that";
+				output = "Insufficient space for purchase";
 			}
 		}
 	}
@@ -238,6 +239,10 @@ public class Farm {
 			theAnimal.tendTo(this);
 			theAnimal.happiness -= 5 + ((5 - freeSpace) * 5);
 			theAnimal.health -= 20;
+			
+			if (theAnimal.health == 0) {
+				listOfAnimals.remove(theAnimal);
+			}
 		}
 		for (Crop crop: listOfCrops) {
 			if (this.type == "Crop Farm") {
