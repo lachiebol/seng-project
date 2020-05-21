@@ -16,13 +16,18 @@ public class Animal implements Cloneable {
 	public int health = 100;
 	public int happiness = 100;
 	public double earningsBoost = 2;
+	private double favouriteBoost = 1.5;
+	
+	public String favouriteFood;
 	
 	public int baseEarnings;
 	public String name;
-	public String favouriteFood;
+	
 	public int purchasePrice;
 	public String output;
 
+	
+	
 	/**
 	 * Initialises the Animal object
 	 *
@@ -45,31 +50,44 @@ public class Animal implements Cloneable {
 	}
 
 	/**
-	* Feeds animal if food is favourite, or else prints message
+	* Feeds animal, gives bonus of favouriteBoost if food is animals favourite
 	*
 	* @param Food foodItem, food that will be fed to Animal
+	* @param Farm playerFarm, Current farm used to get actions remaining 
 	*
 	*/
 	public void feed(Food foodItem, Farm playerFarm) {
-		if (playerFarm.actionsRemaining > 0) {
-			if (health + (foodItem.healthBoost * 1.5) <= 100) {
-				if(foodItem.name == favouriteFood) {
-					health += (foodItem.healthBoost * 1.5);
+
+		if (playerFarm.actionsRemaining <= 0) {
+			playerFarm.output = ("You have no actions remaining today");
+		} else {
+
+			if (health < 100) {
+				if (foodItem.name == favouriteFood) {
+					health += (foodItem.healthBoost * favouriteBoost);			
 					playerFarm.output = "The animal loved that";
-				} else {
+				} else{
 					health += foodItem.healthBoost;
 					playerFarm.output = "The animal ate that begrudgingly";
 				}
+
+				
+				if (health > 100) {
+					health -= health % 100; // 110 mod 100 = 10 (difference)
+				}
+				
+				playerFarm.listOfFood.remove(foodItem);
 				playerFarm.actionsRemaining -= 1;
+				
+				
+			} else {
+				playerFarm.output = "This animal does not need to eat";
 			}
-				else {
-					playerFarm.output = ("This animal does not need to eat");
-				}
-			}
-				else {
-					playerFarm.output = ("You have no actions remaining today");
-				}
-			}
+
+		}
+		
+		
+	}
 
 	/**
 	* Calculates and sets earningsBoost
@@ -97,7 +115,7 @@ public class Animal implements Cloneable {
 				else {
 					happiness = 100;
 					playerFarm.actionsRemaining -= 1;
-					output = "You played with the animal";
+					output = "You played with the " + name;
 				}
 			}
 		}
@@ -125,12 +143,7 @@ public class Animal implements Cloneable {
 			else {
 				playerFarm.money += (int) (baseEarnings * earningsBoost);
 			}
-			
-	
-	
-	
-	
-	
+
 	}
 
 
