@@ -100,20 +100,23 @@ public class FeedAnimal2 {
 				String indexInput = input.getText();
 				int index = 0;
 				index = Integer.parseInt(indexInput) - 1;
+				
 				if ((index <= manager.playerFarm.listOfAnimals.size()) && (index >= 0)) {
-					manager.playerFarm.listOfAnimals.get(manager.feedAnimalIndex).
-					feed(manager.playerFarm.listOfFood.get(index), manager.playerFarm);
+					manager.playerFarm.listOfAnimals.get(manager.feedAnimalIndex)
+							.feed(manager.playerFarm.listOfFood.get(index), manager.playerFarm);
+					
 					foodList.setText("   " + "Food" + "          " + "Health Boost");
+					
 					for (Food food : manager.playerFarm.listOfFood) {
-						foodList.append("\n" + (manager.playerFarm.listOfFood.indexOf(food) + 1) + "  " 
-								+ food.name + "          " +  food.healthBoost);
+						foodList.append("\n" + (manager.playerFarm.listOfFood.indexOf(food) + 1) + "  " + food.name
+								+ "          " + food.healthBoost);
 					}
+					
 					feedback.setText(manager.playerFarm.output);
-					}
-				else {
-						feedback.setText("Please enter a valid number");
-					}
+				} else {
+					feedback.setText("Please enter a valid number");
 				}
+			}
 		});
 		feedButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		feedButton.setBounds(365, 201, 96, 44);
@@ -142,4 +145,5 @@ public class FeedAnimal2 {
 		window.getContentPane().add(backButton);
 	}
 
+	
 }

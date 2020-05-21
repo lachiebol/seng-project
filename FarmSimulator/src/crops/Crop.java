@@ -22,7 +22,6 @@ public class Crop implements Cloneable {
 	}
 
 
-
 	public Object clone() {
 		try {
 			return super.clone();
