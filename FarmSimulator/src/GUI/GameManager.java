@@ -8,6 +8,7 @@ import Farms.Farm;
 import Farms.SheepFarm;
 import Items.CropItem;
 import Items.WateringCan;
+import animal.Sheep;
 
 public class GameManager {
 	
@@ -77,6 +78,7 @@ public class GameManager {
 			playerFarm = new CropFarm(farmName, player);
 		} else if (farmType.equals("Sheep Farm")) {
 			playerFarm = new SheepFarm(farmName, player);
+			playerFarm.listOfAnimals.add(new Sheep());
 		} else if (farmType.equals("Dairy Farm")) {
 			playerFarm = new DairyFarm(farmName, player);
 		} 

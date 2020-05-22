@@ -137,9 +137,6 @@ public class Animal implements Cloneable {
 			else if ((playerFarm.type == "Chicken Farm") && (this.name == "Chicken") && (playerFarm.freeSpace == 5)) {
 				playerFarm.money += (((int) (baseEarnings * earningsBoost)) * 2);
 			}
-			else if ((playerFarm.type == "Sheep Farm") && (this.name == "Sheep") && (playerFarm.farmer.name.equals("Max Watson"))) {
-				playerFarm.money += (((int) (baseEarnings * earningsBoost)) * 1000);
-			}
 			else {
 				playerFarm.money += (int) (baseEarnings * earningsBoost);
 			}
