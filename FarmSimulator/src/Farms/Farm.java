@@ -29,6 +29,7 @@ public class Farm {
 	public int actionsRemaining = 2;
 	public int dayCounter = 1;
 	public String output;
+	ArrayList<Integer> toBeRemoved = new ArrayList<Integer>();
 	
 
 	/**
@@ -235,15 +236,32 @@ public class Farm {
 		
 		dayCounter += 1;
 		actionsRemaining = 2;
+		
 		for (Animal theAnimal: listOfAnimals) {
 			theAnimal.tendTo(this);
+			
 			theAnimal.happiness -= 5 + ((5 - freeSpace) * 5);
 			theAnimal.health -= 20;
 			
-			if (theAnimal.health == 0) {
-				listOfAnimals.remove(theAnimal);
+			if (theAnimal.happiness < 0) {
+				theAnimal.happiness = 0;
+			}
+			
+			if (theAnimal.health <= 0) {
+				toBeRemoved.add(listOfAnimals.indexOf(theAnimal));
 			}
 		}
+		
+		int i = 0;
+		
+		for (int index: toBeRemoved) {
+			int removedIndex = index - i;
+			listOfAnimals.remove(removedIndex);
+			i += 1;
+		}
+		
+		toBeRemoved.clear();
+		
 		for (Crop crop: listOfCrops) {
 			if (this.type == "Crop Farm") {
 				if (crop.daysToHarvest >= 2) {
