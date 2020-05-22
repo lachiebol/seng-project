@@ -42,14 +42,20 @@ public class Crop implements Cloneable {
 			if ((this.daysToHarvest - item.timeBoost) > 0) {
 				this.daysToHarvest -= item.timeBoost;
 				playerFarm.actionsRemaining -= 1;
-				playerFarm.listOfItems.remove(item);
+				
+				
+				if(item.name != "Watering Can") {
+					playerFarm.listOfItems.remove(item);
+				}
 				System.out
 					.println("You used " + item.name.toLowerCase() + " on " + name + ", -" + item.timeBoost + " days");
 			}
 			else {
 				this.daysToHarvest = 0;
 				playerFarm.actionsRemaining -= 1;
-				playerFarm.listOfItems.remove(item);
+				if(item.name != "Watering Can") {
+					playerFarm.listOfItems.remove(item);
+				}
 				System.out
 					.println("You used " + item.name.toLowerCase() + " on " + name + ", -" + item.timeBoost + " days");
 			}
