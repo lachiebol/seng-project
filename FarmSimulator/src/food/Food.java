@@ -15,6 +15,9 @@ public class Food {
 	
 	/**
 	 * Initialises the Food object
+	 * @param newHealthBoost the health boost to be given to the food
+	 * @param newPrice the price to be given to the food
+	 * @param newName the name to be given to the food
 	 */
 	
 	public Food(int newHealthBoost, int newPrice, String newName) {

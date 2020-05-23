@@ -9,6 +9,8 @@ import Farmers.Farmer;
 public class ChickenFarm extends Farm {
 	/**
 	 * Initialises a ChickenFarm Object
+	 * @param chosenName the name to be given to the chicken farm
+	 * @param chosenFarmer the farmer to be given to the chicken farm
 	 */
 	public ChickenFarm(String chosenName, Farmer chosenFarmer) {
 		super(chosenName, chosenFarmer, "Chicken Farm");

@@ -34,6 +34,9 @@ public class Farm {
 
 	/**
 	 * Initiates a Farm Object.
+	 * @param newName the name to be given to the farm
+	 * @param newFarmer the new farmer to be given to the farm
+	 * @param newType the type of farm to be given to the farm
 	 */
 
 	public Farm(String newName, Farmer newFarmer, String newType) {

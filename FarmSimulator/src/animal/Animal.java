@@ -30,6 +30,10 @@ public class Animal implements Cloneable {
 	
 	/**
 	 * Initialises the Animal object
+	 * @param newFavouriteFood the food to be set as favourite
+	 * @param newPurchasePrice the price to be set for the animal
+	 * @param newName the name to be set for the animal
+	 * @param newBaseEarnings the base earnings to be set for the animal
 	 *
 	 */
 
@@ -52,8 +56,8 @@ public class Animal implements Cloneable {
 	/**
 	* Feeds animal, gives bonus of favouriteBoost if food is animals favourite
 	*
-	* @param Food foodItem, food that will be fed to Animal
-	* @param Farm playerFarm, Current farm used to get actions remaining 
+	* @param foodItem, food that will be fed to Animal
+	* @param playerFarm, Current farm used to get actions remaining 
 	*
 	*/
 	public void feed(Food foodItem, Farm playerFarm) {
@@ -99,7 +103,7 @@ public class Animal implements Cloneable {
 
 	/**
 	* Plays with animal, increasing their happiness
-	*
+	*@param playerFarm the farm which provides actions remaining.
 	*/
 	public void playWith(Farm playerFarm) {
 		if (playerFarm.actionsRemaining > 0) {
@@ -127,7 +131,7 @@ public class Animal implements Cloneable {
 	
 	/**
 	 * Tends to the animal, providing income for the farm.
-	 * @param playerFarm
+	 * @param playerFarm the farm which provides money attribute.
 	 */
 	public void tendTo(Farm playerFarm) {
 			setEarningsBoost();

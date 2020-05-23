@@ -9,6 +9,8 @@ import Farmers.Farmer;
 public class CropFarm extends Farm{
 	/**
 	 * Initialises a CropFarm Object
+	 * @param chosenName the name to be given to the crop farm
+	 * @param chosenFarmer the farmer to be given to the crop farm.
 	 */
 	public CropFarm(String chosenName, Farmer chosenFarmer) {
 		super(chosenName, chosenFarmer, "Crop Farm");

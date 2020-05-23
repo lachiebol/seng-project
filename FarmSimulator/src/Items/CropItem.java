@@ -15,6 +15,9 @@ public class CropItem {
 	
 	/**
 	 * Initiates a Crop Item.
+	 * @param newName the name to be given to the crop item
+	 * @param newPrice the price to be given to the crop item
+	 * @param newTimeBoost the time boost to be given to the crop item
 	 */
 	
 	public CropItem(String newName, int newPrice, int newTimeBoost) {

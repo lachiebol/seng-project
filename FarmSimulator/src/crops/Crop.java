@@ -11,7 +11,10 @@ public class Crop implements Cloneable {
 
 	/**
 	 * Initialises the Crop object
-	 *
+	 *@param newName the name to be given to the crop
+	 *@param newPurchasePrice the purchase price to be given to the crop
+	 *@param newSellingPrice the selling price to be given to the crop
+	 *@param newDaysToHarvest the days to harvest to be given to the crop
 	 */
 
 	public Crop(String newName, int newPurchasePrice, int newSellingPrice, int newDaysToHarvest) {

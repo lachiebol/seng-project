@@ -443,7 +443,7 @@ public class GameEnvironment {
 	 * Prompts the player to pick a crop item, then purchases the food item
 	 * 
 	 * @param playerFarm Current Farm object used for the buyAnimal method
-	 * @param shopFood   Array of CropItem that the shop owns
+	 * @param shopCropItems   Array of CropItem that the shop owns
 	 */
 
 	public void purchaseCropItem(Farm playerFarm, ArrayList<Object> shopCropItems) {
