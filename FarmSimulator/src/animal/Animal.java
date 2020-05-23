@@ -10,24 +10,24 @@ import food.Food;
  *
  */
 public class Animal implements Cloneable {
-	
-	
+
+
 
 	public int health = 100;
 	public int happiness = 100;
 	public double earningsBoost = 2;
 	private double favouriteBoost = 1.5;
-	
+
 	public String favouriteFood;
-	
+
 	public int baseEarnings;
 	public String name;
-	
+
 	public int purchasePrice;
 	public String output;
 
-	
-	
+
+
 	/**
 	 * Initialises the Animal object
 	 * @param newFavouriteFood the food to be set as favourite
@@ -42,14 +42,14 @@ public class Animal implements Cloneable {
 		purchasePrice = newPurchasePrice;
 		name = newName;
 		baseEarnings = newBaseEarnings;
-		
+
 	}
-	
-	public Object clone(){  
-	    try{  
-	        return super.clone();  
-	    }catch(Exception e){ 
-	        return null; 
+
+	public Object clone(){
+	    try{
+	        return super.clone();
+	    }catch(Exception e){
+	        return null;
 	    }
 	}
 
@@ -57,7 +57,7 @@ public class Animal implements Cloneable {
 	* Feeds animal, gives bonus of favouriteBoost if food is animals favourite
 	*
 	* @param foodItem, food that will be fed to Animal
-	* @param playerFarm, Current farm used to get actions remaining 
+	* @param playerFarm, Current farm used to get actions remaining
 	*
 	*/
 	public void feed(Food foodItem, Farm playerFarm) {
@@ -68,29 +68,29 @@ public class Animal implements Cloneable {
 
 			if (health < 100) {
 				if (foodItem.name == favouriteFood) {
-					health += (foodItem.healthBoost * favouriteBoost);			
+					health += (foodItem.healthBoost * favouriteBoost);
 					playerFarm.output = "The animal loved that";
 				} else{
 					health += foodItem.healthBoost;
 					playerFarm.output = "The animal ate that begrudgingly";
 				}
 
-				
+
 				if (health > 100) {
 					health -= health % 100; // 110 mod 100 = 10 (difference)
 				}
-				
+
 				playerFarm.listOfFood.remove(foodItem);
 				playerFarm.actionsRemaining -= 1;
-				
-				
+
+
 			} else {
 				playerFarm.output = "This animal does not need to eat";
 			}
 
 		}
-		
-		
+
+
 	}
 
 	/**
@@ -127,8 +127,8 @@ public class Animal implements Cloneable {
 			output = "You have no actions remaining today";
 		}
 	}
-		
-	
+
+
 	/**
 	 * Tends to the animal, providing income for the farm.
 	 * @param playerFarm the farm which provides money attribute.
@@ -149,10 +149,8 @@ public class Animal implements Cloneable {
 
 
 
-		
+
 
 
 
 }
-
-
