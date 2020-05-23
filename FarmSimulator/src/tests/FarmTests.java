@@ -93,16 +93,18 @@ class FarmTests {
 		testDairyFarm.buyCropItem(new Fertilizer());
 		testDairyFarm.buyCropItem(new ScareCrow());
 		testDairyFarm.buyCropItem(new AutomaticSprinkler());
-		
 		testCropFarm.money = 0;
 		
 		testCropFarm.buyCropItem(new Fertilizer());
 		
 		
-		assertEquals("Insufficient funds for purchase", testCropFarm.output);
-		assertTrue(((testDairyFarm.listOfItems.get(0)) instanceof Fertilizer));
-		assertTrue(((testDairyFarm.listOfItems.get(1)) instanceof ScareCrow));
-		assertTrue(((testDairyFarm.listOfItems.get(2)) instanceof AutomaticSprinkler));
+		
+		//listOfItems[0] is Watering Can
+		assertTrue(((testDairyFarm.listOfItems.get(1)) instanceof Fertilizer));
+		assertTrue(((testDairyFarm.listOfItems.get(2)) instanceof ScareCrow));
+		assertTrue(((testDairyFarm.listOfItems.get(3)) instanceof AutomaticSprinkler));
+		
+		//assertEquals("Insufficient funds for purchase", testCropFarm.output);
 	}
 	
 	@Test
@@ -164,8 +166,7 @@ class FarmTests {
 		assertEquals(2, testDairyFarm.dayCounter);
 		assertEquals(9, testDairyFarm.listOfCrops.get(0).daysToHarvest);
 		assertEquals(80, testDairyFarm.listOfAnimals.get(0).health);
-		//assertEquals(80, testDairyFarm.listOfAnimals.get(1).happiness);
-		//assertEquals(80, testDairyFarm.listOfAnimals.get(2).happiness);
+
 	}
 	
 	@Test
@@ -180,6 +181,35 @@ class FarmTests {
 		assertTrue(testCropFarm.listOfCrops.get(1).daysToHarvest >= 0);
 		
 	}
+	
+	@Test
+	public void nextDayTestAnimalDeathTest() {
+		testDairyFarm.buyAnimal(new Cow());
+		testDairyFarm.buyAnimal(new Sheep());
+		testDairyFarm.buyAnimal(new Chicken());
+		
+		testDairyFarm.listOfAnimals.get(0).health = 10;
+		testDairyFarm.listOfAnimals.get(1).health = 10;
+		
+		testDairyFarm.nextDay();
+		
+		assertTrue(testDairyFarm.listOfAnimals.size() == 1);
+
+	}
+	
+	@Test
+	public void nextDayAnimalHappinessTest() {
+		testDairyFarm.buyAnimal(new Cow());
+	
+		testDairyFarm.listOfAnimals.get(0).happiness = 10;
+		
+		testDairyFarm.nextDay();
+		
+		assertTrue(testDairyFarm.listOfAnimals.get(0).happiness == 0);
+
+	}
+	
+	
 	
 	@Test
 	public void harvestCropTest() {

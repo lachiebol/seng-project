@@ -27,7 +27,7 @@ class UseCropItemTest {
 	public void useCropItemTest() {
 		testSheepFarm.buyCrop(new Potato());
 		testSheepFarm.buyCropItem(new AutomaticSprinkler());
-		testSheepFarm.listOfCrops.get(0).useItem(testSheepFarm.listOfItems.get(0), testSheepFarm);
+		testSheepFarm.listOfCrops.get(0).useItem(testSheepFarm.listOfItems.get(1), testSheepFarm);
 		
 		assertEquals(7, testSheepFarm.listOfCrops.get(0).daysToHarvest);
 		assertEquals(1, testSheepFarm.actionsRemaining);
@@ -38,9 +38,17 @@ class UseCropItemTest {
 		testSheepFarm.buyCrop(new Potato());
 		testSheepFarm.buyCropItem(new AutomaticSprinkler());
 		testSheepFarm.listOfCrops.get(0).daysToHarvest = 1;
-		testSheepFarm.listOfCrops.get(0).useItem(testSheepFarm.listOfItems.get(0), testSheepFarm);
+		testSheepFarm.listOfCrops.get(0).useItem(testSheepFarm.listOfItems.get(1), testSheepFarm);
 		
 		assertEquals(0, testSheepFarm.listOfCrops.get(0).daysToHarvest);
 		assertEquals(1, testSheepFarm.actionsRemaining);
+	}
+	
+	@Test
+	public void useWateringCanTest() {
+		testSheepFarm.buyCrop(new Potato());
+		testSheepFarm.listOfCrops.get(0).useItem(testSheepFarm.listOfItems.get(0), testSheepFarm);
+		
+		assertTrue(testSheepFarm.listOfItems.get(0) instanceof WateringCan);
 	}
 }
