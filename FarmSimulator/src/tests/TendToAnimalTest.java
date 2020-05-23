@@ -11,113 +11,76 @@ import Farmers.Farmer;
 
 
 class TendToAnimalTest {
-	private Animal testAnimal;
+	private Sheep testSheep;
 	private Farmer testFarmer;
-	private Farm testFarm;
+	private DairyFarm testDairyFarm;
 	
 	@BeforeEach
 	public void init() {
+		testSheep = new Sheep();
 		testFarmer = new Farmer("Conor", 19);
-	}
-	
-	
-	@Test
-	public void testChickenTendTo() {
-		testAnimal = new Chicken();
-		testFarm = new ChickenFarm("Farm", testFarmer);
-		
-		testAnimal.happiness = 100;
-		testAnimal.health = 100;
-		
-		testAnimal.tendTo(testFarm);
-		
-		assertEquals(620, testFarm.money);
-	}
-	
-	
-	@Test
-	public void testChickenTendTo2() {
-		testAnimal = new Chicken();
-		testFarm = new ChickenFarm("Farm", testFarmer);
-
-		
-		testAnimal.happiness = 0;
-		testAnimal.health = 10;
-		
-		testAnimal.tendTo(testFarm);
-		
-		assertEquals(506, testFarm.money);
+		testDairyFarm = new DairyFarm("My Farm", testFarmer);
 	}
 	
 	@Test
-	public void testCowTendTo() {
-		testAnimal = new Cow();
-		testFarm = new DairyFarm("Farm", testFarmer);
-
+	public void tendToSheepTest() {
+		testSheep.happiness = 50;
+		testSheep.health = 50;
+		testDairyFarm.money = 100;
 		
-		testAnimal.happiness = 100;
-		testAnimal.health = 100;
+		testSheep.tendTo(testDairyFarm);
 		
-		testAnimal.tendTo(testFarm);
-		
-		assertEquals(610, testFarm.money);
+		assertEquals(140, testDairyFarm.money);
+		assertEquals(1, testDairyFarm.actionsRemaining);
 	}
 	
+	@Test	
+	public void tendToSheepTest2() {
+		testSheep.happiness = 29;
+		testSheep.health = 50;
+		testDairyFarm.money = 100;
+			
+		testSheep.tendTo(testDairyFarm);
+			
+		assertEquals(131, testDairyFarm.money);
+		assertEquals(1, testDairyFarm.actionsRemaining);
+	}
+		
 	@Test
-	public void testCowTendTo2() {
-		testAnimal = new Cow();
-		testFarm = new DairyFarm("Farm", testFarmer);
-
-		
-		testAnimal.happiness = 0;
-		testAnimal.health = 1;
-		
-		testAnimal.tendTo(testFarm);
-		
-		assertEquals(510, testFarm.money);
+	public void tendToSheepTest3() {
+		testSheep.happiness = 70;
+		testSheep.health = 80;
+		testDairyFarm.money = 100;
+			
+		testSheep.tendTo(testDairyFarm);
+			
+		assertEquals(160, testDairyFarm.money);
+		assertEquals(1, testDairyFarm.actionsRemaining);
 	}
-	
+		
 	@Test
-	public void testSheepTendTo() {
-		testAnimal = new Sheep();
-		testFarm = new SheepFarm("Farm", testFarmer);
-
-		
-		testAnimal.happiness = 100;
-		testAnimal.health = 100;
-		
-		testAnimal.tendTo(testFarm);
-		
-		assertEquals(590, testFarm.money);
+	public void tendToSheepTest4() {
+		testSheep.happiness = 50;
+		testSheep.health = 50;
+		testDairyFarm.money = 100;
+		testDairyFarm.actionsRemaining = 0;
+			
+		testSheep.tendTo(testDairyFarm);
+			
+		assertEquals(100, testDairyFarm.money);
+		assertEquals(0, testDairyFarm.actionsRemaining);
 	}
-	
+		
 	@Test
-	public void testSheepTendTo2() {
-		testAnimal = new Sheep();
-		testFarm = new SheepFarm("Farm", testFarmer);
-
-		
-		testAnimal.happiness = 0;
-		testAnimal.health = 1;
-		
-		testAnimal.tendTo(testFarm);
-		
-		assertEquals(510, testFarm.money);
+	public void tendToSheepTest5() {
+		testSheep.happiness = 0;
+		testSheep.health = 0;
+		testDairyFarm.money = 100;
+		testDairyFarm.actionsRemaining = 1;
+			
+		testSheep.tendTo(testDairyFarm);
+			
+		assertEquals(100, testDairyFarm.money);
+		assertEquals(0, testDairyFarm.actionsRemaining);
 	}
-	
-	@Test
-	public void testCropFarm() {
-		testAnimal = new Sheep();
-		testFarm = new CropFarm("Farm", testFarmer);
-
-		
-		testAnimal.happiness = 100;
-		testAnimal.health = 100;
-		
-		testAnimal.tendTo(testFarm);
-		
-		assertEquals(580, testFarm.money);
-	}
-	
-	
 }
