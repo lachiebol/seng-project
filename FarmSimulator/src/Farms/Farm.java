@@ -4,7 +4,6 @@ import animal.Animal;
 import crops.Crop;
 import Farmers.Farmer;
 import Items.CropItem;
-import Items.WateringCan;
 import food.Food;
 
 
@@ -44,8 +43,6 @@ public class Farm {
 		name = newName;
 		farmer = newFarmer;
 		type = newType;
-		
-		listOfItems.add(new WateringCan());
 	}
 	
 	/**

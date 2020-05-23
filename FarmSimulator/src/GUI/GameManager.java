@@ -83,6 +83,8 @@ public class GameManager {
 			playerFarm = new DairyFarm(farmName, player);
 		} 
 		
+		CropItem wateringCan = new WateringCan();
+		playerFarm.listOfItems.add(wateringCan);
 	}
 	
 
